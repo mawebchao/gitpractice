@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>标题</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        h1{
+            font-size: 12px;
+        }
+        .box{
+            width: 500px;
+            height: 500px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="box" v-show="status==2"></div>
+        <h1 v-on:click="fn" :style="{color:color,fontSize:font}" v-else>{{txt}}</h1>
+        <button v-on:click="change(100)">按钮</button>
+    </div>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                msg:"hello",
+                color:"red",
+                font_size:12,
+                sex:1,
+                status:1,
+                aa:"hello",
+                bb:"world",
+                font:"80px",
+                show:true
+            },
+            methods:{
+                fn(){
+                    return this.aa+this.bb
+                },
+                change(m){
+                    this.show=false;
+                    alert("我执行了"+m);
+                    console.log(this.msg);
+                    this.color="green";
+                    this.font_size=80;
+                    this.sex=2;
+                    this.status=1;
+                }
+            },
+            computed:{
+                txt(){
+                    alert("111");
+                    if(this.status==1){
+                        return "成功"
+                    }else if(this.status==2){
+                        return "失败"
+                    }else if(this.status==2){
+                        return "进行中"
+                    }
+                },
+                whole(){
+                    return this.aa+this.bb
+                }
+            },
+            watch:{
+                color(){
+                    this.font="60px"
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
