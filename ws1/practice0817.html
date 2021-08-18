@@ -8,17 +8,26 @@
 </head>
 <body>
     <div id="app">
+        <input v-model="todoItem" @keyup.enter="addToList"/>
         <ul>
-            <li v-for="item in list">item</li>
+            <li  v-for="(item,index) in list" @click="deletes(index)">{{item}}</li>
         </ul>
-        <input v-model="todoItem"/>
-        <button @click="addToList()">添加到TodoList</button>
     </div>
     <script>
         new Vue({
             el:"#app",
             data:{
-                todoItem:""
+                todoItem:"",
+                list:[]
+            },
+            methods:{
+                addToList(){
+                    this.list.push(this.todoItem);
+                    this.todoItem="";
+                },
+                deletes(n){
+                    this.list.splice(n,1)
+                }
             }
         })
     </script>
