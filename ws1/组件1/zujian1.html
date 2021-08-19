@@ -8,32 +8,39 @@
 </head>
 <body>
     <div id="app">
-        <mylist></mylist>
+        <headh></headh>
+        <mainh></mainh>
+        <foot></foot>
     </div>
     <script>
         //组件的配置选项
-        var coma={
+        var headh={
             template:`<div>
-                <h1 @click="fn">{{count}}</h1>
+                <h1>我是头部</h1>
                 </div>`,
             data(){
                 return {
                     count:10
                 }
             },
-            method:{
+            methods:{
                 fn(){
                     this.count++;
                 }
             }
         };
+        var mainh={
+            template:`<div><h1>{{msg}}</h1></div>`,
+            data(){return {msg:"我是内容"}}
+        }
+        var foot={
+            template:`<div><h1>{{msg}}</h1></div>`,
+            data(){return {msg:"我是尾部"}}
+        }
         new Vue({
             el:"#app",
-            data:{
-
-            },
             components:{
-                mylist:coma
+                headh,mainh,foot
             }
         })
     </script>
