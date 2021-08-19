@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-list></my-list>
+        <my-list></my-list>
+    </div>
+    <script>
+        Vue.component("MyList",{
+            data(){
+                return {
+                   name:"小明",
+                   age:18
+                }
+            },
+            template:`<div>
+                <ul>
+                    <li @click="al">{{name}}</li>
+                    <li>李四</li>
+                    <li>王五</li>
+                    <li>赵六</li>
+                </ul>
+            </div>`,
+            methods:{
+                add(){
+                    this.count++
+                },
+                al(){
+                    alert(1);
+                    this.name="厦门"
+                }
+            }
+        })
+        new Vue({
+            el:"#app",
+            
+        })
+    </script>
+</body>
+</html>
