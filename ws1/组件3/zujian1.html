@@ -9,19 +9,30 @@
 <body>
     <div id="app">
         <h1>{{msg}}</h1>
-        <mainh @par="myfn"></mainh>
+        <mainh @par="myfn">
+            <template v-slot:after="prop">
+                <!-- v-slot:after="prop"（固定格式） -->
+                <h1 >我想直接用{{prop.title}}</h1>
+            </template>
+            <template v-slot:before>
+                <h2 >我发奖金了</h2>
+            </template>
+            <p>我好难过呀</p>
+        </mainh>
     </div>
     <script>
         //组件的配置选项
-        //要在需要使用的组件中注册
+        //组件标签中的所有内容，都会渲染到组件的slot中
+        //插槽的定义结构：<slot name=""></slot>
+        //v-slot:name可以缩写为#name
         var sel={
             template:`<select><option>{{msg}}</option><option>{{msg}}</option></select>`,
-            data(){return {msg:"我是尾下拉框"}},
-            
+            data(){return {msg:"我是尾下拉框"}}
         }
         var mainh={
-            template:`<div><h1 @click="fn">{{msg}}</h1><sel ></sel></div>`,
-            data(){return {msg:"我是内容"}},
+            template:`<div><h1 @click="fn">{{msg}}</h1><slot></slot><slot name="before"></slot><slot name="after" v-bind:title="title"></slot><sel ></sel></div>`,
+            //v-bind:自定义的属性名="该组件自己拥有的变量"
+            data(){return {msg:"我是内容",title:"我是main组件中的数据"}},
             components:{sel},
             methods:{
                 fn(){
@@ -43,11 +54,6 @@
                 }
             }
         })
-        //父组件传递数据给子组件，用props
-        //1.子组件定义props属性2.子组件定义用在哪儿3.组件调用在开始标签里面传递来自父组件的数据
-        //子组件传递数据给父组件，用$emit
-        //1.在子组件开始标签绑定一个自定义事件2.在该子组件内部定义方法，该方法通过$emit去触发自定义事件，并且把自己的数据作为$emit的第二个参数传递进去
-        //3.自定义事件触发时要做的事定义在父组件的methods中，在此方法里只要把自己的数据更新为传过来的参数即可
     </script>
 </body>
 </html>

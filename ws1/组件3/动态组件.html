@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <component v-bind:is="tab"></component>
+        <button @click="change(2)">按钮</button>
+    </div>
+    <script>
+        var coma1={
+            template:`<div><h1>我是第一个组件</h1></div>`,
+        }
+        var coma2={
+            template:`<div><h1>我是第二个组件</h1></div>`,
+        }
+        var coma3={
+            template:`<div><h1>我是第三个组件</h1></div>`,
+        }
+        var app=new Vue({
+            el:"#app",
+            data:{
+                tab:"mycom1"
+            },
+            components:{
+                mycom1:coma1,
+                mycom2:coma2,
+                mycom3:coma3
+            },
+            methods:{
+                change(n){
+                    this.tab="mycom"+n
+                }
+            }
+        })
+    </script>
+</body>
+</html>
