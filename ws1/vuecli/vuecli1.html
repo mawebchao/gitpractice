@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导航栏练习</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <!-- 导航栏练习，点击哪个选项，哪个选项变色 -->
+    <div id="app">
+        <ul style="border: 1px solid black; width: 600px;">
+            <li v-for="(item,index) in nav_content_list" @click="changecolor(index)"
+                style="float: left; margin-left: 2em; list-style: none; cursor: pointer; width: 2em; text-align: center; display: inline-block;"
+                :style={background:nav_color_list[index]}>{{item}}</li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                red_index: -1,
+                nav_content_list: ["新闻", "hao123", "地图", "直播", "视频", "贴吧", "学术", "更多"],
+                nav_color_list: ["white", "white", "white", "white", "white", "white", "white", "white"]
+            },
+            methods: {
+                changecolor(index) {
+                    console.log("变色" + index);
+                    this.red_index = index;
+                }
+            },
+            watch: {
+                red_index:
+                {
+                    handler: function (value, oldValue) {
+                        if (oldValue != -1)
+                            Vue.set(this.nav_color_list, oldValue, "white");
+                        Vue.set(this.nav_color_list, value, "red");
+                        console.log(this.nav_color_list);
+                    }
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
