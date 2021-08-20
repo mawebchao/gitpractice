@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <mainh @par="myfn"></mainh>
+    </div>
+    <script>
+        //组件的配置选项
+        //要在需要使用的组件中注册
+        var sel={
+            template:`<select><option>{{msg}}</option><option>{{msg}}</option></select>`,
+            data(){return {msg:"我是尾下拉框"}},
+            
+        }
+        var mainh={
+            template:`<div><h1 @click="fn">{{msg}}</h1><sel ></sel></div>`,
+            data(){return {msg:"我是内容"}},
+            components:{sel},
+            methods:{
+                fn(){
+                    this.$emit("par",this.msg)
+                }
+            }
+        }
+        new Vue({
+            el:"#app",
+            data:{
+                msg:"吼吼吼"
+            },
+            components:{
+                mainh
+            },
+            methods:{
+                myfn(payload){
+                    this.msg=payload;
+                }
+            }
+        })
+        //父组件传递数据给子组件，用props
+        //1.子组件定义props属性2.子组件定义用在哪儿3.组件调用在开始标签里面传递来自父组件的数据
+        //子组件传递数据给父组件，用$emit
+        //1.在子组件开始标签绑定一个自定义事件2.在该子组件内部定义方法，该方法通过$emit去触发自定义事件，并且把自己的数据作为$emit的第二个参数传递进去
+        //3.自定义事件触发时要做的事定义在父组件的methods中，在此方法里只要把自己的数据更新为传过来的参数即可
+    </script>
+</body>
+</html>
