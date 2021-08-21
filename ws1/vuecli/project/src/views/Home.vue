@@ -16,3 +16,7 @@ export default {
   }
 }
 </script>
+<style scoped>
+/* scoped代表仅对当前组件生效 */
+  
+</style>

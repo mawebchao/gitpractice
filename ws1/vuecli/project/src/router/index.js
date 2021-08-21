@@ -1,27 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-
+import routerMap from '../router/routerMap'
+//npm install vue-router
+//vue引入的所有插件都需要注册(Vue.use(插件名))
 Vue.use(VueRouter)
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
 
+//创建一个路由实例
+// 接受路由配置项作为参数
+// 路由配置项：就是规定路径和组件的对应关系
 const router = new VueRouter({
-  routes
+  routes:routerMap
 })
 
 export default router
