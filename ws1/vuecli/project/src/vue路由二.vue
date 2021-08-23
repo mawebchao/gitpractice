@@ -2,6 +2,11 @@
   <div id="app">
     <div id="nav">
       <h1>我是标题</h1>
+      <router-link :to="'/about'">about页面</router-link>
+      <router-link :to="{name:'Home'}">home页面</router-link>
+      <!-- router-link 
+      1.可以用字符串路径
+      2.可以用对象,用path或者name跳转都可以 -->
     </div>
     <router-view/>
   </div>

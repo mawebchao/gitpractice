@@ -22,7 +22,7 @@ export default  [
       children:[
         {
           //子路由如果不加“/”，默认是在上级路由的基础上叠加
-          path:"title",
+          path:"title/:id",
           name:"Title",
           component:() => import( '../views/Title.vue')
         },

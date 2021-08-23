@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './vue路由二.vue'
+import App from './App.vue'
 //webpack配置
 //如果当前目录下存在router文件夹，那么是去引入router文件夹下的index.js文件
 //如果当前目录下不存在router文件夹，会寻找当前目录下的router.vue文件
