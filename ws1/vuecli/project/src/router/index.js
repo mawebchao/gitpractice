@@ -10,7 +10,13 @@ Vue.use(VueRouter)
 // 接受路由配置项作为参数
 // 路由配置项：就是规定路径和组件的对应关系
 const router = new VueRouter({
+  mode:"history",
   routes:routerMap
+})
+router.beforeEach((to,from,next)=>{
+  console.log(to);
+  console.log(from);
+  next();
 })
 
 export default router

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './vue路由二.vue'
+import axios from 'axios'
 //webpack配置
 //如果当前目录下存在router文件夹，那么是去引入router文件夹下的index.js文件
 //如果当前目录下不存在router文件夹，会寻找当前目录下的router.vue文件
@@ -17,7 +18,9 @@ import router from './router'
 import store from './store'
 
 Vue.config.productionTip = false
-
+Vue.prototype.$axios=axios
+//axios.get('请求地址',params:请求参数).then()
+//axios.post('请求地址',params:请求参数).then()
 new Vue({
   router,
   store,

@@ -4,27 +4,29 @@ import About from '../views/About.vue'
 import Demo from '../views/Demo.vue'
 export default  [
     {
-      path: '/',
+      path: '/:id',
       name: 'Home',
       component: Home
     },
     {
       path: '/about',
       name: 'About',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
+      //重定向，当用户访问/a时，URL会自动跳转到/b
+      // redirect:"/about/title/:id",
       // which is lazy-loaded when the route is visited.
       // component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
       //路由懒加载：提高性能，只要进入到这个路径才会渲染这个组件
       component:About,
       //哪个组件有子路由，就在哪个配置项内加children
       //哪个组件有子路由，就在改组件的模板里面添加router-view
+      
       children:[
         {
           //子路由如果不加“/”，默认是在上级路由的基础上叠加
           path:"title/:id",
           name:"Title",
-          component:() => import( '../views/Title.vue')
+          component:() => import( '../views/Title.vue'),
+          meta:{bread:["首页","表单页"]}    
         },
         {
           path:"cont",
