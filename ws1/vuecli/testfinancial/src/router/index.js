@@ -30,6 +30,12 @@ const routes = [
         name:"Account_Business",
         meta:["账户管理","业务人员"],
         component:()=>import("../views/account/business.vue")
+      },
+      {
+        path:"/product/all",
+        name:"Product_All",
+        meta:["产品管理","全部产品"],
+        component:()=>import("../views/product/all.vue")
       }
     ]
   }

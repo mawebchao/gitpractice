@@ -1,4 +1,4 @@
-import service from './service'
+import service from "./service"
 export function get(url,params){
     const config={
         method:"get",
@@ -7,6 +7,7 @@ export function get(url,params){
     if(params){config.params=params}
     return service(config)
 }
+
 export function post(url,params){
     const config={
         method:"post",

@@ -9,7 +9,10 @@
           <headers></headers>
         </el-header>
         <el-main>
-          <router-view />
+     
+        <router-view></router-view>
+         
+          
         </el-main>
       </el-container>
     </el-container>
@@ -18,18 +21,19 @@
 
 <script>
 import NavLeft from "@/components/navLeft";
-import Headers from "@/views/Header";
+import Headers from "@/components/header";
 export default {
   components: {
-    NavLeft,Headers
-  }
+    NavLeft,
+    Headers,
+  },
 };
 </script>
 
 <style scoped>
 .el-header,
 .el-footer {
-  background-color: white;
+  background-color: #fff;
   color: #333;
   line-height: 60px;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
@@ -38,6 +42,8 @@ export default {
 .el-aside {
   background-color: #001529;
   color: #333;
+  text-align: left;
+  height: 100vh;
 }
 
 .el-main {
@@ -48,14 +54,5 @@ export default {
 
 body > .el-container {
   margin-bottom: 40px;
-}
-
-.el-container:nth-child(5) .el-aside,
-.el-container:nth-child(6) .el-aside {
-  line-height: 260px;
-}
-
-.el-container:nth-child(7) .el-aside {
-  line-height: 320px;
 }
 </style>

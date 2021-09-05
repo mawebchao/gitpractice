@@ -1,21 +1,20 @@
-export default{
-    //面包屑可以在哪里拿到
-    data(){
-        return{
-            breadlist:[]
+export default {
+    data() {
+        return {
+            breadlist: [],
         }
     },
-    created(){
-        this.getBreadCrumb()
+    created() {
+        this.getBreadcrumb()
     },
     watch:{
         $route(){
-            this.getBreadCrumb()
+            this.getBreadcrumb()
         }
     },
-    methods:{
-        getBreadCrumb(){
-            this.breadlist=this.$route.meta.bread?this.$route.meta.bread:[]
-        }
-    }
+    methods: {
+        getBreadcrumb() {
+            this.breadlist = this.$route.meta.bread ? this.$route.meta.bread : []
+        },
+    },
 }

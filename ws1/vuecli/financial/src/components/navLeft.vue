@@ -1,42 +1,36 @@
 <template>
   <div>
     <h1 class="title">樱花金融后台管理系统</h1>
-    <el-menu background-color="#001529" text-color="#fff" :router="true">
-      <Menus v-for="(item,index) in menuData" :menu="item" :key="index" :index="item.url"></Menus>
+    <el-menu background-color="#001529" text-color="#fff" :router="true" >
+      <menus v-for="(item,index) in menuData" :menu="item" :key="index"></menus>
     </el-menu>
   </div>
 </template>
-
 <script>
-import Menus from "../components/menu";
-import { get } from "../utils/http";
+import { get } from "@/utils/http";
+import menus from "./menu";
 export default {
   data() {
     return {
-      menuData: []
+      menuData: [],
     };
   },
-  methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    }
-  },
   mounted() {
-    get("/menu").then(res => {
-      console.log(res);
+    get("/menu").then((res) => {
       this.menuData = res.data;
     });
   },
   components: {
-    Menus
-  }
+    menus,
+  },
 };
 </script>
 
 <style scoped>
-.title{line-height: 100px;background: #001529;color: white;}
-.el-menu{border:none;}
+.title {
+  line-height: 50px;
+  color: #fff;
+  text-align: center;
+}
+.el-menu{border: none;}
 </style>
