@@ -1,5 +1,5 @@
 {
-  "name": "financial",
+  "name": "testfinancial",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,8 +11,10 @@
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "echarts": "^5.2.0",
-    "element-ui": "^2.15.5",
+    "element-ui": "^2.15.6",
     "mockjs": "^1.1.0",
+    "moment": "^2.29.1",
+    "v-fit-columns": "^0.2.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"

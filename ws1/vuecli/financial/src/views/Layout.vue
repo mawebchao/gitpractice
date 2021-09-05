@@ -1,15 +1,61 @@
 <template>
-    <div>
-        我是主页面
-    </div>
+  <div>
+    <el-container>
+      <el-aside width="240px">
+        <nav-left></nav-left>
+      </el-aside>
+      <el-container>
+        <el-header>
+          <headers></headers>
+        </el-header>
+        <el-main>
+          <router-view />
+        </el-main>
+      </el-container>
+    </el-container>
+  </div>
 </template>
 
 <script>
-    export default {
-        
-    }
+import NavLeft from "@/components/navLeft";
+import Headers from "@/views/Header";
+export default {
+  components: {
+    NavLeft,Headers
+  }
+};
 </script>
 
 <style scoped>
+.el-header,
+.el-footer {
+  background-color: white;
+  color: #333;
+  line-height: 60px;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+}
 
+.el-aside {
+  background-color: #001529;
+  color: #333;
+}
+
+.el-main {
+  background-color: #e9eef3;
+  color: #333;
+  height: 100vh;
+}
+
+body > .el-container {
+  margin-bottom: 40px;
+}
+
+.el-container:nth-child(5) .el-aside,
+.el-container:nth-child(6) .el-aside {
+  line-height: 260px;
+}
+
+.el-container:nth-child(7) .el-aside {
+  line-height: 320px;
+}
 </style>

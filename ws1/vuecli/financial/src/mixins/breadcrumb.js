@@ -1,0 +1,21 @@
+export default{
+    //面包屑可以在哪里拿到
+    data(){
+        return{
+            breadlist:[]
+        }
+    },
+    created(){
+        this.getBreadCrumb()
+    },
+    watch:{
+        $route(){
+            this.getBreadCrumb()
+        }
+    },
+    methods:{
+        getBreadCrumb(){
+            this.breadlist=this.$route.meta.bread?this.$route.meta.bread:[]
+        }
+    }
+}
