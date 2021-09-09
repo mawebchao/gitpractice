@@ -1,0 +1,62 @@
+<!--pages/home/index.wxml-->
+<view class="container">
+  <view class="search">
+    <view class="scan">
+      <image class="widgets-img" src="/image/ai3.png" />
+    </view>
+    <view class="scan" style="margin-left:3px">
+      <image class="magnifier" src="/image/ati.png" />
+      <input class="searchproduct" placeholder="搜索商品" placeholder-style="font-family:Kaiti;padding-left:5px" />
+    </view>
+    <view class="scan">
+      <image class="widgets-img" src="/image/ahw.png" />
+    </view>
+  </view>
+  <swiper indicator-dots="true" indicator-color="gray" indicator-active-color="red" class="swiper"
+    circular="true">
+    <swiper-item>
+      <image src="/image/jd1.jpg" mode="widthFix" style="width: 100%;"/>
+    </swiper-item>
+    <swiper-item>
+      <image src="/image/jd2.jpg" mode="widthFix" style="width: 100%;"/>
+    </swiper-item>
+    <swiper-item>
+      <image src="/image/jd3.jpg" mode="widthFix" style="width: 100%;"/>
+    </swiper-item>
+    <swiper-item>
+      <image src="/image/jd4.jpg" mode="widthFix" style="width: 100%;"/>
+    </swiper-item>
+    <swiper-item>
+      <image src="/image/jd5.jpg" mode="widthFix" style="width: 100%;"/>
+    </swiper-item>
+  </swiper>
+
+  <view class="classes">
+    <block wx:for="{{logos}}">
+      <view class="itemblock">
+        <image src="{{item.image}}" class="itemimage" mode="aspectFit" />
+        <view class="itemtext">{{item.title}}</view>
+      </view>
+    </block>
+  </view>
+  <view style="margin-top:10px;">
+    <view style="display: flex; justify-content: space-between;">
+      <image src="/image/bej.png" style="height: 60rpx;width: 300rpx;" mode="aspectFit" />
+      <view style="padding-right: 10px;font-family: 'Kaiti'; font-size: 14px;">
+        更多动态
+      </view>
+    </view>
+    <scroll-view scroll-x="true" style="margin-top: 15px;width: 100%;white-space: nowrap;margin-left: 20px;">
+      <block wx:for="{{quicks}}" style="width: 100%; display: flex;flex-flow: nowrap;">
+        <view style="display: inline-block;">
+          <view style="width: 205rpx;height: 205rpx;display: flex;flex-direction: column;">
+            <image src="{{item.image}}" style="height: 150rpx; width:150rpx ;" />
+            <text style="color: red;">{{item.price}}</text>
+          </view>
+
+        </view>
+
+      </block>
+    </scroll-view>
+  </view>
+</view>

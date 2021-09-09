@@ -1,0 +1,32 @@
+<!--pages/category/index.wxml-->
+<view class="content">
+  <view style="height: 100%;width: 25%;">
+    <scroll-view scroll-y="true" class="scrollleft left">
+      <block wx:for="{{navLeftItems}}">
+        <view class="lefttext {{index==nowindex?'tabedclass':''}}" bindtap="switchRightTab" data-index="{{index}}">
+          <text style="padding-left: 5px;font-size: 13px;">{{item}}</text>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <view style="height: 100%;width: 75%;">
+    <scroll-view scroll-y="true" class="scrollright right" wx:if="{{navRightItems[nowindex]}}">
+      <block wx:for="{{navRightItems[nowindex]}}">
+        <view style="display: flex; flex-direction: column;">
+          <text style="font-family: 'SimHei';font-size: 15px;margin-left: 3px;margin-top: 10px;">{{item.title}}</text>
+          <view style="width: 530rpx;background: white; margin-left: 10px;margin-top: 10px;">
+            <block wx:for="{{item.desc}}" wx:for-item="product" >
+              <view style="display: inline-block;" bindtap="jumptolistpage" data-clickeditem="{{product}}">
+                <view style="display: flex;flex-direction: column;align-items: center;">
+                  <image src="{{product.img}}" style="width: 170rpx;height: 170rpx;" />
+                  <text style="font-size: 15px;">{{product.text}}</text>
+                </view>
+              </view>
+            </block>
+          </view>
+
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</view>

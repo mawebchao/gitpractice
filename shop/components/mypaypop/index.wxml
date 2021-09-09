@@ -1,0 +1,30 @@
+<!--components/myaddcart/index.wxml-->
+<view hidden="{{pophidden}}">
+  <mypopout bind:clickclose="closewindow">
+    <view slot="title" style="background: #f7f7f7;">
+      <view class="titleclass">打白条购买</view>
+    </view>
+    <view slot="content">
+      <view style="height: 150px;">
+        <scroll-view scroll-y="true" style="height: 100%;">
+          <block wx:for="{{baitiao}}">
+            <view class="listitem">
+              <icon class="icon-small" type="circle" size="23" wx:if="{{!item.select}}" catchtap="updateselected"
+                data-index="{{index}}"></icon>
+              <icon class="icon-small" type="success" size="23" wx:if="{{item.select}}" catchtap="updateselected"
+                data-index="{{index}}"></icon>
+              <view class="tipanddesc">
+                <text>{{item.desc}}</text>
+                <text style="font-size: 10px;">{{item.tip}}</text>
+              </view>
+            </view>
+          </block>
+        </scroll-view>
+
+      </view>
+    </view>
+    <view slot="buttontitle">
+      <view class="bottomtext" bindtap="dabaitiao" >立即打白条</view>
+    </view>
+  </mypopout>
+</view>

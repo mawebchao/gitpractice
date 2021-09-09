@@ -1,0 +1,10 @@
+/* pages/home/index.wxss */
+.container{width: 100%;height: 100%;overflow: hidden;}
+.search{display: flex;flex-direction: row;height: 60rpx;align-items: center;}
+.widgets-img{width: 50rpx; height: 50rpx;margin-left: 10px;}
+.magnifier{width: 30rpx; height: 30rpx;padding-left: 10px;}
+.scan{display: flex;align-items: center;}
+.searchproduct{width: 540rpx;}
+.itemblock{display: flex; flex-direction: column;height: 150rpx;align-items: center;width: 150rpx;}
+.itemtext{font-family: 'KaiTi';}
+.classes{display: flex; flex-flow: wrap;font-size: 13px;margin-top: 6px;}

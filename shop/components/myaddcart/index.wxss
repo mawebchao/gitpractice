@@ -1,0 +1,6 @@
+/* components/mypop/index.wxss */
+.title{width: 680rpx;height: 120rpx;background: white;display: flex;padding-left: 60rpx;}
+.titleimage{width: 200rpx;height: 200rpx;position: relative;top: -30px;z-index: 2;}
+.titletext{display: flex;flex-direction: column;margin-left: 20px;}
+.content{width: 100%;display: flex;justify-content: space-between;}
+.bottomtext{text-align: center;width: 750rpx;height: 100rpx;background: 30rpx;line-height: 100rpx;font-weight: bold;color: white;}

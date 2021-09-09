@@ -1,0 +1,8 @@
+<!--components/mytabbar/index.wxml-->
+<view class="tab">
+  <text style="margin-left: 10px;color: grey;">{{tabbartitle}}</text>
+  <text style="margin-left: 20px;font-size: 13px;font-weight: bolder;">{{content}}</text>
+  <view class="dot">
+    <text style="font-size: 20px;display: block;position: relative;bottom: 5px;" catchtap="showaddcartpop">...</text>
+  </view>
+</view>

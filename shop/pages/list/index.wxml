@@ -1,0 +1,18 @@
+<!--pages/list/index.wxml-->
+<view style="width: 100%;height: 100%;background: white;">
+  <view class="content">
+    <block wx:for="{{prolist}}">
+      <view class="itemclass" bindtap="jumptodetail" data-clickedproduct="{{item}}">
+        <image src="{{item.cover}}" class="imageclass" />
+        <view class="textclass">
+          <text class="title">{{item.title}}</text>
+          <text class="price">￥{{item.price}}</text>
+          <view>
+            <text class="comment">{{item.comment}}条评价</text>
+            <text class="rate">好评率{{item.rate}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

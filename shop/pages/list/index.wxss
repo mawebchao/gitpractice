@@ -1,0 +1,9 @@
+/* pages/list/index.wxss */
+/* .content{margin-left: 5%;margin-top: 5px; background: yellow;width: 95%;height: 98%;} */
+.content{background: white;width: 95%;height: 98%;position: relative;left: 5%;top:2%}
+.imageclass{width: 270rpx; height: 270rpx;}
+.textclass{height: 270rpx;display: flex;flex-direction: column;width: 400rpx;margin-top: 10px;}
+.itemclass{display: flex;}
+.price{color:red}
+.title{height: 45%;overflow: hidden;font-size: 13px;}
+.comment,.rate{font-size: 12px;}

@@ -1,0 +1,20 @@
+<!--components/mypopout/index.wxml-->
+<view class="all">
+  <view class="windowcontent">
+    <view class="titleblock">
+      <view class="titlecontent">
+        <slot name="title"></slot>
+      </view>
+      <text class="closetag" catchtap="closeevent">x</text>
+    </view>
+    <view class="content">
+      <slot name="content">
+        
+      </slot>
+    </view>
+    <view class="bottom">
+      <slot name="buttontitle" class="buttontext"></slot>
+    </view>
+
+  </view>
+</view>

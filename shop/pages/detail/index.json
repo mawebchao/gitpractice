@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "mytabbar":"/components/mytabbar/index",
+    "mypaypop":"/components/mypaypop/index",
+    "myaddcart":"/components/myaddcart/index"
+  }
+}

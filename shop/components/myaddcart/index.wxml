@@ -1,0 +1,23 @@
+<!--components/mypop/index.wxml-->
+<view hidden="{{pophidden}}">
+  <mypopout bind:clickclose="closewindow">
+    <view slot="title">
+      <view class="title">
+        <image class="titleimage" src="../../image/classify/phone.png" />
+        <view class="titletext">
+          <text style="color: red;font-weight: bolder;">￥1499</text>
+          <text>已选1件</text>
+        </view>
+      </view>
+    </view>
+    <view slot="content">
+      <view class="content">
+        <text style="margin-left: 60rpx;">数量</text>
+        <addminusbutton count="{{count}}" bind:clickadd="add" bind:clickminus="minus"></addminusbutton>
+      </view>
+    </view>
+    <view slot="buttontitle">
+      <view class="bottomtext" catchtap="updatecartnum">加入购物车</view>
+    </view>
+  </mypopout>
+</view>

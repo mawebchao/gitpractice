@@ -1,0 +1,4 @@
+/* components/addminusbutton/index.wxss */
+.tabbar{background: #f7f7f7;}
+.minus,.add{display: inline-block;text-align: center;font-size: 50rpx;width: 50rpx;height: 50rpx;}
+.count{width: 100rpx;display: inline-block;text-align: center;}

@@ -1,0 +1,6 @@
+<!--components/addminusbutton/index.wxml-->
+<view class="tabbar">
+  <text class="minus" bindtap="minuscount" data-count="{{count}}">-</text>
+  <text class="count">{{count}}</text>
+  <text class="add" bindtap="addcount" data-count="{{count}}">+</text>
+</view>

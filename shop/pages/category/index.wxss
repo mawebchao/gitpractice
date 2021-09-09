@@ -1,0 +1,7 @@
+/* pages/category/index.wxss */
+.content{display: flex;height: 100%;}
+.left{height: 100%;width: 100%;}
+.right{width: 100%;background: #f7f7f7;display: flex; flex-direction: column;height: 100%;}
+.scrollleft{height: 100%;}
+.lefttext{font-family:'SimHei';height: 100rpx;line-height: 100rpx;text-align: center;}
+.tabedclass{background: #f7f7f7;}

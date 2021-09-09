@@ -1,0 +1,34 @@
+<!--pages/detail/index.wxml-->
+<view style="height: 100%; width: 100%;">
+  <view class="topscroll">
+    <swiper class="swiperclass" autoplay="true" indicator-dots="true" indicator-color="grey"
+      indicator-active-color="red">
+      <block wx:for="{{loopImgUrl}}">
+        <swiper-item>
+          <image src="{{item}}" class="imageclass" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="textcontent">
+    <text>{{nowproduct.title}}</text>
+    <text style="color: red;font-weight: bolder;margin-top: 10px;">￥{{nowproduct.price}}</text>
+    <view style="background: #f7f7f7;width: 100%;height: 300rpx;">
+      <!-- 支付组件 -->
+      <mytabbar content="{{paytype}}" tabbartitle="{{'支付'}}" typetag="pay" bind:clickpay="showpaypop"></mytabbar>
+      <!-- 已选组件 -->
+      <mytabbar content="{{selectednum}}" tabbartitle="{{'已选'}}" typetag="addcart" bind:clickaddcart="showaddcart"></mytabbar>
+    </view>
+  </view>
+  <view class="bottom">
+    <view style="width: 50%;display: flex;flex-direction: column;background: white;justify-content: center;">
+      <view style="display: flex; flex-direction: column;position: relative;left: 34%;bottom: 5px;">
+        <image src="../../image/cart.png" style="width: 110rpx; height: 110rpx;" mode="aspectFit" />
+        <text style="margin-top: -8px;font-family: 'SimHei';color: black;">购物车</text>
+      </view>
+    </view>
+    <view style="width: 50%;text-align: center;line-height: 50px;color: white;font-weight: bolder;">加入购物车</view>
+  </view>
+  <mypaypop pophidden="{{payhidden}}" bind:dabaitiao="updatebaitiao"></mypaypop>
+  <myaddcart pophidden="{{selecthidden}}" count="{{selectednum}}" bind:addcart="updateselectednum"></myaddcart>
+</view>

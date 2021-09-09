@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "mypopout":"../mypopout/index",
+    "addminusbutton":"../addminusbutton/index"
+  }
+}
