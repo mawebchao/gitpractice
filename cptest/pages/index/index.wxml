@@ -1,23 +1,68 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar" bindtap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-      <open-data type="userNickName"></open-data>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+  <view class="inputwrap">
+    <image src="../../images/ath.png" class="inputimage" />
+    <input placeholder="搜菜谱、食材" class="input" placeholder-style="text-align:center" />
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class="scrollblock">
+    <swiper class="scrollviewclass" indicator-dots="true" indicator-color="grey" indicator-active-color="white">
+      <block wx:for="{{scrollitem}}">
+        <swiper-item>
+          <image src="{{item.url}}" class="scrollimage" />
+          <view class="textwrap">
+            <view class="swipertext">
+              <text style="font-size: 20px;">{{item.searchvalue}}的花样做法</text>
+              <text style="font-weight: bolder; margin-top:10rpx">{{item.total}}道菜谱</text>
+            </view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="middleblock">
+    <view class="innercontentblock">
+      <view class="leftcontent">
+        <view class="wrap" style="margin: 20px;">
+          <view class="contentop">早中晚餐</view>
+          <view class="contentbottom">每日三餐推荐</view>
+        </view>
+
+      </view>
+      <view class="rightcontent">
+        <view class="wrap" style="margin: 20px;">
+          <view class="contentop">精选菜谱</view>
+          <view class="contentbottom">一周精选菜谱</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="recommend">
+    <view class="recommendtitlebar">
+      <view class="recommendtitlewrap">
+        <text>热门推荐</text>
+        <text style="color: grey;font-size: 13px;">查看全部</text>
+      </view>
+    </view>
+    <view class="piclistbar">
+      <view class="piclistinnerwrap">
+        <view class="itemwrap">
+          <image src="http://api.jisuapi.com/recipe/upload/20160719/135912_10134.jpg" class="tinypic" />
+          <view class="covertext">烘焙</view>
+        </view>
+        <view class="itemwrap">
+          <image class="tinypic" src="http://api.jisuapi.com/recipe/upload/20160719/120601_68782.jpg"/>
+          <view class="covertext">清淡</view>
+        </view>
+        <view class="itemwrap">
+          <image class="tinypic" src="http://api.jisuapi.com/recipe/upload/20160719/121503_26463.jpg"/>
+          <view class="covertext">快手菜</view>
+        </view>
+        <view class="itemwrap">
+          <image class="tinypic" src="http://api.jisuapi.com/recipe/upload/20160719/132156_47224.jpg"/>
+          <view class="covertext">晚餐</view>
+        </view>
+      </view>
+
+    </view>
   </view>
 </view>

@@ -4,12 +4,23 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    canIUseGetUserProfile: false,
-    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
+    scrollitem:[
+      {
+        searchvalue:"五花肉",
+        url:"http://api.jisuapi.com/recipe/upload/20160719/115334_57397.jpg",
+        total:240
+      },
+      {
+        searchvalue:"锅包肉",
+        url:"http://api.jisuapi.com/recipe/upload/20160719/155216_80518.jpg",
+        total:16
+      },
+      {
+        searchvalue:"肉圆",
+        url:"http://api.jisuapi.com/recipe/upload/20160719/132156_47224.jpg",
+        total:17
+      }
+    ]
   },
   // 事件处理函数
   bindViewTap() {
