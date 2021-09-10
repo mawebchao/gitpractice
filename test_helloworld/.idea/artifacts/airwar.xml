@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="apk" build-on-make="true" name="airwar">
+    <output-path>$PROJECT_DIR$/out/artifacts/airwar</output-path>
+    <properties id="android-properties">
+      <options>
+        <option name="keyAlias" value="key0" />
+        <option name="keyPassword" value="NjQ3NzAxNjdhQg==" />
+        <option name="keyStorePassword" value="NjQ3NzAxNjdhQg==" />
+        <option name="keyStoreUrl" value="file://$USER_HOME$/airwarkeystore.jks" />
+        <option name="runProGuard" value="true" />
+        <option name="signingMode" value="RELEASE_SIGNED" />
+      </options>
+    </properties>
+    <root id="archive" name="airwar.apk">
+      <element id="file-copy" path="$USER_HOME$/airwarkeystore.jks" />
+    </root>
+  </artifact>
+</component>

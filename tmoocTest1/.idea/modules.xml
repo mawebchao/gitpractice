@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Day08/Day08.iml" filepath="$PROJECT_DIR$/Day08/Day08.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Day09/Day09.iml" filepath="$PROJECT_DIR$/Day09/Day09.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Day10/Day10.iml" filepath="$PROJECT_DIR$/Day10/Day10.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Day11/Day11.iml" filepath="$PROJECT_DIR$/Day11/Day11.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Day12/Day12.iml" filepath="$PROJECT_DIR$/Day12/Day12.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Day13/Day13.iml" filepath="$PROJECT_DIR$/Day13/Day13.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Day14/Day14.iml" filepath="$PROJECT_DIR$/Day14/Day14.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Day15/Day15.iml" filepath="$PROJECT_DIR$/Day15/Day15.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Day17/Day17.iml" filepath="$PROJECT_DIR$/Day17/Day17.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Day18/Day18.iml" filepath="$PROJECT_DIR$/Day18/Day18.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Day16/Day20.iml" filepath="$PROJECT_DIR$/Day16/Day20.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FlyingBirds/FlyingBirds.iml" filepath="$PROJECT_DIR$/FlyingBirds/FlyingBirds.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tetris/Tetris.iml" filepath="$PROJECT_DIR$/Tetris/Tetris.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tmoocTest1.iml" filepath="$PROJECT_DIR$/tmoocTest1.iml" />
+    </modules>
+  </component>
+</project>
