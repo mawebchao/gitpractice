@@ -1,0 +1,29 @@
+<!--pages/list/index.wxml-->
+<view class="all">
+  <view class="titlewrap">
+    <text style="color: black;line-height: 100rpx;font-size: 20px;">{{title}}的做法大全</text>
+  </view>
+  <view class="listwrap">
+    <block wx:for="{{itemlist}}">
+      <view class="itemwrap">
+        <image class="imageclass" src="{{item.pic}}" mode="aspectFill" />
+        <view class="descwrap">
+          <view class="descleftwrap">
+            <view style="color: rgb(73, 73, 73);">{{item.name}}</view>
+          </view>
+          <image class="descsearch" src="../../images/ati.png" style="width: 40rpx;height: 40rpx;margin-top: 6px;" />
+        </view>
+      </view>
+    </block>
+  </view>
+  <!-- <view hidden="{{}}" class="loadingbar">正在加载更多</view> -->
+  <view class="page" hidden="{{morehidden}}">
+    <view class="page__bd">
+      <mp-loading type="circle"></mp-loading>
+      <!-- <mp-loading type="circle" tips="{{tips}}"></mp-loading> -->
+      <mp-loading duration="{{100000}}" ext-class="demo0" type="dot-gray" animated="{{animated}}">
+      </mp-loading>
+      <mp-loading type="dot-white" ext-class="demo1"></mp-loading>
+    </view>
+  </view>
+</view>

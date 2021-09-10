@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "historysearchtag":"../../components/historyblock/index"
+  }
+}

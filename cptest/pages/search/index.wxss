@@ -1,0 +1,6 @@
+/* pages/search/index.wxss */
+.all{width: 100%;background: white;}
+.titlecontentwrap{height: 100rpx;background: grey;}
+.inputclass{border-radius: 4px;background: white;width: 80%;position: relative;left: 0px;top: 5px;height: 75rpx;display: inline-block;}
+.contentwrap{width: 90%;background: white;margin-left: 3%;display: flex;justify-content: space-between;margin-top: 20px;}
+.historycontent{width: 90%;background: white;margin-left: 3%;display: flex;flex-flow: wrap;}

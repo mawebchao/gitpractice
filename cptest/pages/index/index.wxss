@@ -16,7 +16,7 @@
 .recommendtitlebar{width: 100%;height: 100rpx;}
 .recommendtitlewrap{width: 92%;height: 100%;position: relative;left: 4%;display: flex;justify-content: space-between;vertical-align: bottom;}
 .tinypic{width: 150rpx;height: 150rpx; border-radius: 5px;}
-.piclistbar{width: 100%;height: 200rpx;background: black;}
+.piclistbar{width: 100%;height: 200rpx;background: white;}
 .piclistinnerwrap{width: 94%;height: 100%;background: white;position: relative;left: 3%;display: flex;align-items: center;justify-content: center;}
 .itemwrap{margin-top: 14px;margin-left:4px ;margin-right: 4px;}
 .covertext{position: relative;bottom: 30px;font-weight: bold;color: white;text-align: center; }

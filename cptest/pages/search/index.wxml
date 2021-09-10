@@ -1,0 +1,21 @@
+<!--pages/search/index.wxml-->
+<view class="all">
+  <view class="titlecontentwrap">
+    <image src="../../images/ati.png"
+      style="width: 14px;height: 14px;display: inline-block;position: relative;left: 23px;top: -2px;z-index: 2;" />
+    <input placeholder="请输入菜谱、食材" placeholder-style="color:grey;margin-left:30px;line-height:75rpx;margin-top:2px"
+      class="inputclass" />
+    <view
+      style="display:inline-block;width: 100rpx;height: 100rpx;margin-left: 8px;position: relative;top: -5px;color: red;">
+      搜索</view>
+  </view>
+  <view>
+    <view class="contentwrap">
+      <text>历史搜索:</text>
+      <image src="../../images/bin.png" style=" width: 60rpx;" mode="widthFix" />
+    </view>
+    <view class="historycontent">
+      <historysearchtag content="{{item}}" wx:for="{{nowhistorysearchlist}}"></historysearchtag>
+    </view>
+  </view>
+</view>

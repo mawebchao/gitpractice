@@ -1,0 +1,2 @@
+/* components/historyblock/index.wxss */
+.historyblock{font-size: 14px; display: inline-block;border: 1px solid rgb(211,211,211);border-radius: 30rpx;margin-left: 4px;margin-right: 4px;padding-left: 10px;padding-right: 10px;}

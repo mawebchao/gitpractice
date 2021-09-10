@@ -2,12 +2,12 @@
 <view class="container">
   <view class="inputwrap">
     <image src="../../images/ath.png" class="inputimage" />
-    <input placeholder="搜菜谱、食材" class="input" placeholder-style="text-align:center" />
+    <input placeholder="搜菜谱、食材" class="input" placeholder-style="text-align:center" bindtap="jumptosearchpage"/>
   </view>
   <view class="scrollblock">
-    <swiper class="scrollviewclass" indicator-dots="true" indicator-color="grey" indicator-active-color="white">
+    <swiper class="scrollviewclass" indicator-dots="true" indicator-color="grey" indicator-active-color="white" autoplay="true">
       <block wx:for="{{scrollitem}}">
-        <swiper-item>
+        <swiper-item bindtap="jumptolistpage" data-searchvalue="{{item.searchvalue}}">
           <image src="{{item.url}}" class="scrollimage" />
           <view class="textwrap">
             <view class="swipertext">
@@ -45,7 +45,7 @@
     </view>
     <view class="piclistbar">
       <view class="piclistinnerwrap">
-        <view class="itemwrap">
+        <view class="itemwrap" >
           <image src="http://api.jisuapi.com/recipe/upload/20160719/135912_10134.jpg" class="tinypic" />
           <view class="covertext">烘焙</view>
         </view>

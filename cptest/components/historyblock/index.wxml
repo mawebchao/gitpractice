@@ -1,0 +1,2 @@
+<!--components/historyblock/index.wxml-->
+<view class="historyblock">{{content}}</view>

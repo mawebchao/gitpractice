@@ -1,0 +1,10 @@
+/* pages/list/index.wxss */
+/* .all{width: 100%;height: 460px;} */
+.all{width: 100%;height: 480px;}
+
+.titlewrap{margin-top: 10px;width: 100%;height: 100rpx;background: white;text-align: center;vertical-align: middle;}
+.listwrap{width: 90%;margin-left: 5%;background: white;margin-top: 10px;}
+.imageclass{width: 288px;height: 200px;}
+.itemwrap{height: 600rpx;}
+.descwrap{display: flex;justify-content: space-between;line-height:25px ;}
+.loadingbar{text-align: center;}

@@ -55,5 +55,15 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  jumptolistpage(e){
+    wx.navigateTo({
+      url: '/pages/list/index?searchvalue='+e.currentTarget.dataset.searchvalue
+    })
+  },
+  jumptosearchpage(){
+    wx.navigateTo({
+      url: '/pages/search/index'
+    })
   }
 })

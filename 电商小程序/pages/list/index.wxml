@@ -21,4 +21,5 @@
   <view class='endview' wx:if='{{noData}}'>
     <text>没有更多数据</text>
   </view>
+
 </view>

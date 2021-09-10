@@ -44,6 +44,7 @@ Page({
    */
   onPullDownRefresh: function () {
     // 请求数据
+    console.log("fsd")
     wx.showNavigationBarLoading() //在标题栏中显示加载
     this.setData({
       page: 1,
