@@ -37,11 +37,11 @@ const serverHandler = (req, res) => {
 
     getPostData(req).then((postData) => {
         req.body=postData;
-        const blogData = handlerBlogRoute(req, res)
-        if (blogData) {
-            res.end(
-                JSON.stringify(blogData)
-            )
+        const blogDataPromise = handlerBlogRoute(req, res)
+        if (blogDataPromise) {
+            blogDataPromise.then((blogData)=>{
+                res.end(JSON.stringify(blogData))
+            })
             return;
         }
         res.writeHead(404, {
