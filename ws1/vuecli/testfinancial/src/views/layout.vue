@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-container>
-      <el-aside width="300px" style="background:#231353;">
+      <el-aside width="300px" style="background:#231353;height:100vh">
         <nav-left :menuitems="menuitems"></nav-left>
       </el-aside>
       <el-container>
@@ -9,7 +9,10 @@
           <headers></headers>
         </el-header>
         <el-main>
-          <router-view/>
+          <keep-alive v-if="$route.meta.keepalive">
+            <router-view />
+          </keep-alive>
+          <router-view v-if="!$route.meta.keepAlive" />
         </el-main>
       </el-container>
     </el-container>
@@ -31,10 +34,9 @@ export default {
       this.menuitems = res.data;
     });
   },
-  components: { NavLeft,Headers }
+  components: { NavLeft, Headers }
 };
 </script>
 
 <style scoped>
-
 </style>

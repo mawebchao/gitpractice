@@ -1,6 +1,9 @@
 <template>
   <div>
-    <el-dropdown style="margin-top:30px;float:right;line-height:20px;font-size:20px;">
+    <el-dropdown
+      style="margin-top:30px;float:right;line-height:20px;font-size:20px;"
+      @command="handleCommand"
+    >
       <span class="el-dropdown-link">
         欢迎您，
         <span>{{username}}</span>
@@ -9,7 +12,7 @@
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item>个人中心</el-dropdown-item>
         <el-dropdown-item>修改密码</el-dropdown-item>
-        <el-dropdown-item>退出登录</el-dropdown-item>
+        <el-dropdown-item command="logout">退出登录</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
     <div
@@ -24,25 +27,41 @@
 
 <script>
 import { get } from "../utils/http.js";
+import { removeToken } from '../utils/auth';
+// import {removeToken} from '../utils/http.js'
 export default {
   data() {
     return {
-      timein: "",
+      timein: ""
     };
   },
   mounted() {
     get("/in").then(res => {
-      var totalMinute = this.$moment(this.$moment().locale('zh-cn').format('YYYY-MM-DD HH:mm:ss')).diff(res.time) / (1000 * 60);
+      var totalMinute =
+        this.$moment(
+          this.$moment()
+            .locale("zh-cn")
+            .format("YYYY-MM-DD HH:mm:ss")
+        ).diff(res.time) /
+        (1000 * 60);
       var hours = Math.floor(totalMinute / 60);
-      this.timein=Math.floor(hours / 24);
+      this.timein = Math.floor(hours / 24);
     });
   },
   computed: {
     timespan() {
       return "";
     },
-    username(){
-      return sessionStorage.getItem("username")
+    username() {
+      return sessionStorage.getItem("username");
+    }
+  },
+  methods: {
+    handleCommand(command) {
+      if(command=='logout'){
+        removeToken()
+        this.$router.push('/login')
+      }
     }
   }
 };

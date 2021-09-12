@@ -1,5 +1,6 @@
 <template>
   <div>
+    <slot></slot>
     <el-menu-item v-if="!menuitemdata.children" :index="menuitemdata.url">
       <i :class="menuitemdata.icon"></i>
       {{menuitemdata.name}}</el-menu-item>

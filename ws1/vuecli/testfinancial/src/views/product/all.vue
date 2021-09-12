@@ -120,6 +120,7 @@ export default {
   mixins: [BreadCrumb],
   data() {
     return {
+      currentPage4:100,
       tableData: [],
       searchobj: {
         name: "",
@@ -154,7 +155,9 @@ export default {
   methods: {
     dropdownclickevent() {
       console.log("下拉框被点击了");
-    }
+    },
+    handleSizeChange(){},
+    handleCurrentChange(){}
   },
   mounted() {
     get("/productList").then(res => {

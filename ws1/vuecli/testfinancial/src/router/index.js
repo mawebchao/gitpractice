@@ -22,13 +22,13 @@ const routes = [
       {
         path:"/account/all",
         name:"Account_All",
-        meta:["账户管理","所有人员"],
+        meta:{bread:["账户管理","所有人员"],keepalive:true},
         component:()=>import("../views/account/all.vue")
       },
       {
         path:"/account/business",
         name:"Account_Business",
-        meta:["账户管理","业务人员"],
+        meta:{bread:["账户管理","业务人员"],keepalive:true},
         component:()=>import("../views/account/business.vue")
       },
       {
@@ -36,6 +36,12 @@ const routes = [
         name:"Product_All",
         meta:["产品管理","全部产品"],
         component:()=>import("../views/product/all.vue")
+      },
+      {
+        path:"/orders/all",
+        name:"Orders_All",
+        meta:{bread:["订单管理","所有订单"],keepalive:false},
+        component:()=>import("../views/orders/all.vue")
       }
     ]
   }
