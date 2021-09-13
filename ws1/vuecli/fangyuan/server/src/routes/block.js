@@ -9,8 +9,16 @@ const handlerBlogRoute = (req, res) => {
    
     if (method === 'GET' && req.path === '/block/all') {
 
+<<<<<<< HEAD
         const listData = getList()
         return new SuccessModel(listData);
+=======
+        const listDataPromise = getList()
+        return listDataPromise.then((listData) => {
+            console.log("listData",listData.length)
+            return new SuccessModel(listData);
+        })
+>>>>>>> caccf730 (update)
 
     }
     if (method === 'GET' && req.path === '/api/blog/detail') {

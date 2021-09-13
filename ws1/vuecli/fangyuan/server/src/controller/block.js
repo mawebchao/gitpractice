@@ -5,12 +5,23 @@ var request = require('request');
 
 const getList = async (author, keyword) => {
     //给出请求参数：xiaoqu、louhao、danyuan，封装成一个js对象
+<<<<<<< HEAD
     // for()
     let bizArr=[]
     for(let danyuan=1;danyuan<=10;danyuan++) {
         bizArr.concat(await invoke({"danyuan":danyuan}).catch((err)=>{console.log(err)}))
         // console.log(await delaylog({"danyuan":danyuan}).catch((err)=>{console.log(err)}))
     }
+=======
+    let bizArr = []
+    for (let danyuan = 1; danyuan <= 10; danyuan++) {
+        let nowArr = await invoke({ "url": "https://www.h3yun.com/OpenApi/Invoke","xiaoqu": xiaoqu,"louhao": louhao, "danyuan": danyuan }).catch((err) => { console.log("err", err) })
+        if (nowArr != null) {
+            bizArr = bizArr.concat(nowArr)
+        }
+    }
+
+>>>>>>> caccf730 (update)
     return bizArr;
 }
 const getDetail = (id) => {

@@ -37,6 +37,7 @@ const serverHandler = (req, res) => {
 
     getPostData(req).then((postData) => {
         req.body=postData;
+<<<<<<< HEAD
         const data = handlerBlogRoute(req, res)
         // if (dataPromise) {
         //     dataPromise.then((data)=>{
@@ -46,6 +47,13 @@ const serverHandler = (req, res) => {
         // }
         if(data){
             res.end(JSON.stringify(data))
+=======
+        const dataPromise = handlerBlogRoute(req, res)
+        if (dataPromise) {
+            dataPromise.then((data)=>{
+                res.end(JSON.stringify(data)) 
+            })
+>>>>>>> caccf730 (update)
             return;
         }
         res.writeHead(404, {
