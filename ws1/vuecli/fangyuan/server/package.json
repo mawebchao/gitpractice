@@ -4,7 +4,8 @@
   "description": "",
   "main": "bin/www.js",
   "scripts": {
-    "dev": "nodemon bin/www.js"
+    "dev": "nodemon bin/www.js",
+    "build": "vue-cli-service build"
   },
   "keywords": [],
   "author": "",

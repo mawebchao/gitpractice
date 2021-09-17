@@ -1,4 +1,4 @@
-const { executeSql } = require('../db/mysql')
+const { executeSql } = require('../db/mysql_blog')
 
 const getList = () => {
     
@@ -51,9 +51,9 @@ const deleteBlog = (id) => {
     return executeSql(sql).then((insertResult) => {
         console.log(insertResult)
         if (insertResult.affectedRows > 0) {
-            return true
+            return true;
         } else {
-            return false
+            return false;
         }
 
     })

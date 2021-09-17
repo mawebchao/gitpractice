@@ -1,4 +1,5 @@
-const { handlerBlogRoute } = require('./src/routes/block.js')
+const { handlerBlogRoute } = require('./src/routes/fangyuan.js')
+const {handlerUserLogRoute}=require('./src/routes/userLog.js')
 const querystring = require('querystring')
 const getPostData = (req) => {
     const promise = new Promise((resolve, reject) => {
@@ -37,23 +38,18 @@ const serverHandler = (req, res) => {
 
     getPostData(req).then((postData) => {
         req.body=postData;
-<<<<<<< HEAD
-        const data = handlerBlogRoute(req, res)
-        // if (dataPromise) {
-        //     dataPromise.then((data)=>{
-                
-        //     })
-        //     return;
-        // }
-        if(data){
-            res.end(JSON.stringify(data))
-=======
-        const dataPromise = handlerBlogRoute(req, res)
+        let dataPromise = handlerBlogRoute(req, res)
         if (dataPromise) {
             dataPromise.then((data)=>{
                 res.end(JSON.stringify(data)) 
             })
->>>>>>> caccf730 (update)
+            return;
+        }
+        dataPromise = handlerUserLogRoute(req, res)
+        if (dataPromise) {
+            dataPromise.then((data)=>{
+                res.end(JSON.stringify(data)) 
+            })
             return;
         }
         res.writeHead(404, {

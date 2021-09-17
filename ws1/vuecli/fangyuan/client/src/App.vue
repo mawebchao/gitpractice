@@ -1,15 +1,22 @@
 <template>
   <div id="app">
-    <my-container></my-container>
+    <!-- <my-container></my-container> -->
+    <router-view/>
   </div>
 </template>
 
 <script>
-import MyContainer from './Container'
+// import MyContainer from './Container'
 export default {
   name: 'app',
   components:{
-    MyContainer
+    // MyContainer
+  },
+  mounted(){
+    //请求后端重新加载一遍所有的数据
+    // this.$axios.get('/api/block/all').then((res)=>{
+    //   console.log(res)
+    // })
   }
 }
 </script>

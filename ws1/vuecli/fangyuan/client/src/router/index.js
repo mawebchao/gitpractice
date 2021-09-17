@@ -4,7 +4,17 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
-  
+  {
+    path:"/",
+    component:()=> import( '@/Container'),
+    redirect:'/detail',
+    children:[
+      {
+        path:"detail",
+        component:()=>import('../views/Detail')
+      }
+    ]
+  }
 ]
 
 const router = new VueRouter({
