@@ -5,8 +5,16 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path:'/register',
+    component:()=>import('@/views/Register')
+  },
+  {
+    path:'/login',
+    component:()=>import('@/views/Login')
+  },
+  {
     path:"/",
-    component:()=> import( '@/Container'),
+    component:()=> import( '@/views/Container'),
     redirect:'/detail',
     children:[
       {

@@ -5,7 +5,7 @@
       v-if="navitem.hasChildren"
       :index="navitem.id+''"
     >
-      <template slot="title">{{navitem.name}}</template>
+      <template slot="title"><span style="font-size:3rem;display:block;width:100%;height:100%;white-space:normal;word-break:break-all;line-height:5rem ">{{navitem.name}}</span></template>
       <my-buildingitem v-for="item in navitem.children" :key="item.id" :buildingitem="item"></my-buildingitem>
     </el-submenu>
   </div>

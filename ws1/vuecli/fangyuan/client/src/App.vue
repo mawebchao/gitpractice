@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <!-- <my-container></my-container> -->
+    <div>{{xiaoqu}}</div>
     <router-view/>
   </div>
 </template>
@@ -9,6 +10,11 @@
 // import MyContainer from './Container'
 export default {
   name: 'app',
+  data(){
+    return {
+      xiaoqu:""
+    }
+  },
   components:{
     // MyContainer
   },
@@ -28,6 +34,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 </style>

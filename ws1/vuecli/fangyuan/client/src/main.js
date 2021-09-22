@@ -7,6 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import axios from 'axios'
 import './plugins/element.js'
 import Global from './global/data.js'
+import './global/css/globalcss.css'
 
 
 // 全局变量

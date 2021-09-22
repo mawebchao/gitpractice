@@ -3,7 +3,7 @@
     <!-- <p>{{datetime}}</p> -->
     <el-menu-item v-if="!buildingitem.hasChildren" :index="buildingitem.id+''">{{buildingitem.NAME}}</el-menu-item>
     <el-submenu v-if="buildingitem.hasChildren" :index="buildingitem.id+''">
-      <template slot="title">{{buildingitem.NAME}}</template>
+      <template slot="title"><span  style="font-size:3rem">{{buildingitem.NAME}}</span></template>
       <el-menu-item
         v-for="item in buildingitem.children"
         :key="item.id"
@@ -18,7 +18,6 @@ export default {
   props: ["buildingitem"],
   methods: {
     routeToBlock(block) {
-      console.log(block);
       this.$store.commit("setBuildingId", { newbuildingid: block.buildingid });
       this.$store.commit("setBlockId", { newblockid: block.sno });
       // console.log(this.$store.state.buildingid,this.$store.state.blockid)
@@ -45,6 +44,6 @@ export default {
   color: #000;
 }
 .el-submenu .el-menu-item {
-  margin-left: 60px;
+  margin-left: -6rem;
 }
 </style>

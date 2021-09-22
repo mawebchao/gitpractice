@@ -2,7 +2,7 @@ const mysql = require('mysql')
 const {MYSQL_CONFIG}=require('./config/userlog')
 const connection = mysql.createConnection(MYSQL_CONFIG)
 
-connection.connect();
+// connection.connect();
 
 
 
