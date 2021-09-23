@@ -18,7 +18,6 @@ export default {
   props: ["buildingitem"],
   methods: {
     routeToBlock(block) {
-      console.log(block);
       this.$store.commit("setBuildingId", { newbuildingid: block.buildingid });
       this.$store.commit("setBlockId", { newblockid: block.sno });
       // console.log(this.$store.state.buildingid,this.$store.state.blockid)

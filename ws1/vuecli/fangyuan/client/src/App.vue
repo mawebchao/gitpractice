@@ -1,6 +1,8 @@
 <template>
   <div id="app">
     <!-- <my-container></my-container> -->
+    {{count}}
+    <button @click="add()">按钮</button>
     <router-view/>
   </div>
 </template>
@@ -12,7 +14,19 @@ export default {
   components:{
     // MyContainer
   },
+  data(){
+    return{
+      count:1
+    }
+  },
+  methods:{
+    add(){
+      this.count++
+    }
+  },
   mounted(){
+    console.log("Rfd")
+
     //请求后端重新加载一遍所有的数据
     // this.$axios.get('/api/block/all').then((res)=>{
     //   console.log(res)

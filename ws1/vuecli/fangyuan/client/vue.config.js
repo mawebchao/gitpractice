@@ -1,4 +1,7 @@
 module.exports = {
+    configureWebpack:{
+        devtool:'source-map'
+    },
     devServer: {
         host: 'localhost',  // 本地主机
         port: 8080,  // 端口号的配置

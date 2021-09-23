@@ -32,9 +32,11 @@ function unique(arr1) {
     a => !res.has(a.fangjianhao % 10) && res.set(a.fangjianhao % 10, a)
   );
 }
-import MyTable from "../components/MyTable";
+// import MyTable from "../components/MyTable";
 export default {
-  components: { MyTable },
+  components: {
+    "MyTable":()=>{import(/*webpackChunkName:MyTable.js*/'../components/MyTable')}
+  },
   methods: {
     // handleSizeChange() {},
     // handleCurrentChange(val) {
