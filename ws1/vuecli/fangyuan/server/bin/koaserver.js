@@ -1,0 +1,10 @@
+const Koa=require('koa')
+const bodyparser=require('koa-bodyparser')
+const {userRouter,adminRouter,whiteListRouter}=require('../src/koa/api/user')
+const app=new Koa()
+app.use(bodyparser())
+app.use(userRouter.routes())
+app.use(adminRouter.routes())
+app.use(whiteListRouter.routes())
+
+app.listen(3000)

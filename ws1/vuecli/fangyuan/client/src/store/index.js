@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     buildingid: "",
     blockid: -1,
+    xiaoqu:""
   },
   mutations: {
     setBuildingId(state,payload) {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
     },
     setBlockId(state,payload) {
       state.blockid = payload.newblockid
+    },
+    setXiaoqu(state,payload) {
+      state.xiaoqu = payload.newXiaoqu
     }
   },
   actions: {

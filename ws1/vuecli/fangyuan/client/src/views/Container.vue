@@ -2,35 +2,44 @@
   <div>
     <!-- <p>{{datetime}}</p> -->
     <!-- <button @click="changedatetime()">按钮</button> -->
-    <el-container>
-      <el-aside>
-        <el-menu text-color="#000" :unique-opened="false" :collapse-transition="true">
-          <my-estateitem v-for="(navitem,index) in navitemlist" :key="index" :navitem="navitem"></my-estateitem>
+    <el-container >
+      <el-aside style="width:17rem;overflow:hidden">
+        <el-menu
+          text-color="#000"
+          :unique-opened="false"
+          :collapse-transition="true"
+          class="elmenu"
+        >
+          <my-estateitem
+            v-for="(navitem, index) in navitemlist"
+            :key="index"
+            :navitem="navitem"
+            class="estateitem"
+          ></my-estateitem>
         </el-menu>
       </el-aside>
-      <el-container>
-        <el-main>
-          <!-- <el-button @click="jumptoIdeaSocket()">按钮</el-button> -->
-          
-          <router-view />
-        </el-main>
-      </el-container>
+      <el-main >
+        <!-- <el-tabs v-model="activeName" @tab-click="handleClick">
+          <el-tab-pane v-for="(item,index) in tabitemlist" :name="item.value" :key="index">用户管理</el-tab-pane>
+        </el-tabs> -->
+        <router-view />
+      </el-main>
     </el-container>
   </div>
 </template>
 
 <script>
-import MyEstateitem from "./components/MyEstateitem";
+import MyEstateitem from "../components/MyEstateitem";
 import Vue from "vue";
 function unique(arr1) {
   const res = new Map();
-  return arr1.filter(a => !res.has(a.sno) && res.set(a.sno, a));
+  return arr1.filter((a) => !res.has(a.sno) && res.set(a.sno, a));
 }
 export default {
   components: { MyEstateitem },
   data() {
     return {
-      datetime:this.$g_data.dateTime,
+      datetime: this.$g_data.dateTime,
       navitemlist: [],
       ruleForm: {
         id: 2,
@@ -38,23 +47,22 @@ export default {
         brand: "",
         color: "",
         price: 0,
-        type: ""
-      }
+        type: "",
+      },
     };
   },
   beforeCreate() {
-    console.log(this.$g_data)
+    console.log(this.$g_data);
     this.$axios
       .get("/api/estate/all")
-      .then(async res => {
+      .then(async (res) => {
         // console.log(res)
         this.navitemlist = this.navitemlist.concat(res.data.data);
         // console.log(this.navitemlist)
         for (var i = 0; i < this.navitemlist.length; i++) {
           await this.$axios
             .get("/api/building/all?id=" + this.navitemlist[i].id)
-            .then(async result => {
-              
+            .then(async (result) => {
               Vue.set(
                 this.navitemlist[i],
                 "hasChildren",
@@ -68,7 +76,7 @@ export default {
                     "/api/block/getAll?id=" +
                       this.navitemlist[i].children[j].sno
                   )
-                  .then(result => {
+                  .then((result) => {
                     Vue.set(
                       this.navitemlist[i].children[j],
                       "children",
@@ -86,7 +94,7 @@ export default {
             });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("error", error);
       });
   },
@@ -94,32 +102,35 @@ export default {
     // 回调执行函数 监控命名规则为 watch_+变量名
     this.g_bus.$on("watch_dateTime", (res) => {
       // 具体函数内容
-      console.log(res)
-      this.datetime=res
+      console.log(res);
+      this.datetime = res;
     });
   },
   methods: {
     jumptoIdeaSocket() {
       this.$axios
         .get("/idea/car/save?id=1&brand=BMW&type=435dsf")
-        .then(res => {
+        .then((res) => {
           console.log(res);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("error", error);
         });
     },
-    changedatetime(){
-      console.log("ffrvd")
-      this.$g_data.dateTime="2020-1-1 00:00:00"
-    }
-    
-  }
+    changedatetime() {
+      console.log("ffrvd");
+      this.$g_data.dateTime = "2020-1-1 00:00:00";
+    },
+  },
 };
 </script>
 
 <style scoped>
-.el-aside {
-  height: 100%;
+.elmenu {
+  width: 17rem;
 }
+.estateitem {
+  margin-left: -3rem;
+}
+.el-main{padding: 3rem;}
 </style>

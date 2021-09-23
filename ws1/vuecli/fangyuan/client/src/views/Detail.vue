@@ -1,20 +1,14 @@
 <template>
   <div class="talbclass">
-    <my-table
-      v-for="(tableitem,index) in tableitemlist"
-      :tableData="tableitem"
-      :itemwidth="itemwidth"
-      :key="index"
-      class="singletable"
-    ></my-table>
-    <!-- <el-pagination
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="currentPage"
-      :page-size="pageSize"
-      layout="total,  prev, pager, next, jumper"
-      :total="total"
-    ></el-pagination>-->
+    <div style="display:flex;width:100%">
+      <my-table
+        v-for="(tableitem, index) in tableitemlist"
+        :tableData="tableitem"
+        :tableitemwidth="tableitemwidth"
+        :rowheight="blockheight"
+        :key="index"
+      ></my-table>
+    </div>
   </div>
 </template>
 
@@ -29,7 +23,7 @@ function compare(property) {
 function unique(arr1) {
   const res = new Map();
   return arr1.filter(
-    a => !res.has(a.fangjianhao % 10) && res.set(a.fangjianhao % 10, a)
+    (a) => !res.has(a.fangjianhao % 10) && res.set(a.fangjianhao % 10, a)
   );
 }
 // import MyTable from "../components/MyTable";
@@ -50,7 +44,8 @@ export default {
     return {
       tableitemlist: [],
       refresh: false,
-      itemwidth: 100
+      tableitemwidth: "100%",
+      blockheight:"100%"
       // currentPage: 1,
       // pageSize: 0,
       // total: 0
@@ -63,61 +58,68 @@ export default {
     },
     nowblockid() {
       return this.$store.state.blockid;
-    }
+    },
   },
   watch: {
     nowbuildingid(newValue) {
       // if (!this.refresh) {
       this.$axios
         .get("/api/block/getAll?id=" + newValue + "&sno=" + this.nowblockid)
-        .then(res => {
+        .then((res) => {
           let resArr = res.data.data.sort(compare("fangjianhao"));
           let tableitem_fangjianhaolist = unique(resArr);
-          this.tableitemlist=[]
+          this.tableitemlist = [];
           for (var i = 0; i < tableitem_fangjianhaolist.length; i++) {
             let tableitem = resArr.filter(
-              item =>
+              (item) =>
                 item.NAME.charAt(item.NAME.length - 1) ==
                 "" +
                   tableitem_fangjianhaolist[i].NAME.charAt(item.NAME.length - 1)
             );
             this.tableitemlist.push(tableitem);
           }
-          this.itemwidth = 940 / tableitem_fangjianhaolist.length;
+          this.tableitemwidth = 100 / tableitem_fangjianhaolist.length + "%";
+          console.log(rowlen)
+          let rowlen=Math.ceil((resArr.length/tableitem_fangjianhaolist.length).toFixed(2))
+          this.blockheight=80/rowlen
         });
-      // this.refresh = true;
-      // }
     },
     nowblockid(newValue) {
       // if (!this.refresh) {
       this.$axios
         .get("/api/block/getAll?id=" + this.nowbuildingid + "&sno=" + newValue)
-        .then(res => {
+        .then((res) => {
           let resArr = res.data.data.sort(compare("fangjianhao"));
           let tableitem_fangjianhaolist = unique(resArr);
-          this.tableitemlist=[]
+          this.tableitemlist = [];
           for (var i = 0; i < tableitem_fangjianhaolist.length; i++) {
             let tableitem = resArr.filter(
-              item =>
+              (item) =>
                 item.NAME.charAt(item.NAME.length - 1) ==
                 "" +
                   tableitem_fangjianhaolist[i].NAME.charAt(item.NAME.length - 1)
             );
             this.tableitemlist.push(tableitem);
           }
-          this.itemwidth = 940 / tableitem_fangjianhaolist.length;
+          this.tableitemwidth =
+            100 / tableitem_fangjianhaolist.length  + "%";
+            let rowlen=Math.ceil((resArr.length/tableitem_fangjianhaolist.length).toFixed(2))
+            console.log(rowlen)
+          this.blockheight=80/rowlen
         });
       // this.refresh = true;
 
       // }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
 .talbclass {
-  display: flex;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
 }
 /* .singletable{width: 200px;} */
 </style>

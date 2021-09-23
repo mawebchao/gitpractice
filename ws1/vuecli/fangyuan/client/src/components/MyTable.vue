@@ -1,32 +1,32 @@
 <template>
-  <div>
+  <div :style="{width:tableitemwidth}">
     <el-table
       :data="tableData"
-      :style="{width:itemwidth+'px'}"
+      :row-style="{height:rowheight+'rem'}"
       :border="true"
       :row-class-name="tableRowClassName"
     >
-      <el-table-column label="房号" width="70%">
+      <el-table-column label="房号">
         <template slot-scope="scope">
-          <span style="margin-left: 10px">{{ scope.row.NAME.substr(-3,3) }}</span>
+          <span :style="{display:'inline-block',width:'100%',lineHeight:rowheight+'rem',textAlign:'center',fontSize:rowheight/3+'rem'}">{{ scope.row.NAME.substr(-3,3) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="房源信息" width="180">
+      <!-- <el-table-column label="房源信息" width="0%" min-width="0%">
         <template slot-scope="scope">
           <p>单价: {{ scope.row.price }}</p>
           <p>面积: {{ scope.row.square }}</p>
           <p>总价: {{ scope.row.totalPrice }}</p>
         </template>
       </el-table-column>
-      <el-table-column label="状态" prop="status"></el-table-column>
-      <el-table-column label="业主信息" prop="username"></el-table-column>
+      <el-table-column label="状态" prop="status" width="0%" min-width="0%"></el-table-column>
+      <el-table-column label="业主信息" prop="username" width="0%" min-width="0%"></el-table-column> -->
     </el-table>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["tableData", "itemwidth"],
+  props: ["tableData", "tableitemwidth","rowheight"],
   mounted() {
     // console.log(this.itemwidth)
   },
@@ -37,7 +37,6 @@ export default {
   },
   methods: {
     tableRowClassName(row) {
-      console.log(row.row);
       switch (row.row.xsstatus) {
         case "已售":
           return "ys";
@@ -71,4 +70,5 @@ export default {
 .el-table .ws {
   background: rgb(147,203,135);
 }
+.cell{font-size: 20px;text-align: center;}
 </style>

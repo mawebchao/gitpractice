@@ -3,7 +3,7 @@
     <!-- <p>{{datetime}}</p> -->
     <el-menu-item v-if="!buildingitem.hasChildren" :index="buildingitem.id+''">{{buildingitem.NAME}}</el-menu-item>
     <el-submenu v-if="buildingitem.hasChildren" :index="buildingitem.id+''">
-      <template slot="title">{{buildingitem.NAME}}</template>
+      <template slot="title"><span  style="font-size:3rem">{{buildingitem.NAME}}</span></template>
       <el-menu-item
         v-for="item in buildingitem.children"
         :key="item.id"
@@ -44,6 +44,6 @@ export default {
   color: #000;
 }
 .el-submenu .el-menu-item {
-  margin-left: 60px;
+  margin-left: -6rem;
 }
 </style>

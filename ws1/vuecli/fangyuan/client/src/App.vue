@@ -1,8 +1,12 @@
 <template>
   <div id="app">
     <!-- <my-container></my-container> -->
+<<<<<<< HEAD
     {{count}}
     <button @click="add()">按钮</button>
+=======
+    <div>{{xiaoqu}}</div>
+>>>>>>> 0d1ce36dfb08340961ba58686d6a502d6940b330
     <router-view/>
   </div>
 </template>
@@ -11,6 +15,11 @@
 // import MyContainer from './Container'
 export default {
   name: 'app',
+  data(){
+    return {
+      xiaoqu:""
+    }
+  },
   components:{
     // MyContainer
   },
@@ -42,6 +51,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 </style>
