@@ -15,7 +15,8 @@
 import Vue from "vue";
 import MyHeader from "./components/MyHeader.vue";
 import MyMain from "./components/MyMain.vue";
-import LocalDataHelper from './utils/LocalDataHelper'
+import RecordCtr from "./utils/RecordHelper_controller";
+import Record from './pojo/Record';
 export default Vue.extend({
   components: {
     MyHeader,
@@ -23,19 +24,26 @@ export default Vue.extend({
   }
 });
 
-let dh=new LocalDataHelper("jlData")
-let content={
-  "content":"今天是美好的一天",
-  "title":"今天你在干嘛"
+// let dh=new LocalDataHelper("jlData")
+// let content = {
+//   content: "今天是美好的一天hhhh",
+//   title: "今天你在干嘛"
+// };
+let content1 = {
+  content: "frdhjnfk",
+  title: "今天你在干嘛"
 };
-dh.addData(JSON.stringify(content))
-console.log(dh)
-
+// let dataCtr = new RecordCtr();
+// dataCtr.addRecord(content)
+// dataCtr.delRecord(1+"")
 </script>
 
 <style lang="less">
 #app {
   height: 900px;
 }
-.el-main,.el-header{padding: 0 !important;}
+.el-main,
+.el-header {
+  padding: 0 !important;
+}
 </style>

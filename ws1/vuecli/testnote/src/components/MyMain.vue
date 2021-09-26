@@ -1,6 +1,6 @@
 <template>
   <div class="mainwrap">
-    <memo-item />
+    <memo-item v-for="memoItem in memoItemList" :key="memoItem.id" :memoItem="memoItem"/>
     
   </div>
 </template>
@@ -12,6 +12,7 @@ import MemoItem from "./MemoItem.vue";
   components: {MemoItem}
 })
 export default class extends Vue {
+  memoItemList:any=this.$store.state.dataHelper.getAll()
 }
 </script>
 

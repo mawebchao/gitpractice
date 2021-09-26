@@ -38,6 +38,7 @@
     "node_modules"
   ],
   "rules": {
+    "prefer-const": "off",
     "no-console": "off",
     "space-in-parens": "off",
     "no-debugger": "off",

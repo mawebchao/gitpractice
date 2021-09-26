@@ -2,7 +2,7 @@
   <div class="wrap">
     <div style="width:100%;height:10%;">
       <div class="titlewrap">
-        <span style="height:100%;display:inline-block;padding-top:0.2rem;">标题</span>
+        <span style="height:100%;display:inline-block;padding-top:0.2rem;">{{memoItem.data.title}}</span>
       </div>
       <div style="float:right;margin-right:0.2rem;margin-top:0.2rem">
         <i class="el-icon-edit" style="font-size:1.5rem"></i>
@@ -14,16 +14,20 @@
       <span style="font-size:inherit;margin-left:0.3rem">分类:生活</span>
     </div>
     <div class="contentwrap">
-        
+        {{memoItem.data.content}}
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-
+import { Component, Vue, Prop } from "vue-property-decorator";
 @Component
-export default class extends Vue {}
+export default class extends Vue {
+  @Prop() memoItem!: any;
+  mounted(){
+    console.log(this.memoItem)
+  }
+}
 </script>
 
 <style scoped>
