@@ -1,7 +1,6 @@
 const { invoke, callCYApi } = require('../webapi/cyapi')
-const { executeSql } = require('../db/mysql_fangyuan')
-const querystring=require('querystring')
-var request = require('request');
+const conn = require('../db/mysql_fangyuan')
+let executeSql=new conn().executeSql
 const getBuildingListByEstateId = async (estateId) => {
     //给出请求参数：xiaoqu、louhao、danyuan，封装成一个js对象
     let result = await executeSql(`select * from building where estateid=${estateId}`)

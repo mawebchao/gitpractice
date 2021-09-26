@@ -9,7 +9,7 @@ const handlerBlogRoute = (req, res) => {
     const blogData = req.body
     const sno = req.query.sno
 
-    if (method === 'GET' && req.path === '/block/all') {
+    if (method === 'GET' && req.path === '/api/block/all') {
 
         const listDataPromise = getBlockList()
         return listDataPromise.then(async (listData) => {
@@ -24,14 +24,14 @@ const handlerBlogRoute = (req, res) => {
             return new SuccessModel(listData);
         })
     }
-    if (method === 'GET' && req.path === '/block/getAll') {
+    if (method === 'GET' && req.path === '/api/block/getAll') {
 
         const listDataPromise = getBlocksById(id,sno)
         return listDataPromise.then(async (listData) => {
             return new SuccessModel(listData);
         })
     }
-    if (method === 'GET' && req.path === '/estate/hasChildren') {
+    if (method === 'GET' && req.path === '/api/estate/hasChildren') {
 
         const listDataPromise = getEstateHasChildren(id)
         return listDataPromise.then(async (listData) => {
@@ -39,7 +39,7 @@ const handlerBlogRoute = (req, res) => {
                 return new SuccessModel(true);
         })
     }
-    if (method === 'GET' && req.path === '/building/all') {
+    if (method === 'GET' && req.path === '/api/building/all') {
 
         const listDataPromise = getBuildingListByEstateId(id)
         return listDataPromise.then(async (listData) => {
@@ -48,7 +48,7 @@ const handlerBlogRoute = (req, res) => {
             return new SuccessModel(listData);
         })
     }
-    if (method === 'GET' && req.path === '/building/search') {
+    if (method === 'GET' && req.path === '/api/building/search') {
 
         const listDataPromise = getBuildingListByEstateId(id)
         return listDataPromise.then(async (listData) => {
@@ -57,7 +57,7 @@ const handlerBlogRoute = (req, res) => {
             return new SuccessModel(listData);
         })
     }
-    if (method === 'GET' && req.path === '/estate/all') {
+    if (method === 'GET' && req.path === '/api/estate/all') {
 
         const listDataPromise = getEstateList()
         return listDataPromise.then(async (listData) => {

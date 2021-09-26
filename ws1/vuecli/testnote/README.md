@@ -1,4 +1,4 @@
-# testdebug
+# testnote
 
 ## Project setup
 ```

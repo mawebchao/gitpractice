@@ -1,8 +1,7 @@
-const { executeSql } = require('../db/mysql_fangyuan')
-
+const conn = require('../db/mysql_fangyuan')
+let executeSql=new conn().executeSql
 const checkUser = async (user) => {
     //给出请求参数：xiaoqu、louhao、danyuan，封装成一个js对象
-    console.log(user)
     let result = await executeSql(`select * from user where username='${user.username}' and password='${user.password}'`)
     return result;
 }

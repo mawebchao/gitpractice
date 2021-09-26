@@ -1,9 +1,9 @@
 const Router = require('@koa/router')
 const { checkUser, newUser, newWhite } = require('../../controller/user')
 const { generateToken } = require('../core/util')
-
+const Auth=require('../middlewares/auth')
 const userRouter = new Router({
-    prefix: "/user"
+    prefix: "/koa/user"
 })
 
 userRouter.get('/', async ctx => {
@@ -12,6 +12,7 @@ userRouter.get('/', async ctx => {
         let user=checkResult[0]
         //这里的第二个参数代表的是权限数字
         const token=generateToken(user.id,2)
+        console.log(token)
         ctx.body = token
     }
         
@@ -31,7 +32,7 @@ userRouter.post('/create', async ctx => {
 })
 
 const adminRouter = new Router({
-    prefix: "/admin"
+    prefix: "/koa/admin"
 })
 
 adminRouter.get('/check', async ctx => {
@@ -43,7 +44,7 @@ adminRouter.get('/check', async ctx => {
 })
 
 const whiteListRouter = new Router({
-    prefix: "/whitelist"
+    prefix: "/koa/whitelist"
 })
 
 whiteListRouter.post('/add', async ctx => {
@@ -57,4 +58,15 @@ whiteListRouter.post('/add', async ctx => {
     }
 
 })
-module.exports = { userRouter, adminRouter, whiteListRouter }
+const tokenRouter = new Router({
+    prefix: "/koa/token"
+})
+tokenRouter.post('/verify',ctx=>{
+    const token=ctx.request.headers.token
+    const isValid=Auth.verifyToken(token)
+
+    ctx.body={
+        isValid
+    }
+})
+module.exports = { userRouter, adminRouter, whiteListRouter,tokenRouter }
