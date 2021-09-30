@@ -12,18 +12,23 @@ class LocalDataHelper {
         }
         return oldDataObj;
     }
-    getCapacity(): number {
+    getMaxId(): number {
         const oldDataObj: any = this.readAllData();
+        //获取到当前json对象的key-value对的数量
         let capacity = 0;
+        let maxId=0;
         for (var i in oldDataObj) {
             capacity++
+            if(parseInt(i)>maxId)
+            maxId=parseInt(i)
         }
-        return capacity;
+
+        return capacity>maxId?capacity:maxId;
     }
     //这里的content可以是一个json对象stringtify的结果
     addData(content: any): number {
         let oldDataObj: any = this.readAllData();
-        let newId = this.getCapacity() + 1;
+        let newId = this.getMaxId() + 1;
         oldDataObj[newId] = content;
         this.saveData(oldDataObj)
         return newId;

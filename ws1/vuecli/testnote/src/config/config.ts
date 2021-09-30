@@ -3,5 +3,5 @@ enum CateType{
     Life=1,
     Study=2
 }
-const cateList=["Work","Life","Studey"]
+const cateList=["工作","生活","学习"]
 export default  {CateType,cateList}

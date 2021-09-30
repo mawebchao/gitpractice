@@ -4,7 +4,7 @@
       <i class="el-icon-s-order" style="font-size:3rem"></i>
     </div>
     <div style="float:right">
-      <el-button>新建</el-button>
+      <el-button @click="showCrate()">新建</el-button>
       <el-dropdown style="margin-left:0.8rem">
         <span class="el-dropdown-link">
           全部
@@ -24,7 +24,12 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class extends Vue {}
+export default class extends Vue {
+  showCrate(){
+    console.log("gtdf")
+    this.$store.commit('showWindow',{"isShow":true})
+  }
+}
 </script>
 
 <style scoped>
