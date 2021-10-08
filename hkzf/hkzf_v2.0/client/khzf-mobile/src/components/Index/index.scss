@@ -1,0 +1,139 @@
+/* .middleBar{color: red;} */
+.spanClass {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+.middleNavBarClass {
+  margin-top: 0.5rem;
+}
+.groupClass {
+  background: #f5f5f5;
+  height: 360px;
+  .wrapClass {
+    padding-left: 8px;
+    padding-right: 8px;
+    height: 100%;
+    .gridClass {
+      height: 300px;
+      margin-top: 8px;
+      // padding-bottom:16px;
+      .am-grid .am-flexbox {
+        background: inherit;
+      }
+      .am-grid.am-grid-line .am-flexbox {
+        height: 146px;
+        margin-top: 11px;
+        .am-grid-item:first-child {
+          margin-right: 7px;
+        }
+        .am-grid-item {
+          background: white;
+        }
+        // color: red;
+      }
+      .titleClass {
+        font-weight: bold;
+        font-size: 6px;
+        text-align: left;
+      }
+      .descClass {
+        color: grey;
+        text-align: left;
+        margin-top: -12px;
+        font-size: 6px;
+      }
+    }
+    .titleClass {
+      display: flex;
+      justify-content: space-between;
+      height: 40px;
+      .titleClass {
+        font-weight: bold;
+        font-size: 17px;
+      }
+      .more {
+        color: grey;
+      }
+      span {
+        display: inline-block;
+        height: 40px;
+        line-height: 40px;
+      }
+    }
+  }
+}
+.newsClass {
+  padding-bottom: 50px;
+  .newsWrapClass {
+    margin-left: 12px;
+    margin-right: 12px;
+    .titleClass {
+      margin-top: 8px;
+      margin-bottom: 10px;
+      .titleSpanClass {
+        font-weight: bold;
+        font-size: 17px;
+        display: inline-block;
+        margin-top: 8px;
+      }
+    }
+    .newsContentWrapClass {
+      display: flex;
+      border-top: 1px solid grey;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      .right{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-left: 10px;
+        width: 100%;
+        .top{
+          font-weight: bolder;
+          font-size: 17px;
+        }
+        .bottom{
+          display: flex;
+          justify-content: space-between;
+          color: grey;
+        }
+      }
+    }
+  }
+}
+.topBarClass{
+  position: absolute;
+  top: 20px;
+  width: 100%;
+  .wrap{
+    margin-left: 14px;
+    margin-right: 8px;
+    display: flex;
+    justify-content: space-between;
+    .left,.right{
+      display: flex;
+    }
+    .left{
+      width: 88%;
+      background: white;
+      line-height:30px;
+      box-shadow:inset 0px 0px 3px 0px #888888;
+      .left1{
+        width: 18%;
+        text-align: center;
+      }
+      .left2{
+        width: 82%;
+        .iconClass{
+          margin-left: 5%;
+        }
+        .spanClass{
+          width: 50%;
+          color: grey;
+        }
+      }
+    }
+  }
+}
+.outer{position: relative;}

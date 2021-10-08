@@ -1,0 +1,48 @@
+.topNavBar :global(.am-navbar-light) :global(.am-navbar-title) {
+  font-weight: bold;
+  color: grey;
+}
+.iconClass{color: grey;}
+.indexClass{
+  height: 50px;
+  line-height: 50px;
+}
+.cityClass{
+  height: 46px;
+  line-height: 46px;
+}
+.rootClass{
+  height: 100%;
+  position: relative;
+}
+.divClass{
+  border-bottom: 0.2px solid  rgb(189, 189, 189);
+}
+.rightListClass{
+  position: absolute;
+  right: 3px;
+  display: flex;
+  flex-direction: column;
+}
+.li_inactive_Class{
+  margin-top: 16px;
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+  text-align: center;
+  padding-left: 5px;
+}
+.li_active_Class{
+  margin-top: 16px;
+  display: inline-block;
+  height: 32px;
+  width: 32px;
+  background: greenyellow center;
+  background-repeat: round;
+  text-align: center;
+  border-radius: 50%;
+}
+.span_actice_Class{
+  display: inline-block;
+  margin-top: 5px;
+}
