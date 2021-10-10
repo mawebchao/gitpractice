@@ -3,6 +3,7 @@ import styles from './index.module.css'
 import React from 'react'
 import { AutoSizer, List } from 'react-virtualized';
 import axios from 'axios'
+import {BASE_URL} from '../../utils/global'
 const list = new Array(100).fill("frdvceegrgbfd")
 
 
@@ -20,7 +21,7 @@ export default class CityList extends React.Component {
     async componentDidMount() {
         //1.获取城市列表信息
         //1.1基础城市信息
-        let cityList = (await axios.get("http://localhost:8080/area/city?level=1")).data.body
+        let cityList = (await axios.get(BASE_URL+"/area/city?level=1")).data.body
         cityList = cityList.sort((obj1, obj2) => {
             var val1 = obj1.pinyin;
             var val2 = obj2.pinyin;

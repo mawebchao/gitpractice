@@ -5,7 +5,7 @@ import Icon1 from '../../assets/images/nav-1.png'
 import Icon2 from '../../assets/images/nav-2.png'
 import Icon3 from '../../assets/images/nav-3.png'
 import Icon4 from '../../assets/images/nav-4.png'
-
+import {BASE_URL,BASE_PICURL} from '../../utils/global'
 import './index.scss'
 import {getLocation} from '../../utils/service'
 const middleBarItemList = [
@@ -56,7 +56,7 @@ export default class Index extends React.Component {
 
     componentDidMount = async () => {
         await this.setState({
-            swiperdata: (await axios.get("http://localhost:8080/home/swiper")).data.body
+            swiperdata: (await axios.get(BASE_URL+"/home/swiper")).data.body
         })
         if (this.state.swiperdata.length > 0) {
             this.setState({
@@ -66,11 +66,12 @@ export default class Index extends React.Component {
         let { value: locationId } = await getLocation()
         // let {city}=(await getLocation()).content.address_detail
         // console.log(await axios.get("http://localhost:8080/home/groups?area="+locationId))
+        console.log(locationId)
         await this.setState({
-            groupsdata: (await axios.get("http://localhost:8080/home/groups?area=" + locationId)).data.body
+            groupsdata: (await axios.get(BASE_URL+"/home/groups?area=" + locationId)).data.body
         })
         await this.setState({
-            newsData: (await axios.get("http://localhost:8080/home/news?area=" + locationId)).data.body
+            newsData: (await axios.get(BASE_URL+"/home/news?area=" + locationId)).data.body
         })
     }
     renderMiddleBars() {
@@ -93,7 +94,7 @@ export default class Index extends React.Component {
         return (
             this.state.newsData.map((item) => (
                 <div className="newsContentWrapClass" key={item.id}>
-                    <img src={`http://localhost:8080${item.imgSrc}`} />
+                    <img src={`${BASE_PICURL}${item.imgSrc}`} />
                     <div className="right">
                         <div className="top">{item.title}</div>
                         <div className="bottom">
@@ -150,7 +151,7 @@ export default class Index extends React.Component {
                                     style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight }}
                                 >
                                     <img
-                                        src={`http://localhost:8080${val.imgSrc}`}
+                                        src={`${BASE_PICURL}${val.imgSrc}`}
                                         alt=""
                                         style={{ width: '100%', verticalAlign: 'top' }}
                                     />
@@ -181,7 +182,7 @@ export default class Index extends React.Component {
                                         <div className="titleClass">{dataItem.title}</div>
                                         <div className="descClass">{dataItem.desc}</div>
                                     </div>
-                                    <img src={`http://localhost:8080${dataItem.imgSrc}`} style={{ width: '75px', height: '75px', marginLeft: '8px' }} alt="" />
+                                    <img src={`${BASE_PICURL}${dataItem.imgSrc}`} style={{ width: '75px', height: '75px', marginLeft: '8px' }} alt="" />
                                 </div>
                             )} />
                         </div>

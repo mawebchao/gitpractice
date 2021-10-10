@@ -1,7 +1,8 @@
 // import request from "request";
 import axios from 'axios'
+import { BASE_URL } from "./global";
 export async function getLocationId(cityName) {
-    return (await axios.get("http://localhost:8080/area/info?name="+cityName)).data.body 
+    return (await axios.get(BASE_URL+"/area/info?name="+cityName)).data.body 
 }
 
 export async function getHouseDetail(id) {
@@ -16,7 +17,7 @@ export async function getLocation() {
         //     alert(position)
         //     return position;
         // });
-        let cityNamePromise= fetch('/api/location/ip?ak=dvZqOAeuRj6EBGmhhywOds1TANEf6QMQ', {
+        let cityNamePromise= fetch('/bdapi/location/ip?ak=dvZqOAeuRj6EBGmhhywOds1TANEf6QMQ', {
             method: 'GET'
         }).then(res => {  return res.json(); });
         let {city}=(await cityNamePromise).content.address_detail
