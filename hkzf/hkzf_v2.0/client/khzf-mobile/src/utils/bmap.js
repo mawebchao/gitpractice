@@ -11,23 +11,25 @@ function setNewCenter(map, lng, lat) {
 
 
 // 将地址解析结果显示在地图上，并调整地图视野
-export function getNowPositionCenter(map, label, zoom,position) {
-    if(position===null||position===undefined){
+export function getNowPositionCenter(map, label, zoom, position) {
+    if (position === null || position === undefined) {
         myGeo.getPoint(label, function (point) {
             if (point) {
                 if (label === '浦东') {
                     point.lat = 31.159254;
                     point.lng = 121.573916;
                 }
+                // point.lat = 4825907.72;
+                // point.lng = 12958160.97;
                 map.centerAndZoom(point, zoom < 0 ? map.zoomLevel - zoom : zoom);
             } else {
                 alert('您选择的地址没有解析到结果！');
             }
         }, label)
-    }else{
+    } else {
         map.centerAndZoom(position, zoom < 0 ? map.zoomLevel - zoom : zoom);
     }
-    
+
 }
 
 
@@ -56,7 +58,7 @@ export function addOverlay(map, longitude, latitude, circleRadius, { subLabel: n
     label.addEventListener('click', async function () {
 
         //定位到当前位置
-        getNowPositionCenter(map, nowLabel, -2,{lng:longitude,lat:latitude})
+        getNowPositionCenter(map, nowLabel, -2, { lng: longitude, lat: latitude })
         //获取城市下的房源数据数据
         let houseDetailList = await getHouseDetail(nowValue)
         if (houseDetailList.length === 0) {

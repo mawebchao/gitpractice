@@ -5,9 +5,9 @@ import Icon1 from '../../assets/images/nav-1.png'
 import Icon2 from '../../assets/images/nav-2.png'
 import Icon3 from '../../assets/images/nav-3.png'
 import Icon4 from '../../assets/images/nav-4.png'
-import {BASE_URL,BASE_PICURL} from '../../utils/global'
+import { BASE_URL, BASE_PICURL } from '../../utils/global'
 import './index.scss'
-import {getLocation} from '../../utils/service'
+import { getLocation } from '../../utils/service'
 const middleBarItemList = [
     {
         index: 1,
@@ -49,29 +49,36 @@ export default class Index extends React.Component {
             imgHeight: 176,
             showSwiper: false,
             groupsdata: [],
-            newsData: []
+            newsData: [],
+            cityName: ""
         }
     }
 
 
     componentDidMount = async () => {
         await this.setState({
-            swiperdata: (await axios.get(BASE_URL+"/home/swiper")).data.body
+            swiperdata: (await axios.get(BASE_URL + "/home/swiper")).data.body
         })
         if (this.state.swiperdata.length > 0) {
             this.setState({
                 showSwiper: true
             })
         }
-        let { value: locationId } = await getLocation()
+        let script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.innerText = 'sessionStorage.setItem(\'ip\', returnCitySN["cip"]);';
+        document.head.appendChild(script);
+        // let {ip}=(await axios.get("/txapi/ws/location/v1/ip?key=PKIBZ-YOORP-XURDK-V2W45-K5CJS-N4BNO")).result
+        let { value: locationId,label:cityName } = await getLocation(sessionStorage.getItem("ip"))
         // let {city}=(await getLocation()).content.address_detail
         // console.log(await axios.get("http://localhost:8080/home/groups?area="+locationId))
-        console.log(locationId)
+        // console.log(locationId)
         await this.setState({
-            groupsdata: (await axios.get(BASE_URL+"/home/groups?area=" + locationId)).data.body
+            groupsdata: (await axios.get(BASE_URL + "/home/groups?area=" + locationId)).data.body,
+            cityName:cityName.slice(0,2)
         })
         await this.setState({
-            newsData: (await axios.get(BASE_URL+"/home/news?area=" + locationId)).data.body
+            newsData: (await axios.get(BASE_URL + "/home/news?area=" + locationId)).data.body
         })
     }
     renderMiddleBars() {
@@ -106,7 +113,7 @@ export default class Index extends React.Component {
             ))
         )
     }
-    renderTopBar() {
+    renderTopBar(cityName) {
         return (
             <div className="wrap">
                 <div className="left">
@@ -114,7 +121,7 @@ export default class Index extends React.Component {
                         this.props.history.push("/cityList")
                     }}>
                         {/* <i></i> */}
-                        <span>上海</span>
+                        <span>{cityName}</span>
                         <i className="iconfont icon-arrow"></i>
                     </div>
                     <div className="left2">
@@ -202,7 +209,7 @@ export default class Index extends React.Component {
                 </div>
                 {/* 顶部导航栏 */}
                 <div className="topBarClass">
-                    {this.renderTopBar()}
+                    {this.renderTopBar(this.state.cityName)}
                 </div>
             </div>
         );

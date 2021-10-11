@@ -16,7 +16,7 @@ export default class Map extends React.Component {
         map.enableScrollWheelZoom(true);
         let { label, value } = await getLocation();
         //调用地图覆盖物渲染函数
-        
+        // console.log(label,value)
         //定位到当前位置
         getNowPositionCenter(map, label,10,null)
         //获取城市下的房源数据数据
