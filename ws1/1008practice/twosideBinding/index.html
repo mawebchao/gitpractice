@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VUE双向绑定</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>豆豆还
+            <input type="text" @input="onchange($event)"/>
+            条命</div>
+        <button @click="minus">打豆豆</button>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data:{
+                count:2
+            },
+            methods:{
+                minus(){
+                    this.count--;
+                },
+                onchange(e){
+                    this.count=e.target.value
+                    console.log(this.count)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

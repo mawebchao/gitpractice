@@ -1,1 +1,0 @@
-(()=>{"use strict";document.getElementById("app"),new function(){const e=document.createElement("div");e.innerHTML="我是外部引入的content",app.appendChild(e)}})();

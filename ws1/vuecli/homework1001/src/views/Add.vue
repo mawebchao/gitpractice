@@ -21,10 +21,7 @@
 import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class extends Vue {
-  newUser: any= {};
-  mounted() {
-    console.log(this.$User);
-  }
+  newUser: any= {}
 }
 </script>
 

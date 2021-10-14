@@ -11,13 +11,12 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import User from "../model/User";
+import User from "../model/UserModel";
 import axios from 'axios'
 
 @Component
 export default class extends Vue {
   tableData: User[] = [];
-//   $axios:any;
   async mounted(){
       this.tableData=(await this.$axios.get('/api/user/all')).data
   }
