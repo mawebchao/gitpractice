@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        function withMouse(WrappedComponent) {
+            class Mouse extends React.Component {
+                state = {
+                    x: 0, y: 0
+                }
+                moveHandler=(e)=>{
+                    this.setState({
+                        x:e.clientX,
+                        y:e.clientY
+                    })
+                }
+                componentDidMount() {
+                    window.addEventListener("mousemove", this.moveHandler)
+                }
+                componentWillUnmount() {
+                    window.removeEventListener("mousemove", this.moveHandler)
+                }
+                render() {
+                    return <WrappedComponent data={this.state} {...this.props}></WrappedComponent>
+                }
+            }
+            return Mouse;
+        }
+        //定义一个函数组件
+        function PositionDiv(props) {
+            console.log(props)
+            return (
+                <div style={{fontSize:props.fontsize}}>当前鼠标的位置为：x:{props.data.x},y:{props.data.y}</div>
+            )
+        }
+        const WrappedPosition=withMouse(PositionDiv)
+        class App extends React.Component {
+            render() {
+                return (
+                    <div>
+                        <div>鼠标移动监听</div>
+                        <WrappedPosition fontsize={"20px"}/>
+                    </div>
+
+
+                )
+            }
+        }
+        ReactDOM.render(<App />, document.getElementById("app"))
+    </script>
+</body>
+
+</html>

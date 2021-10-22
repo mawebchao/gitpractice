@@ -56,6 +56,7 @@ export default class Index extends React.Component {
 
 
     componentDidMount = async () => {
+        
         await this.setState({
             swiperdata: (await axios.get(BASE_URL + "/home/swiper")).data.body
         })

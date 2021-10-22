@@ -1,0 +1,25 @@
+.App {
+  display: flex;
+  width: 90vw;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+}
+.divClass{
+  margin-top: 30px;
+  display: inline-block;
+  height: 80vw;
+  width: 15vw;
+  /* background-color:red; */
+  line-height: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  margin-left: 30px;
+  flex: 1;
+  transition: flex .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.active{
+  flex:6;
+}
