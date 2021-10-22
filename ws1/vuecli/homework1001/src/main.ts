@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './App'
+import App from './App.vue' 
 import 'element-ui/lib/theme-chalk/index.css';
 import router from './router'
 import store from './store'
@@ -16,7 +16,8 @@ Vue.use(func)
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.prototype.$axios=axios
-axios.defaults.baseURL = 'http://localhost:8091'
+// axios.defaults.baseURL = 'http://localhost:8091/'
+axios.defaults.baseURL = 'http://manager.jt.com/'
 Vue.prototype.$newUser=(id:number,name:string)=>alert("frd")
 Vue.use(VueQuillEditor)
 

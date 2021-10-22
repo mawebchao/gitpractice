@@ -245,7 +245,7 @@ export default class extends Vue {
   updateUser() {
     //1.预校验数据
     // (this.$refs.addUserRef as Form )
-    // this.$updateUserRef=<Form>this.$refs.updateUserRef;
+    this.$updateUserRef=this.$refs.updateUserRef;
     (this.$updateUserRef as Form).validate(async valid => {
       if (!valid) return this.$message.error("表单验证没有通过");
       //根据接口文档要求封装数据
@@ -257,7 +257,6 @@ export default class extends Vue {
         `/user/updateUser`,
         user
       );
-      console.log(result);
       if (result.status !== 200) return this.$message.error("用户修改失败");
       this.$message.success("用户更新成功");
       this.updateDialogVisible = false;
@@ -280,7 +279,8 @@ export default class extends Vue {
     if (result !== "confirm") {
       this.$message.info("删除取消");
     }
-    const { data: result2 } = await this.$axios.delete(`/api/user/${user.id}`);
+    console.log("user",user)
+    const { data: result2 } = await this.$axios.delete(`/user/${user.id}`);
     if (result2.status !== 200) return this.$message.error("删除失败");
     this.$message.success("删除成功");
     //重新加载 数据

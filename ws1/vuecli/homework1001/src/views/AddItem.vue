@@ -61,6 +61,7 @@
               :on-preview="handlePreview"
               :on-remove="handleRemove"
               :on-success="handleSuccess"
+              :file-list="fileList"
               list-type="picture"
               multiple
               drag
@@ -89,11 +90,18 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Form } from 'element-ui';
+import { Form } from "element-ui";
 
 @Component
 export default class extends Vue {
-  $addItemFormRef:any
+  $addItemFormRef: any;
+  fileList = [
+    {
+      name: "food.jpeg",
+      url:
+        "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100"
+    }
+  ];
   activeIndex = "0";
   addItemForm = {
     title: "",
@@ -101,7 +109,7 @@ export default class extends Vue {
     price: 0,
     num: 0,
     itemCatId: "",
-    images: []||""
+    images: [] || ""
     //itemDesc: '',
     //dynamicArgs: [],
     //staticArgs: []
@@ -147,7 +155,7 @@ export default class extends Vue {
     ]
   };
   itemCatIds = [];
-  itemCatList= [];
+  itemCatList = [];
   props = {
     expandTrigger: "hover",
     value: "id", //选中数据的value值
@@ -159,8 +167,8 @@ export default class extends Vue {
   staticTableData = [];
 
   //定义文件上传路径地址
-  uploadUrl = "http://localhost:8091/file/upload";
-  //uploadUrl: "http://manage.harrylyj.com/file/upload",
+  // uploadUrl = "http://localhost:8091/file/upload";
+  uploadUrl= "http://manager.jt.com/file/upload";
   //定义图片网络访问地址
   imageUrlPath = "";
   //定义图片控制开关
@@ -169,7 +177,9 @@ export default class extends Vue {
     this.findItemCatList();
   }
   async findItemCatList() {
-    const { data: result } = await this.$axios.get("/itemCat/findItemCatList/3");
+    const { data: result } = await this.$axios.get(
+      "/itemCat/findItemCatList/3"
+    );
     if (result.status !== 200)
       return this.$message.error("查询商品分类信息失败");
     this.itemCatList = result.data;
@@ -198,9 +208,12 @@ export default class extends Vue {
   //移除图片的方法
   async handleRemove(file) {
     //移除数组中的数据
+    console.log(file);
     let virtualPath = file.response.data.virtualPath;
     //通过findIndex函数 获取数组中指定数据的位置
-    let index = (this.addItemForm.images as any[]).findIndex(x => x === virtualPath);
+    let index = (this.addItemForm.images as any[]).findIndex(
+      x => x === virtualPath
+    );
     //删除数组中指定的数据
     (this.addItemForm.images as any[]).splice(index, 1);
     //删除服务中的文件
@@ -214,6 +227,7 @@ export default class extends Vue {
   }
   //如果文件上传成功之后调用
   handleSuccess(response, file) {
+    console.log(file, response);
     if (response.status !== 200) return this.$message.error("文件上传失败");
     file.name = response.data.fileName;
     //获取虚拟路径
@@ -225,7 +239,7 @@ export default class extends Vue {
   /* 添加商品按钮 */
   async addItemBtn() {
     //console.log(this.addItemForm)
-    this.$addItemFormRef=this.$refs.addItemFormRef;
+    this.$addItemFormRef = this.$refs.addItemFormRef;
     //1.完成表单校验
     (this.$addItemFormRef as Form).validate(valid => {
       if (!valid) return this.$message.error("请输入商品必填项");
@@ -235,7 +249,9 @@ export default class extends Vue {
     //2.0 将商品价格扩大100倍
     this.addItemForm.price = this.addItemForm.price * 100;
     //2.1 将商品图片的数据转化为字符串
-    (this.addItemForm.images as String)  = <String>((this.addItemForm.images as any[]).join(","));
+    (this.addItemForm.images as String) = <String>(
+      (this.addItemForm.images as any[]).join(",")
+    );
 
     //2.5 实现商品数据提交
     let submitAddItem = {

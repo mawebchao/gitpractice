@@ -1,3 +1,3 @@
 module.exports={
-    "parser":"vue-eslint-parser"
+    // "parser":"vue-eslint-parser"
 }

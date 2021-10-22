@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bind测试</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        Function.prototype.myBind = function (context) {
+            var _self = this;
+            var args = Array.prototype.slice.call(arguments, 1)
+            return function () {
+                var bindArgs = Array.prototype.slice.call(arguments)
+                _self.apply(context,args.concat(bindArgs))
+            }
+        }
+        var _obj = { name: "貂蝉" }
+        function f1() {
+
+            console.log(this.name)
+        }
+        function f2(m, n) {
+            console.log(this.name);
+            console.log(m)
+            console.log(n)
+        }
+        var _f=f2.myBind(_obj,[1,2,3])
+        _f("妲己")
+
+
+
+        // var _f = f2.bind(_obj, [1, 2, 3])
+        // console.log(_f)
+        // _f("点赞")
+    </script>
+</body>
+
+</html>
