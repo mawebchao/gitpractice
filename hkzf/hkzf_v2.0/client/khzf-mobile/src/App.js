@@ -4,7 +4,6 @@ import CityList from './pages/cityList/index'
 import Map from './pages/map/index'
 import {useState} from 'react'
 function App() {
-  console.log(useState(0))
   return (
 
     <div className="App">

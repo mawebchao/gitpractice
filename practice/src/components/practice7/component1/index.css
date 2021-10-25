@@ -1,0 +1,40 @@
+.comClass {
+    color: grey;
+    font-weight: bold;
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.progress,.comClass::before {
+    height: 5px;
+    width: 510px;
+    z-index: -1;
+    position: absolute;
+    left: 25px;
+    top: 50%;
+}
+.comClass::before{
+    content: "";
+    background: grey;
+}
+.progress{
+    background: blue;
+    transition:all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.itemClass {
+    background: white;
+    width: 80px;
+    height: 80px;
+    margin-left: 25px;
+    margin-right: 25px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 70px;
+    font-size: 12px;
+    border-width: 5px;
+    border-style: solid;
+    transition:all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}

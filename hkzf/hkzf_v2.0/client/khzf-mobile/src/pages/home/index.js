@@ -1,12 +1,12 @@
 import React from 'react'
 import { TabBar } from 'antd-mobile';
 import { Route } from 'react-router-dom';
-import News from '../../components/news/index'
-import My from '../../components/my/index'
+import News from '../news/index'
+import My from '../my/index'
 
-import Find from '../../components/find/index'
+import Find from '../find/index'
 
-import Index from '../../components/Index/index'
+import Index from '../Index/index'
 
 import './index.css'
 
