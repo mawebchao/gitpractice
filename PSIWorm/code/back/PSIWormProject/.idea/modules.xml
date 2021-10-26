@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/PSIWormProject.iml" filepath="$PROJECT_DIR$/.idea/PSIWormProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/psiworm/psi-provider/psi-provider.iml" filepath="$PROJECT_DIR$/psiworm/psi-provider/psi-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/psiworm/psiworm.iml" filepath="$PROJECT_DIR$/psiworm/psiworm.iml" />
+    </modules>
+  </component>
+</project>
