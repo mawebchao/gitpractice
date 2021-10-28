@@ -15,6 +15,7 @@ public class UserController {
     @GetMapping("/login")
     public SysResult login(User user){
         if(user.getUsername().equals("mawebchao")&&user.getPassword().equals("123123")){
+            System.out.println(1/0);
             return SysResult.success("登陆成功");
         }
         return SysResult.fail();
