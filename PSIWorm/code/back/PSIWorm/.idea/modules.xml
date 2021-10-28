@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PSIWorm.iml" filepath="$PROJECT_DIR$/PSIWorm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/psi-common/psi-common.iml" filepath="$PROJECT_DIR$/psi-common/psi-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/psi-user/psi-user.iml" filepath="$PROJECT_DIR$/psi-user/psi-user.iml" />
     </modules>
   </component>

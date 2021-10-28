@@ -13,7 +13,12 @@
               required
             />
             <label>
-              <span :style="[{transitionDelay:(50 * index) + 'ms'}]" v-for="(chara,index) in 'username'.split('')" :key="index">{{chara}}</span>
+              <span
+                :style="[{ transitionDelay: 50 * index + 'ms' }]"
+                v-for="(chara, index) in 'username'.split('')"
+                :key="index"
+                >{{ chara }}</span
+              >
             </label>
           </div>
           <div class="form-control">
@@ -25,12 +30,16 @@
               required
             />
             <label>
-              <span v-for="(chara,index) in 'email'.split('')" :key="index">{{chara}}</span>
+              <span
+                v-for="(chara, index) in 'password'.split('')"
+                :key="index"
+                >{{ chara }}</span
+              >
             </label>
           </div>
         </div>
         <div class="form-control">
-          <button type="button" class="btn">login</button>
+          <button type="button" class="btn" @click="login">login</button>
         </div>
         <div class="form-control">
           Don't have an account?
@@ -43,7 +52,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-
+import axios from "../axios/index";
 @Component
 export default class extends Vue {
   $loginFormRef: any;
@@ -51,20 +60,30 @@ export default class extends Vue {
     return {
       loginForm: {
         username: "",
-        password: ""
+        password: "",
       },
       rules: {
         //定义校验用户名
         username: [
           { required: true, message: "请输入用户名", trigger: "blur" },
-          { min: 3, max: 30, message: "长度在 3 到 30 个字符", trigger: "blur" }
+          {
+            min: 3,
+            max: 30,
+            message: "长度在 3 到 30 个字符",
+            trigger: "blur",
+          },
         ],
         //定义校验密码
         password: [
           { required: true, message: "请输入密码", trigger: "blur" },
-          { min: 3, max: 30, message: "长度在 3 到 30 个字符", trigger: "blur" }
-        ]
-      }
+          {
+            min: 3,
+            max: 30,
+            message: "长度在 3 到 30 个字符",
+            trigger: "blur",
+          },
+        ],
+      },
     };
   }
   resetBtn() {
@@ -74,7 +93,12 @@ export default class extends Vue {
     this.$loginFormRef = this.$refs.loginFormRef;
     this.$loginFormRef.resetFields();
   }
-  login() {
+  async login() {
+    const { data: result } = await axios.get(
+      "/user/login",
+      {params:this.$data.loginForm}
+    );
+    console.log(result)
     //获取表单对象之后进行数据校验
     //valid 表示校验的结果 true表示通过  false表示失败
     this.$loginFormRef = this.$refs.loginFormRef;
@@ -83,9 +107,9 @@ export default class extends Vue {
       if (!valid) return;
 
       //如果校验成功,则发起ajax请求
-      const { data: result } = await this.$axios.post(
+      const { data: result } = await axios.get(
         "/user/login",
-        this.$data.loginForm
+        {params:this.$data.loginForm}
       );
 
       if (result.status !== 200) return this.$message.error("用户登录失败");

@@ -7,9 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="psi-user" />
+        <module name="psi-common" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="psi-common" target="9" />
       <module name="psi-user" target="8" />
       <module name="PSIWorm" target="8" />
     </bytecodeTargetLevel>
