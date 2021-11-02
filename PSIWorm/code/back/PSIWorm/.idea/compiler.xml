@@ -6,13 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="psi-user" />
         <module name="psi-common" />
+        <module name="psi-gateway" />
+        <module name="psi-system" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
       <module name="psi-common" target="8" />
-      <module name="psi-user" target="8" />
+      <module name="psi-gateway" target="8" />
+      <module name="psi-role" target="8" />
+      <module name="psi-system" target="8" />
       <module name="PSIWorm" target="8" />
     </bytecodeTargetLevel>
   </component>
