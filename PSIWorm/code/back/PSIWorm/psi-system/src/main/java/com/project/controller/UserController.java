@@ -50,4 +50,10 @@ public class UserController {
         userService.register(user);
         return SysResult.success("注册成功");
     }
+
+    @PostMapping("/check/admin")
+    @ApiOperation("查询是否是系统管理员的接口")
+    public SysResult isAdmin(@RequestBody User user){
+        return SysResult.success(userService.isAdmin(user));
+    }
 }

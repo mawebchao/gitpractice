@@ -9,4 +9,6 @@ public interface UserService{
     Integer register(User user);
 
     Integer login(User user);
+
+    boolean isAdmin(User user);
 }

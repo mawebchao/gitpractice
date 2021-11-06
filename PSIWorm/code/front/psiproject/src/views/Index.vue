@@ -8,7 +8,15 @@
           <img src="../assets/warehouse.png" width="50" height="50" />
           <span>进销存后台管理系统</span>
         </div>
-        <el-button type="info">退出</el-button>
+        <!-- <el-button type="info">退出</el-button> -->
+        <div @click="showSelectingDialogue=!showSelectingDialogue">
+          <img src="../assets/headicon.jpg" width="40" height="40" class="headiconclass" />
+          <div class="iconrightclass">
+            <span>.</span>
+            <span>.</span>
+            <span>.</span>
+          </div>
+        </div>
       </el-header>
 
       <!-- 定义中间区域-->
@@ -59,17 +67,25 @@
                   <i class="el-icon-menu"></i>
                   <span>{{childrenMenu.name}}</span>
                 </template>
-              </el-menu-item> -->
+              </el-menu-item>-->
             </el-submenu>
           </el-menu>
         </el-aside>
         <div class="collapseButtonClass">
-          <div class="collapseIconClass">
-            <i class="el-icon-caret-right" @click="collspseClick"></i>
+          <div class="collapseIconClass" style="cursor:pointer">
+            <i class="el-icon-caret-right" @click="isCollapse = !isCollapse" v-show="isCollapse"></i>
+            <i class="el-icon-caret-left" @click="isCollapse = !isCollapse" v-show="!isCollapse"></i>
           </div>
         </div>
         <!-- 定义主页面结构-->
-        <el-main>
+        <el-main class="contentclass">
+          <transition name="fade">
+            <el-card class="box-card" v-show="showSelectingDialogue">
+              <ul>
+                <li @click="oauthCheck('sys/management')">系统管理</li>
+              </ul>
+            </el-card>
+          </transition>
           <!-- 定义路由展现页面-->
           <router-view></router-view>
         </el-main>
@@ -80,9 +96,10 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import axios from '../axios/index'
+import axios from "../axios/index";
 @Component
 export default class extends Vue {
+  showSelectingDialogue = false;
   menuList = [
     // {
     //   id: 1,
@@ -91,20 +108,73 @@ export default class extends Vue {
   ];
   isCollapse = false;
   isCollapseTransition = false;
-  collspseClick() {
-    this.isCollapse = !this.isCollapse;
+  created() {
+    axios.get("/cat/get/all?userId=4").then(res => {
+      console.log(res);
+      this.menuList = res.data.data;
+      console.log(this.menuList);
+    });
   }
-  created(){
-    axios.get('/cat/get/all?userId=4').then(res=>{
-      console.log(res)
-      this.menuList=res.data.data
-      console.log(this.menuList)
-    })
+  oauthCheck(authUrlPath:string) {
+    let token:string="";
+    axios
+      .get("/"+authUrlPath, { headers: { Authorization: "Bearer " + token } })
+      .then(function(response) {
+        alert(response.data);
+      })
+      .catch(function(e) {
+        //失败时执行catch代码块
+        if (e.response.status == 403) {
+          alert("您没有权限");
+        }
+        console.log("error", e);
+      });
   }
 }
 </script>
 
 <style scoped lang="less">
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.8s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+ul {
+  list-style: none;
+}
+.contentclass {
+  position: relative;
+}
+.box-card {
+  width: 140px;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  // transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  li {
+    cursor: pointer;
+  }
+}
+.iconrightclass {
+  margin-left: -10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 60px;
+  margin-top: -4px;
+  span {
+    display: inline-block;
+    height: 10px;
+    line-height: 5px;
+    font-weight: bold;
+  }
+}
+.headiconclass {
+  border-radius: 50%;
+  cursor: pointer;
+}
 .collapseButtonClass {
   display: flex;
   background: #fafbfd;

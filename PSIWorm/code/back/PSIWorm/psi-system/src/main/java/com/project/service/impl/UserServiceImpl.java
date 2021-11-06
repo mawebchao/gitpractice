@@ -24,4 +24,11 @@ public class UserServiceImpl implements UserService {
         qw.eq("password", user.getPassword());
         return userMapper.selectCount(qw);
     }
+
+    @Override
+    public boolean isAdmin(User user) {
+        QueryWrapper<User> qw=new QueryWrapper<>();
+        qw.eq("username", user.getUsername());
+        return userMapper.selectCount(qw)==1;
+    }
 }
