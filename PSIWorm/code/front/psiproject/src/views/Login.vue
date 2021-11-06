@@ -5,36 +5,23 @@
         <h1>please login</h1>
         <div class="inputWrapClass">
           <div class="form-control">
-            <input
-              type="text"
-              class="input"
-              v-model="loginForm.username"
-              onchange="{this.onChange.bind(this,item.key)}"
-              required
-            />
+            <input type="text" class="input" v-model="loginForm.username" required />
+            <!-- onchange="{this.onChange.bind(this,item.key)}" -->
+
             <label>
               <span
                 :style="[{ transitionDelay: 50 * index + 'ms' }]"
                 v-for="(chara, index) in 'username'.split('')"
                 :key="index"
-                >{{ chara }}</span
-              >
+              >{{ chara }}</span>
             </label>
           </div>
           <div class="form-control">
-            <input
-              type="password"
-              class="input"
-              v-model="loginForm.password"
-              onchange="{this.onChange.bind(this,item.key)}"
-              required
-            />
+            <input type="password" class="input" v-model="loginForm.password" required />
+            <!-- onchange="{this.onChange.bind(this,item.key)}" -->
+
             <label>
-              <span
-                v-for="(chara, index) in 'password'.split('')"
-                :key="index"
-                >{{ chara }}</span
-              >
+              <span v-for="(chara, index) in 'password'.split('')" :key="index">{{ chara }}</span>
             </label>
           </div>
         </div>
@@ -60,7 +47,7 @@ export default class extends Vue {
     return {
       loginForm: {
         username: "",
-        password: "",
+        password: ""
       },
       rules: {
         //定义校验用户名
@@ -70,8 +57,8 @@ export default class extends Vue {
             min: 3,
             max: 30,
             message: "长度在 3 到 30 个字符",
-            trigger: "blur",
-          },
+            trigger: "blur"
+          }
         ],
         //定义校验密码
         password: [
@@ -80,10 +67,10 @@ export default class extends Vue {
             min: 3,
             max: 30,
             message: "长度在 3 到 30 个字符",
-            trigger: "blur",
-          },
-        ],
-      },
+            trigger: "blur"
+          }
+        ]
+      }
     };
   }
   resetBtn() {
@@ -94,34 +81,17 @@ export default class extends Vue {
     this.$loginFormRef.resetFields();
   }
   async login() {
-    const { data: result } = await axios.get(
-      "/user/login",
-      {params:this.$data.loginForm}
-    );
-    console.log(result)
-    //获取表单对象之后进行数据校验
-    //valid 表示校验的结果 true表示通过  false表示失败
-    this.$loginFormRef = this.$refs.loginFormRef;
-    this.$loginFormRef.validate(async (valid: boolean) => {
-      //如果没有完成校验则直接返回
-      if (!valid) return;
-
-      //如果校验成功,则发起ajax请求
-      const { data: result } = await axios.get(
-        "/user/login",
-        {params:this.$data.loginForm}
-      );
-
-      if (result.status !== 200) return this.$message.error("用户登录失败");
-      this.$message.success("用户登陆成功");
-
-      //获取用户token信息
-      let token = result.data;
-      window.sessionStorage.setItem("token", token);
-
-      //用户登录成功之后,跳转到home页面
-      this.$router.push("/home");
+    const { data: result } = await axios.get("/user/login", {
+      params: this.$data.loginForm
     });
+    if (result.status !== 200) return this.$message.error("用户登录失败");
+    this.$message.success("用户登陆成功");
+
+    //获取用户token信息
+    let token = result.data;
+    window.sessionStorage.setItem("token", token);
+    //用户登录成功之后,跳转到home页面
+    this.$router.push("/");
   }
 }
 </script>

@@ -10,6 +10,10 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/user")
 @CrossOrigin
@@ -27,7 +31,7 @@ public class UserController {
     })
     public SysResult login(User user) {
         if (userService.login(user)==1) {
-            return SysResult.success("登陆成功");
+            return SysResult.success(UUID.randomUUID());
         }
         return SysResult.fail();
     }
@@ -39,6 +43,10 @@ public class UserController {
     }
     )
     public SysResult register(@RequestBody User user) {
+        List<String> roleidlist=new ArrayList<String>();
+        roleidlist.add("1");
+        roleidlist.add("2");
+        user.setRoleIds(roleidlist.toString());
         userService.register(user);
         return SysResult.success("注册成功");
     }

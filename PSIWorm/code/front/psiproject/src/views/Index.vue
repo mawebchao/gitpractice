@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="allContainerClass">
     <!-- 定义布局容器 -->
     <el-container class="home-container">
       <!-- 定义头标签 -->
       <el-header>
         <div>
-          <img src="../assets/warehouse.png" width="50" height="50"/>
+          <img src="../assets/warehouse.png" width="50" height="50" />
           <span>进销存后台管理系统</span>
         </div>
         <el-button type="info">退出</el-button>
@@ -14,11 +14,11 @@
       <!-- 定义中间区域-->
       <el-container>
         <!-- 当打开左侧菜单时 宽度为200, 当不打开时为默认值-->
-        <el-aside :width="true ? '64px' : '200px' ">
+        <el-aside :width="isCollapse ? '0.5px' : '200px' ">
           <!-- 这是左侧菜单-->
 
           <!--定义折叠项-->
-          <div class="leftCollapse">|||</div>
+          <!-- <div class="leftCollapse" @click="collspseClick">|||</div> -->
 
           <!--
           background-color 定义背景色
@@ -44,12 +44,12 @@
               <!-- 定义一级菜单模版 -->
               <template slot="title">
                 <!-- 定义左侧图标-->
-                <i :class="menuIcon[menu.id]"></i>
+                <!-- <i :class="menuIcon[menu.id]"></i> -->
                 <!-- 定义菜单名称-->
                 <span>{{menu.name}}</span>
               </template>
               <!-- 定义二级菜单 -->
-              <el-menu-item
+              <!-- <el-menu-item
                 :index="childrenMenu.path"
                 v-for="childrenMenu in menu.children"
                 :key="childrenMenu.id"
@@ -59,11 +59,15 @@
                   <i class="el-icon-menu"></i>
                   <span>{{childrenMenu.name}}</span>
                 </template>
-              </el-menu-item>
+              </el-menu-item> -->
             </el-submenu>
           </el-menu>
         </el-aside>
-
+        <div class="collapseButtonClass">
+          <div class="collapseIconClass">
+            <i class="el-icon-caret-right" @click="collspseClick"></i>
+          </div>
+        </div>
         <!-- 定义主页面结构-->
         <el-main>
           <!-- 定义路由展现页面-->
@@ -76,16 +80,50 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-
+import axios from '../axios/index'
 @Component
 export default class extends Vue {
-  menuList = [];
+  menuList = [
+    // {
+    //   id: 1,
+    //   name: "订单管理"
+    // }
+  ];
   isCollapse = false;
   isCollapseTransition = false;
+  collspseClick() {
+    this.isCollapse = !this.isCollapse;
+  }
+  created(){
+    axios.get('/cat/get/all?userId=4').then(res=>{
+      console.log(res)
+      this.menuList=res.data.data
+      console.log(this.menuList)
+    })
+  }
 }
 </script>
 
 <style scoped lang="less">
+.collapseButtonClass {
+  display: flex;
+  background: #fafbfd;
+  flex-direction: column;
+  justify-content: center;
+  width: 10px;
+  overflow: hidden;
+  .collapseIconClass {
+    height: 40px;
+    background: #d9dde6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: -4px;
+  }
+}
+.allContainerClass {
+  height: 100%;
+}
 .el-header {
   background-color: #557391;
   display: flex; //灵活的盒子容器
@@ -108,6 +146,7 @@ export default class extends Vue {
 .el-aside {
   background-color: #2c3e50;
   height: 100%;
+  width: 90px;
   .el-menu {
     border-right: none;
   }

@@ -1,13 +1,11 @@
-package com.project;
+package com.psi;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.project.mapper")
-public class UserApplication {
+public class GatewayApplication {
     public static void main(String[] args) {
-        SpringApplication.run(UserApplication.class,args);
+        SpringApplication.run(GatewayApplication.class, args);
     }
 }
