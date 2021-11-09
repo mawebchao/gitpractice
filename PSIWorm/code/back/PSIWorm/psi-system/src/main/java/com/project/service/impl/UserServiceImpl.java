@@ -7,6 +7,8 @@ import com.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -18,11 +20,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer login(User user) {
+    public List<User> login(User user) {
         QueryWrapper<User> qw=new QueryWrapper<>();
         qw.eq("username", user.getUsername());
-        qw.eq("password", user.getPassword());
-        return userMapper.selectCount(qw);
+        return userMapper.selectList(qw);
     }
 
     @Override

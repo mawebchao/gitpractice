@@ -6,6 +6,8 @@ import com.project.vo.SysResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/cat")
 @CrossOrigin
@@ -22,8 +24,9 @@ public class CategoryController {
         return SysResult.success(categoryService.update(category));
     }
 
-    @GetMapping("/get/all")
-    public SysResult getAll(Integer userId){
-        return SysResult.success(categoryService.getAll(userId));
+    @GetMapping("/get/all/{userId}")
+    public SysResult getAll(@PathVariable("userId") Integer userId){
+        List<Category> categoryList=categoryService.getAll(userId);
+        return SysResult.success(categoryList==null?"无任何权限":categoryList);
     }
 }

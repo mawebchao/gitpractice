@@ -38,7 +38,7 @@
     </schema>
     <schema id="12" parent="1" name="psiworm">
       <Current>1</Current>
-      <Collation>latin1_swedish_ci</Collation>
+      <Collation>utf8mb3_general_ci</Collation>
     </schema>
     <schema id="13" parent="1" name="sys">
       <Collation>utf8mb3_general_ci</Collation>
@@ -1077,9 +1077,15 @@
       <ObjectGrants>ALL PRIVILEGES!
 </ObjectGrants>
     </user>
-    <table id="342" parent="12" name="category"/>
-    <table id="343" parent="12" name="role"/>
-    <table id="344" parent="12" name="user"/>
+    <table id="342" parent="12" name="category">
+      <Collation>latin1_swedish_ci</Collation>
+    </table>
+    <table id="343" parent="12" name="role">
+      <Collation>latin1_swedish_ci</Collation>
+    </table>
+    <table id="344" parent="12" name="user">
+      <Collation>latin1_swedish_ci</Collation>
+    </table>
     <column id="345" parent="342" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
@@ -1090,6 +1096,7 @@
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
+      <Collation>utf8mb3_general_ci</Collation>
     </column>
     <column id="347" parent="342" name="level">
       <Position>3</Position>
@@ -1117,10 +1124,12 @@
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
+      <Collation>utf8mb3_general_ci</Collation>
     </column>
     <column id="352" parent="343" name="category_ids">
       <Position>3</Position>
       <DataType>varchar(100)|0s</DataType>
+      <Collation>utf8mb3_general_ci</Collation>
     </column>
     <key id="353" parent="343" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
@@ -1137,15 +1146,16 @@
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
+      <Collation>utf8mb3_general_ci</Collation>
     </column>
     <column id="356" parent="344" name="password">
       <Position>3</Position>
-      <DataType>varchar(20)|0s</DataType>
+      <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="357" parent="344" name="role_ids">
       <Position>4</Position>
-      <DataType>int(20)|0s</DataType>
+      <DataType>varchar(20)|0s</DataType>
     </column>
     <key id="358" parent="344" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>

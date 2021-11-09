@@ -36,18 +36,23 @@ public class CatgoryServiceImpl implements CatgoryService {
 
     @Override
     public List<Category> getAll(Integer userId) {
-        User user = userMapper.selectById(userId);
-        QueryWrapper<Role> qw= new QueryWrapper<>();
-        qw.in("id", StringListUtils.convertIntStringToIntegerList(user.getRoleIds()));
-        List<Integer> integercatidList=new ArrayList<>();
-        for (Role role:roleMapper.selectList(qw)
-             ) {
-            integercatidList.addAll( StringListUtils.convertIntStringToIntegerList(role.getCategoryIds()));
+        try {
+            User user = userMapper.selectById(userId);
+            QueryWrapper<Role> qw= new QueryWrapper<>();
+            qw.in("id", StringListUtils.convertIntStringToIntegerList(user.getRoleIds()));
+            List<Integer> integercatidList=new ArrayList<>();
+            for (Role role:roleMapper.selectList(qw)
+            ) {
+                integercatidList.addAll( StringListUtils.convertIntStringToIntegerList(role.getCategoryIds()));
+            }
+            qw.clear();
+            QueryWrapper<Category> categoryqw= new QueryWrapper<>();
+            categoryqw.in("id", integercatidList);
+            return categoryMapper.selectList(categoryqw);
+        }catch (RuntimeException runtimeException){
+            return null;
         }
-        qw.clear();
-        QueryWrapper<Category> categoryqw= new QueryWrapper<>();
-        categoryqw.in("id", integercatidList);
-        return categoryMapper.selectList(categoryqw);
+
 
     }
 }
