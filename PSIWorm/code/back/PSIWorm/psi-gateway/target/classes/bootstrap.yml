@@ -21,6 +21,12 @@ spring:
         - id: systemrouter
           uri: lb://psi-system
           predicates:
-            - Path=/psi/**
+            - Path=/sys/**
+          filters:
+            - StripPrefix=1
+        - id: authrouter
+          uri: lb://psi-auth
+          predicates:
+            - Path=/myauth/**
           filters:
             - StripPrefix=1

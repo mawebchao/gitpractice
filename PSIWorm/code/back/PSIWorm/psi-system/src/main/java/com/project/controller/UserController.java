@@ -58,4 +58,8 @@ public class UserController {
         return SysResult.success(userService.isAdmin(user));
     }
 
+    @GetMapping("/test/post")
+    public String testPost(){
+        return "测试成功";
+    }
 }

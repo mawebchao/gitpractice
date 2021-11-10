@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.pojo.Category;
 import com.project.service.RemoteUserService;
 import com.project.vo.SysResult;
+import com.project.vo.exception.HasNoAuthoritiesException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -37,8 +38,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
 
-        log.info("123456加密后：",new BCryptPasswordEncoder().encode("123456"));
-        System.out.println(new BCryptPasswordEncoder().encode("123123"));
+//        log.info("123456加密后：",new BCryptPasswordEncoder().encode("123456"));
+//        System.out.println(new BCryptPasswordEncoder().encode("123456"));
         //基于feign方式获取远程数据并封装
         //1.基于用户名获取用户信息
         SysResult sysResult =
@@ -49,19 +50,27 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         //2.基于用于id查询用户权限
         SysResult categoryListResult =
                 remoteUserService.getUserCategory(Integer.parseInt(userdata.get("id")+""));
+        log.debug("categoryListResult {}", categoryListResult);
+
         List<String> permissions=new ArrayList<>();
-        List<LinkedHashMap<String, Object>> catdata = (List<LinkedHashMap<String, Object>>) categoryListResult.getData();
-        for (LinkedHashMap<String,Object> cat: catdata
-             ) {
-            permissions.add(cat.get("name")+"");
+        List<LinkedHashMap<String, Object>> catdata=null;
+        try {
+            catdata= (List<LinkedHashMap<String, Object>>) categoryListResult.getData();
+            for (LinkedHashMap<String,Object> cat: catdata
+            ) {
+                permissions.add(cat.get("name")+"");
+            }
+        }catch (RuntimeException runtimeException){
+            throw new HasNoAuthoritiesException();
+        }finally {
+            //3.对查询结果进行封装并返回
+            org.springframework.security.core.userdetails.User userInfo = new User(username,
+                    userdata.get("password")+"",
+                    AuthorityUtils.createAuthorityList(permissions.toArray(new String[]{})));
+            //......
+            return userInfo;
         }
-        log.info("permissions {}", permissions);
-        log.info("password {}", userdata.get("password"));
-        //3.对查询结果进行封装并返回
-        org.springframework.security.core.userdetails.User userInfo = new User(username,
-                userdata.get("password")+"",
-                AuthorityUtils.createAuthorityList(permissions.toArray(new String[]{})));
-        //......
-        return userInfo;
+
+
     }
 }

@@ -39,7 +39,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import axios from "../axios/index";
+import { defaultAxios } from "../axios/index";
 @Component
 export default class extends Vue {
   $loginFormRef: any;
@@ -48,28 +48,6 @@ export default class extends Vue {
       loginForm: {
         username: "",
         password: ""
-      },
-      rules: {
-        //定义校验用户名
-        username: [
-          { required: true, message: "请输入用户名", trigger: "blur" },
-          {
-            min: 3,
-            max: 30,
-            message: "长度在 3 到 30 个字符",
-            trigger: "blur"
-          }
-        ],
-        //定义校验密码
-        password: [
-          { required: true, message: "请输入密码", trigger: "blur" },
-          {
-            min: 3,
-            max: 30,
-            message: "长度在 3 到 30 个字符",
-            trigger: "blur"
-          }
-        ]
       }
     };
   }
@@ -81,14 +59,21 @@ export default class extends Vue {
     this.$loginFormRef.resetFields();
   }
   async login() {
-    const { data: result } = await axios.get("/user/login", {
-      params: this.$data.loginForm
+    const { data: result } = await defaultAxios.get("/myauth/oauth/token", {
+      params: {
+        username: this.$data.loginForm.username,
+        password: this.$data.loginForm.password,
+        client_id: "gateway-client",
+        grant_type: "password",
+        client_secret:"123456"
+      }
     });
-    if (result.status !== 200) return this.$message.error("用户登录失败");
-    this.$message.success("用户登陆成功");
+    console.log(result)
+    if (result.access_token === null) return this.$message.error("用户登陆失败");
+    this.$message.success("用户登录成功");
 
     //获取用户token信息
-    let token = result.data;
+    let token = result.access_token;
     window.sessionStorage.setItem("token", token);
     //用户登录成功之后,跳转到home页面
     this.$router.push("/");

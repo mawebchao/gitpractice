@@ -96,7 +96,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import axios from "../axios/index";
+import {defaultAxios} from "../axios/index";
 @Component
 export default class extends Vue {
   showSelectingDialogue = false;
@@ -109,7 +109,7 @@ export default class extends Vue {
   isCollapse = false;
   isCollapseTransition = false;
   created() {
-    axios.get("/cat/get/all?userId=4").then(res => {
+    defaultAxios.get("/cat/get/all?userId=4").then(res => {
       console.log(res);
       this.menuList = res.data.data;
       console.log(this.menuList);
@@ -117,7 +117,7 @@ export default class extends Vue {
   }
   oauthCheck(authUrlPath:string) {
     let token:string="";
-    axios
+    defaultAxios
       .get("/"+authUrlPath, { headers: { Authorization: "Bearer " + token } })
       .then(function(response) {
         alert(response.data);
