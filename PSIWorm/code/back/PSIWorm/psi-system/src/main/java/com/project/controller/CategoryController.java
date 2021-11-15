@@ -26,7 +26,7 @@ public class CategoryController {
 
     @GetMapping("/get/all/{userId}")
     public SysResult getAll(@PathVariable("userId") Integer userId){
-        List<Category> categoryList=categoryService.getAll(userId);
+        List<Category> categoryList=categoryService.getAllAppendByChildren(userId);
         return SysResult.success(categoryList==null?"无任何权限":categoryList);
     }
 }

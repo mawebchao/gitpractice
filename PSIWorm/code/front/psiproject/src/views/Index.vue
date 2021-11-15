@@ -57,7 +57,7 @@
                 <span>{{menu.name}}</span>
               </template>
               <!-- 定义二级菜单 -->
-              <!-- <el-menu-item
+              <el-menu-item
                 :index="childrenMenu.path"
                 v-for="childrenMenu in menu.children"
                 :key="childrenMenu.id"
@@ -67,7 +67,7 @@
                   <i class="el-icon-menu"></i>
                   <span>{{childrenMenu.name}}</span>
                 </template>
-              </el-menu-item>-->
+              </el-menu-item>
             </el-submenu>
           </el-menu>
         </el-aside>
@@ -109,7 +109,7 @@ export default class extends Vue {
   isCollapse = false;
   isCollapseTransition = false;
   created() {
-    defaultAxios.get("/cat/get/all?userId=4").then(res => {
+    defaultAxios.get("/sys/cat/get/all/4").then(res => {
       console.log(res);
       this.menuList = res.data.data;
       console.log(this.menuList);
