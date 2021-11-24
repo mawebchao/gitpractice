@@ -1,0 +1,32 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: psi-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        server-addr: localhost:8848
+        file-extension: yml
+        name: psi-gateway
+#    sentinel:
+#      transport:
+#        dashboard: localhost:8180
+#        port: 8719 #客户端监控API的端口
+#      eager: true
+    gateway:
+      routes:
+        - id: systemrouter
+          uri: lb://psi-system
+          predicates:
+            - Path=/sys/**
+          filters:
+            - StripPrefix=1
+        - id: authrouter
+          uri: lb://psi-auth
+          predicates:
+            - Path=/myauth/**
+          filters:
+            - StripPrefix=1

@@ -1,4 +1,7 @@
 import axios from 'axios'
-export default axios.create({
-    baseURL: 'http://localhost:8080'
+export const defaultAxios= axios.create({
+    baseURL: '/api'
+})
+export const authAxios=axios.create({
+    baseURL: 'http://localhost:9000/myauth'
 })
