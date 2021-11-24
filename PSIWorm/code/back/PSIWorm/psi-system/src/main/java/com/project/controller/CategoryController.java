@@ -29,4 +29,10 @@ public class CategoryController {
         List<Category> categoryList=categoryService.getAllAppendByChildren(userId);
         return SysResult.success(categoryList==null?"无任何权限":categoryList);
     }
+
+    @GetMapping("/get/getAllInList/{userId}")
+    public SysResult getAllInList(@PathVariable("userId") Integer userId){
+        List<Category> categoryList=categoryService.getAll(userId);
+        return SysResult.success(categoryList==null?"无任何权限":categoryList);
+    }
 }

@@ -3,7 +3,6 @@ package com.project.service;
 
 import com.project.pojo.User;
 import com.project.vo.SysResult;
-import feign.Param;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +12,7 @@ public interface RemoteUserService {
     @GetMapping("/user/login")
     SysResult selectUserByUsername(@RequestBody User user);
 
-    @RequestMapping(value = "/cat/get/all/{userId}",method = RequestMethod.GET)
+    @RequestMapping(value = "/cat/get/getAllInList/{userId}",method = RequestMethod.GET)
     SysResult getUserCategory(@PathVariable("userId") Integer userId);
 
 }

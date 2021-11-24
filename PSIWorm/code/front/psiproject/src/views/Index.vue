@@ -82,7 +82,18 @@
           <transition name="fade">
             <el-card class="box-card" v-show="showSelectingDialogue">
               <ul>
-                <li @click="oauthCheck('sys/management')">系统管理</li>
+                <li
+                  @click="oauthCheck('权限管理')"
+                  @mouseenter="mouseenter_f(0)"
+                  @mouseleave="mouseleave_f"
+                  :class="nowlistindex==0?'onclass':''"
+                >权限管理</li>
+                <li
+                  @click="logout"
+                  @mouseenter="mouseenter_f(1)"
+                  @mouseleave="mouseleave_f"
+                  :class="nowlistindex==1?'onclass':''"
+                >退出</li>
               </ul>
             </el-card>
           </transition>
@@ -96,9 +107,10 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import {defaultAxios} from "../axios/index";
+import { defaultAxios } from "../axios/index";
 @Component
 export default class extends Vue {
+  nowlistindex = -1;
   showSelectingDialogue = false;
   menuList = [
     // {
@@ -115,12 +127,26 @@ export default class extends Vue {
       console.log(this.menuList);
     });
   }
-  oauthCheck(authUrlPath:string) {
-    let token:string="";
+  logout() {
+    window.sessionStorage.removeItem("token");
+    this.$router.push("/login");
+  }
+  oauthCheck(authStr: string) {
+    let nowvue = this;
+    // let token:string="";
     defaultAxios
-      .get("/"+authUrlPath, { headers: { Authorization: "Bearer " + token } })
+      .get("/myauth/oauth/check_token", {
+        params: {
+          token: window.sessionStorage.getItem("token")
+        }
+      })
       .then(function(response) {
-        alert(response.data);
+        console.log(response);
+        if (response.data.authorities.indexOf(authStr) != -1)
+          nowvue.$router.push("/permission");
+        else {
+          nowvue.$message.error("没有权限");
+        }
       })
       .catch(function(e) {
         //失败时执行catch代码块
@@ -130,10 +156,19 @@ export default class extends Vue {
         console.log("error", e);
       });
   }
+  mouseenter_f(index: number) {
+    this.nowlistindex = index;
+  }
+  mouseleave_f() {
+    this.nowlistindex = -1;
+  }
 }
 </script>
 
 <style scoped lang="less">
+.onclass {
+  background: rgb(114, 203, 255);
+}
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.8s;
@@ -155,6 +190,8 @@ ul {
   // transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
   li {
     cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
   }
 }
 .iconrightclass {

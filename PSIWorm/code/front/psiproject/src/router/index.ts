@@ -18,6 +18,11 @@ const routes = [
     path: '/system',
     name: 'System',
     component: ()=>import("../views/System.vue")
+  },
+  {
+    path: '/permission',
+    name: 'Permission',
+    component: ()=>import("../views/Permission.vue")
   }
 ]
 

@@ -42,7 +42,7 @@ import { Component, Vue } from "vue-property-decorator";
 import { defaultAxios } from "../axios/index";
 @Component
 export default class extends Vue {
-  $loginFormRef: any;
+  // $loginFormRef: any;
   data() {
     return {
       loginForm: {
@@ -51,32 +51,43 @@ export default class extends Vue {
       }
     };
   }
-  resetBtn() {
-    //this对象代表当前组件对象
-    //console.log(this)
-    //实现数据重置
-    this.$loginFormRef = this.$refs.loginFormRef;
-    this.$loginFormRef.resetFields();
-  }
+  // resetBtn() {
+  //   //this对象代表当前组件对象
+  //   //console.log(this)
+  //   //实现数据重置
+  //   this.$loginFormRef = this.$refs.loginFormRef;
+  //   this.$loginFormRef.resetFields();
+  // }
   async login() {
-    const { data: result } = await defaultAxios.get("/myauth/oauth/token", {
-      params: {
-        username: this.$data.loginForm.username,
-        password: this.$data.loginForm.password,
-        client_id: "gateway-client",
-        grant_type: "password",
-        client_secret:"123456"
-      }
-    });
-    console.log(result)
-    if (result.access_token === null) return this.$message.error("用户登陆失败");
-    this.$message.success("用户登录成功");
+    try {
+      const { data: result } = await defaultAxios.get("/myauth/oauth/token", {
+        params: {
+          username: this.$data.loginForm.username,
+          password: this.$data.loginForm.password,
+          client_id: "gateway-client",
+          grant_type: "password",
+          client_secret: "123456"
+        }
+      });
+      console.log(result);
+      // if (result.access_token === null) return this.$message.error("用户登陆失败");
+      this.$message.success("用户登录成功");
 
-    //获取用户token信息
-    let token = result.access_token;
-    window.sessionStorage.setItem("token", token);
-    //用户登录成功之后,跳转到home页面
-    this.$router.push("/");
+      //获取用户token信息
+      let token = result.access_token;
+      window.sessionStorage.setItem("token", token);
+      //用户登录成功之后,跳转到home页面
+      this.$router.push("/");
+    } catch (error) {
+      this.$message.error("用户名或密码错误");
+      this.clearLoginFields();
+    }
+  }
+  clearLoginFields() {
+    (this as any).loginForm = {
+      username: "",
+      password: ""
+    };
   }
 }
 </script>
