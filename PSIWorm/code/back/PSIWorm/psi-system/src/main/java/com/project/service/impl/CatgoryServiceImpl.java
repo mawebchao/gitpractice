@@ -58,8 +58,26 @@ public class CatgoryServiceImpl implements CatgoryService {
             return null;
 
         }
+    }
+    public List<Category> getAllByRoleId(Integer roleId) {
+        try {
+            QueryWrapper<Role> qw= new QueryWrapper<>();
+            qw.eq("id", roleId);
+            List<Integer> integercatidList=new ArrayList<>();
+            for (Role role:roleMapper.selectList(qw)
+            ) {
+                integercatidList.addAll( StringListUtils.convertIntStringToIntegerList(role.getCategoryIds()));
+            }
+            System.out.println("integercatidList="+integercatidList);
+            qw.clear();
+            QueryWrapper<Category> categoryqw= new QueryWrapper<>();
+            categoryqw.in("id", integercatidList);
+            log.debug(String.valueOf(integercatidList));
+            return categoryMapper.selectList(categoryqw);
+        }catch (RuntimeException runtimeException){
+            return null;
 
-
+        }
     }
     private Category getById(Integer id,List<Category> categoryList){
         for (Category cat: categoryList

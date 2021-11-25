@@ -4,10 +4,9 @@ import com.project.pojo.Role;
 import com.project.vo.SysResult;
 import com.project.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/role")
@@ -22,5 +21,10 @@ public class RoleController {
     @PostMapping("/update")
     public SysResult update( Role role){
         return SysResult.success(roleService.update(role));
+    }
+    @GetMapping("/get/getAllInList/{userId}")
+    public SysResult getAllInList(@PathVariable("userId") Integer userId){
+        List<Role> roleList=roleService.getAllInList(userId);
+        return SysResult.success(roleList==null?"无任何权限":roleList);
     }
 }
