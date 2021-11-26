@@ -15,6 +15,7 @@ public class StringListUtils {
         return  integerroleidlist;
     }
     public static List<String> convertStringToStringList(String str){
+//        System.out.println(str);
         String[] roleidlist = StringUtils.strip(str, "[]").split(",");
         return  new ArrayList<String>(Arrays.asList(roleidlist));
     }

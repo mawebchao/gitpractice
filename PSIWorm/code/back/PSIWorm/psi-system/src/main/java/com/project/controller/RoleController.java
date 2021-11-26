@@ -15,7 +15,7 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
     @PostMapping("/add")
-    public SysResult add( Role role){
+    public SysResult add(@RequestBody Role role){
         return SysResult.success(roleService.add(role));
     }
     @PostMapping("/update")

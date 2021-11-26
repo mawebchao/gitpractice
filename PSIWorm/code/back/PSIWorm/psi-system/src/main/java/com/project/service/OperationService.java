@@ -12,4 +12,6 @@ public interface OperationService {
     List<Operation> getOperationWithRoleAndCat(Integer roleId, Integer catId);
 
     List<CategoryOperationVO> getOperationWithRoleId(Integer roleId);
+
+    Integer batchAdd(List<CategoryOperationVO> operationVOList, Integer roleId);
 }

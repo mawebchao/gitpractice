@@ -15,7 +15,7 @@
         <el-button class="savebuttonclass" type="primary" @click="batchSave">保存</el-button>
       </div>
 
-      <component :is="currentComponent"></component>
+      <component :is="currentComponent" :ref="currentComponent"></component>
     </div>
   </div>
 </template>
@@ -43,7 +43,7 @@ export default class extends Vue {
     this.selectedTabIndex=index;
   }
   batchSave(){
-    console.log(this)
+    (this.$refs[this.currentComponent] as any).$emit("childBatchSaveMethod")
   }
 }
 </script>

@@ -12,7 +12,7 @@ MySQL - 10.6.4-MariaDB : Database - psiworm
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE  IF NOT EXISTS `psiworm` /*!40100 DEFAULT CHARACTER SET utf8mb3 */;
+CREATE DATABASE IF NOT EXISTS `psiworm` /*!40100 DEFAULT CHARACTER SET utf8mb3 */;
 
 USE `psiworm`;
 
@@ -34,6 +34,20 @@ insert  into `category`(`id`,`name`,`level`,`parent_id`) values
 (1,'订单管理',0,-1),
 (2,'销售订单',1,1),
 (3,'权限管理',0,-1);
+
+/*Table structure for table `operation` */
+
+DROP TABLE IF EXISTS `operation`;
+
+CREATE TABLE `operation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `operations` varchar(150) NOT NULL,
+  `roleId` int(11) NOT NULL,
+  `catId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+
+/*Data for the table `operation` */
 
 /*Table structure for table `role` */
 

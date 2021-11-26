@@ -83,17 +83,36 @@
             </el-card>
           </transition>
           <!--主要内容组件-->
-          <RoleMan/>
+          <RoleMan />
         </el-main>
       </el-container>
     </el-container>
+    <!-- 新建角色的对话框 -->
+    <!-- :visible.sync="dialogFormVisible" -->
+    <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+      <el-form :model="form" >
+        <el-form-item label="活动名称" :label-width="formLabelWidth">
+          <el-input v-model="form.name" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="活动区域" :label-width="formLabelWidth">
+          <el-select v-model="form.region" placeholder="请选择活动区域">
+            <el-option label="区域一" value="shanghai"></el-option>
+            <el-option label="区域二" value="beijing"></el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { defaultAxios } from "../axios/index";
-import  RoleMan  from "../components/RoleMan.vue";
+import RoleMan from "../components/RoleMan.vue";
 
 @Component({
   components: {
@@ -101,6 +120,9 @@ import  RoleMan  from "../components/RoleMan.vue";
   }
 })
 export default class extends Vue {
+  dialogFormVisible=true
+  form={}
+  formLabelWidth= '120px'
   inputedSearchRoleName = "";
   rolelist = [];
   nowRoleList = [];
@@ -131,6 +153,31 @@ export default class extends Vue {
       this.rolelist = res.data.data;
       this.nowRoleList = this.rolelist;
     });
+  }
+  oauthCheck(authStr: string) {
+    let nowvue = this;
+    // let token:string="";
+    defaultAxios
+      .get("/myauth/oauth/check_token", {
+        params: {
+          token: window.sessionStorage.getItem("token")
+        }
+      })
+      .then(function(response) {
+        console.log(response);
+        if (response.data.authorities.indexOf(authStr) != -1)
+          nowvue.$router.push("/permission");
+        else {
+          nowvue.$message.error("没有权限");
+        }
+      })
+      .catch(function(e) {
+        //失败时执行catch代码块
+        if (e.response.status == 403) {
+          alert("您没有权限");
+        }
+        console.log("error", e);
+      });
   }
 }
 </script>

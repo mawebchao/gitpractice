@@ -42,63 +42,63 @@ public class CatgoryServiceImpl implements CatgoryService {
     public List<Category> getAll(Integer userId) {
         try {
             User user = userMapper.selectById(userId);
-            QueryWrapper<Role> qw= new QueryWrapper<>();
+            QueryWrapper<Role> qw = new QueryWrapper<>();
             qw.in("id", StringListUtils.convertIntStringToIntegerList(user.getRoleIds()));
-            List<Integer> integercatidList=new ArrayList<>();
-            for (Role role:roleMapper.selectList(qw)
+            List<Integer> integercatidList = new ArrayList<>();
+            for (Role role : roleMapper.selectList(qw)
             ) {
-                integercatidList.addAll( StringListUtils.convertIntStringToIntegerList(role.getCategoryIds()));
+                integercatidList.addAll(StringListUtils.convertIntStringToIntegerList(role.getCategoryIds()));
             }
             qw.clear();
-            QueryWrapper<Category> categoryqw= new QueryWrapper<>();
+            QueryWrapper<Category> categoryqw = new QueryWrapper<>();
             categoryqw.in("id", integercatidList);
             log.debug(String.valueOf(integercatidList));
             return categoryMapper.selectList(categoryqw);
-        }catch (RuntimeException runtimeException){
+        } catch (RuntimeException runtimeException) {
             return null;
 
         }
     }
+
     public List<Category> getAllByRoleId(Integer roleId) {
         try {
-            QueryWrapper<Role> qw= new QueryWrapper<>();
+            QueryWrapper<Role> qw = new QueryWrapper<>();
             qw.eq("id", roleId);
-            List<Integer> integercatidList=new ArrayList<>();
-            for (Role role:roleMapper.selectList(qw)
-            ) {
-                integercatidList.addAll( StringListUtils.convertIntStringToIntegerList(role.getCategoryIds()));
-            }
-            System.out.println("integercatidList="+integercatidList);
+            List<Integer> integercatidList = new ArrayList<>();
+            Role role = roleMapper.selectOne(qw);
+            integercatidList.addAll(StringListUtils.convertIntStringToIntegerList(role.getCategoryIds()));
+            System.out.println("integercatidList=" + integercatidList);
             qw.clear();
-            QueryWrapper<Category> categoryqw= new QueryWrapper<>();
+            QueryWrapper<Category> categoryqw = new QueryWrapper<>();
             categoryqw.in("id", integercatidList);
-            log.debug(String.valueOf(integercatidList));
             return categoryMapper.selectList(categoryqw);
-        }catch (RuntimeException runtimeException){
+        } catch (RuntimeException runtimeException) {
             return null;
 
         }
     }
-    private Category getById(Integer id,List<Category> categoryList){
-        for (Category cat: categoryList
-             ) {
-            if(cat.getId().equals(id)){
-                return  cat;
+
+    private Category getById(Integer id, List<Category> categoryList) {
+        for (Category cat : categoryList
+        ) {
+            if (cat.getId().equals(id)) {
+                return cat;
             }
         }
         log.debug("没有找到");
-        return  null;
+        return null;
     }
+
     @Override
     public List<Category> getAllAppendByChildren(Integer userId) {
-        List<Category> categoryList=getAll(userId);
-        List<Category> returnCategotyLsit=new ArrayList<>();
+        List<Category> categoryList = getAll(userId);
+        List<Category> returnCategotyLsit = new ArrayList<>();
         //遍历一次就行，因为最多只有两层目录（遍历二级目录）
         categoryList.stream().filter(c -> c.getParentId() != -1).forEach(category -> {
-            Integer pid=category.getParentId();
+            Integer pid = category.getParentId();
             log.debug(String.valueOf(pid));
-            Category parent=getById(pid,categoryList);
-            List<Category> oldChildren = parent.getChildren()==null?new ArrayList<>(): parent.getChildren();
+            Category parent = getById(pid, categoryList);
+            List<Category> oldChildren = parent.getChildren() == null ? new ArrayList<>() : parent.getChildren();
             oldChildren.add(category);
             parent.setChildren(oldChildren);
         });

@@ -42,6 +42,7 @@ public class OperationServiceImpl implements OperationService {
     public List<CategoryOperationVO> getOperationWithRoleId(Integer roleId) {
         System.out.println("roleId=" + roleId);
         QueryWrapper<Operation> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("roleId", roleId);
         QueryWrapper<Category> categoryQueryWrapper = new QueryWrapper<>();
         List<CategoryOperationVO> categoryOperationVOList = new ArrayList<>();
         //获取catlist
@@ -49,10 +50,10 @@ public class OperationServiceImpl implements OperationService {
         //获取operationList
         for (Category cat : catlist
         ) {
-            queryWrapper.eq("roleId", roleId);
             queryWrapper.eq("catId", cat.getId());
             if (cat.getParentId() != -1) {
                 List<Operation> operations = operationMapper.selectList(queryWrapper);
+//                System.out.println("operations="+operations);
                 if (operations.size() == 0) {
                     categoryQueryWrapper.eq("id", cat.getId());
                     String roleName = categoryMapper.selectOne(categoryQueryWrapper).getName();
@@ -60,13 +61,31 @@ public class OperationServiceImpl implements OperationService {
                 } else {
                     categoryQueryWrapper.eq("id", cat.getId());
                     String roleName = categoryMapper.selectOne(categoryQueryWrapper).getName();
-                    categoryOperationVOList.add(new CategoryOperationVO().setName(roleName).setOperationList(StringListUtils.convertStringToStringList(operations.get(0).getOperations())).setCatId(cat.getId()));
+                    categoryOperationVOList.add(new CategoryOperationVO().setId(operations.get(0).getId()).setName(roleName).setOperationList(StringListUtils.convertStringToStringList(operations.get(0).getOperations())).setCatId(cat.getId()));
                 }
                 categoryQueryWrapper.clear();
             }
+            queryWrapper.clear();
 
 
         }
         return categoryOperationVOList;
+    }
+
+    @Override
+    public Integer batchAdd(List<CategoryOperationVO> operationVOList, Integer roleId) {
+        Integer result=0;
+        for (CategoryOperationVO categoryVO:operationVOList
+             ) {
+            if(categoryVO.getId()==null){
+                operationMapper.insert(new Operation().setCatId(categoryVO.getCatId()).setOperations(categoryVO.getOperationList().toString()).setRoleId(roleId));
+            }else{
+                System.out.println("categoryVO.getOperationList().toString()="+categoryVO.getOperationList().toString().replace(" ", ""));
+
+                operationMapper.updateById(new Operation().setCatId(categoryVO.getCatId()).setOperations(categoryVO.getOperationList().toString().replace(" ", "")).setId(categoryVO.getId()).setRoleId(roleId));
+            }
+            result++;
+        }
+        return result;
     }
 }

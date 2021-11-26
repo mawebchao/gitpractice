@@ -150,10 +150,9 @@ export default class extends Vue {
       })
       .catch(function(e) {
         //失败时执行catch代码块
-        if (e.response.status == 403) {
-          alert("您没有权限");
-        }
         console.log("error", e);
+        nowvue.$message.error("登录信息失效");
+        nowvue.$router.push("/login");
       });
   }
   mouseenter_f(index: number) {

@@ -12,6 +12,7 @@ import java.util.List;
 @Accessors(chain = true)
 @Data
 public class CategoryOperationVO {
+    Integer id;
     String name;
     List<String> operationList;
     Integer catId;
