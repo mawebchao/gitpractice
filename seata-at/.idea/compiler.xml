@@ -14,7 +14,7 @@
         <module name="order" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="8">
       <module name="account" target="8" />
       <module name="db-init" target="1.8" />
       <module name="easy-id-generator" target="1.8" />

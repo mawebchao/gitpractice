@@ -6,6 +6,7 @@ import com.stepfive.feign.StorageClient;
 import com.stepfive.mapper.OrderMapper;
 import com.stepfive.pojo.Order;
 import com.stepfive.service.OrderService;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,13 +23,16 @@ public class OrderServiceImpl implements OrderService {
     private StorageClient storageClient;
 
     @Override
+    @GlobalTransactional
     public void create(Order order) {
         // TODO: 从全局唯一id发号器获得id，这里暂时随机产生一个 orderId
         Long orderId = Long.valueOf(easyIdGeneratorClient.nextId("order_business"));
         order.setId(orderId);
 
         orderMapper.create(order);
-
+//        if (Math.random() < 0.5) {
+//            throw new RuntimeException("模拟异常");
+//        }
         // 修改库存
         storageClient.decrease(order.getProductId(), order.getCount());
 
