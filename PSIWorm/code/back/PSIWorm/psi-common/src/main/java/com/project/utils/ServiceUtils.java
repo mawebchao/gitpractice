@@ -3,12 +3,10 @@ package com.project.utils;
 
 import com.project.mapper.UserMapper;
 import com.project.pojo.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
-@Component
+
+//@Component
 public class ServiceUtils {
-    @Autowired
+//    @Autowired
     private UserMapper userMapper;
 //    @Transactional
     public void insert(User user){

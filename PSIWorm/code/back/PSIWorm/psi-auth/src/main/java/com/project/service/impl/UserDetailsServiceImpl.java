@@ -1,8 +1,5 @@
 package com.project.service.impl;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.project.pojo.Category;
 import com.project.service.RemoteUserService;
 import com.project.vo.SysResult;
 import com.project.vo.exception.HasNoAuthoritiesException;
@@ -13,9 +10,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import springfox.documentation.spring.web.json.Json;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

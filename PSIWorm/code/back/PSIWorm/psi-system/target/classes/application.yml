@@ -11,7 +11,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        service: psi-user
+        service: psi-system
   application:
     name: psi-system
 logging:

@@ -4,10 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.project.mapper.UserMapper;
 import com.project.pojo.User;
 import com.project.service.UserService;
-import com.project.utils.ServiceUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +14,6 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
-    @Autowired
-    private ServiceUtils serviceUtils;
     @Autowired
     private  User user;
     @Override
