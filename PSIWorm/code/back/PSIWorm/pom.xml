@@ -65,22 +65,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!--其它依赖...-->
-        <dependency>
-            <groupId>com.project</groupId>
-            <artifactId>psi-common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-web</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.baomidou</groupId>
-                    <artifactId>mybatis-plus-boot-starter</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+
 
         <!--swagger依赖-->
         <dependency>

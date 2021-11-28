@@ -10,9 +10,11 @@
         <module name="psi-gateway" />
         <module name="psi-system" />
         <module name="psi-auth" />
+        <module name="db-init" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
+      <module name="db-init" target="8" />
       <module name="psi-auth" target="8" />
       <module name="psi-common" target="8" />
       <module name="psi-gateway" target="8" />

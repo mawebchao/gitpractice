@@ -12,4 +12,6 @@ public interface CatgoryService {
     List<Category> getAll(Integer userId);
 
     List<Category> getAllAppendByChildren(Integer userId);
+
+    List<Category> getAllByRoleId(Integer roleId);
 }

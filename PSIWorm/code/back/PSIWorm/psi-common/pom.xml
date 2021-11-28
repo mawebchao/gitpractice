@@ -21,9 +21,19 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
-    <properties>
-        <maven.compiler.source>9</maven.compiler.source>
-        <maven.compiler.target>9</maven.compiler.target>
-    </properties>
+    <build>
+        <plugins>
+            <!--定义maven编译版本，指定这个以后，当前工程以及子工程都会采用此编译版本-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version><!--这个版本与你maven版本有关-->
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

@@ -23,15 +23,45 @@
       <el-container>
         <!-- 当打开左侧菜单时 宽度为200, 当不打开时为默认值-->
         <el-aside width="350px">
+          <div class="newRoleButtonWrapClass">
+            <el-button native-type="button" class="newRoleButtonClass">新建角色</el-button>
+          </div>
+          <div class="roleSearchInputWrapClass">
+            <el-input
+              type="text"
+              placeholder="搜索角色"
+              size="medium"
+              class="roleSearchInputClass"
+              v-model="inputedSearchRoleName"
+            />
+            <i
+              class="el-icon-search searchIconClass"
+              @click="filterRoleListByNameWithFuzzyMatching"
+            ></i>
+          </div>
           <el-menu
             background-color="#2C3E50"
             text-color="#fff"
             active-text-color="#4094ff"
             unique-opened
             router
-          ></el-menu>
+            class="menuClass"
+          >
+            <el-menu-item
+              v-for="(role,index) in nowRoleList"
+              :key="role.id"
+              :class="indexInRoleList==index?'roleClassInHighlight':'roleClassNotInHighlight'"
+              @click="changeIndexInRoleList(index)"
+            >
+              <!-- @click="defaultActiveMenu(childrenMenu.path)" -->
+              <template slot="title">
+                <i class="el-icon-menu"></i>
+                <span>{{role.name}}</span>
+              </template>
+            </el-menu-item>
+          </el-menu>
         </el-aside>
-        
+
         <!-- 定义主页面结构-->
         <el-main class="contentclass">
           <transition name="fade">
@@ -52,22 +82,54 @@
               </ul>
             </el-card>
           </transition>
-          <!-- 定义路由展现页面-->
-          <router-view></router-view>
+          <!--主要内容组件-->
+          <RoleMan />
         </el-main>
       </el-container>
     </el-container>
+    <!-- 新建角色的对话框 -->
+    <!-- :visible.sync="dialogFormVisible" -->
+    <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+      <el-form :model="form" >
+        <el-form-item label="活动名称" :label-width="formLabelWidth">
+          <el-input v-model="form.name" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="活动区域" :label-width="formLabelWidth">
+          <el-select v-model="form.region" placeholder="请选择活动区域">
+            <el-option label="区域一" value="shanghai"></el-option>
+            <el-option label="区域二" value="beijing"></el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { defaultAxios } from "../axios/index";
+import RoleMan from "../components/RoleMan.vue";
 
-@Component
+@Component({
+  components: {
+    RoleMan
+  }
+})
 export default class extends Vue {
+  dialogFormVisible=true
+  form={}
+  formLabelWidth= '120px'
+  inputedSearchRoleName = "";
+  rolelist = [];
+  nowRoleList = [];
   showSelectingDialogue = false;
   isCollapseTransition = false;
   nowlistindex = -1;
+  indexInRoleList = 1;
   mouseenter_f(index: number) {
     this.nowlistindex = index;
   }
@@ -78,10 +140,83 @@ export default class extends Vue {
   mouseleave_f() {
     this.nowlistindex = -1;
   }
+  filterRoleListByNameWithFuzzyMatching() {
+    this.nowRoleList = this.rolelist.filter(
+      (role: any) => role.name == this.inputedSearchRoleName
+    );
+  }
+  changeIndexInRoleList(newIndex: number) {
+    this.indexInRoleList = newIndex;
+  }
+  mounted() {
+    defaultAxios.get("/sys/role/get/getAllInList/4").then(res => {
+      this.rolelist = res.data.data;
+      this.nowRoleList = this.rolelist;
+    });
+  }
+  oauthCheck(authStr: string) {
+    let nowvue = this;
+    // let token:string="";
+    defaultAxios
+      .get("/myauth/oauth/check_token", {
+        params: {
+          token: window.sessionStorage.getItem("token")
+        }
+      })
+      .then(function(response) {
+        console.log(response);
+        if (response.data.authorities.indexOf(authStr) != -1)
+          nowvue.$router.push("/permission");
+        else {
+          nowvue.$message.error("没有权限");
+        }
+      })
+      .catch(function(e) {
+        //失败时执行catch代码块
+        if (e.response.status == 403) {
+          alert("您没有权限");
+        }
+        console.log("error", e);
+      });
+  }
 }
 </script>
 
 <style scoped lang="less">
+.roleClassInHighlight {
+  background-color: #b3e0ff !important;
+}
+.roleClassNotInHighlight {
+  background-color: #d3e7fb !important;
+}
+.menuClass {
+  li {
+    // background-color: #d3e7fb !important;
+    color: black !important;
+  }
+}
+.roleSearchInputWrapClass {
+  text-align: center;
+  margin-top: 10px;
+  position: relative;
+  .searchIconClass {
+    position: absolute;
+    right: 13%;
+    top: 11px;
+    cursor: pointer;
+  }
+}
+.roleSearchInputClass {
+  width: 80%;
+}
+.newRoleButtonWrapClass {
+  text-align: center;
+  margin-top: 10px;
+}
+.newRoleButtonClass {
+  background: #107fff;
+  color: white;
+}
 .onclass {
   background: rgb(114, 203, 255);
 }
