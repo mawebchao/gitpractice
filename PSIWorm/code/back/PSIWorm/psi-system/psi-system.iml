@@ -11,7 +11,12 @@
       </configuration>
     </facet>
     <facet type="Spring" name="Spring">
-      <configuration />
+      <configuration>
+        <fileset id="fileset" name="TestJdbcTemplate" removed="false">
+          <dependency>spring_boot_com.project.SystemApplication</dependency>
+          <file>file://$MODULE_DIR$/src/main/resources/testJdbcTemplate.xml</file>
+        </fileset>
+      </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
