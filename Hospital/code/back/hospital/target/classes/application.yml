@@ -4,7 +4,11 @@ spring:
       simple:
         # acknowledgeMode: NONE # rabbitmq的自动确认
         acknowledgeMode: AUTO # rabbitmq的手动确认, springboot会自动发送确认回执 (默认)
+<<<<<<< HEAD
         #        acknowledgeMode: MANUAL # rabbitmq的手动确认, springboot不发送回执, 必须自己编码发送回执
+=======
+          #         acknowledgeMode: MANUAL # rabbitmq的手动确认, springboot不发送回执, 必须自己编码发送回执
+>>>>>>> 526aaa343fc7940d75b0bec9944bdd5397317896
         prefetch: 1
     host: 49.235.237.120
     username: machao
