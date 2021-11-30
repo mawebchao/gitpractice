@@ -8,14 +8,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-
-import java.util.List;
+import org.springframework.stereotype.Component;
 
 @TableName("user")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
+@Component
 public class User {
     @TableId(type = IdType.AUTO)
     Integer id;

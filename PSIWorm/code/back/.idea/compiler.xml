@@ -13,7 +13,7 @@
         <module name="psi-auth" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="8">
       <module name="db-init" target="8" />
       <module name="psi-auth" target="8" />
       <module name="psi-common" target="8" />

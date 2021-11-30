@@ -26,14 +26,16 @@ CREATE TABLE `category` (
   `level` tinyint(4) NOT NULL,
   `parent_id` int(11) NOT NULL DEFAULT -1,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `category` */
 
 insert  into `category`(`id`,`name`,`level`,`parent_id`) values 
 (1,'订单管理',0,-1),
 (2,'销售订单',1,1),
-(3,'权限管理',0,-1);
+(3,'权限管理',0,-1),
+(4,'库存管理',0,-1),
+(5,'产品库存',1,4);
 
 /*Table structure for table `operation` */
 
@@ -45,9 +47,12 @@ CREATE TABLE `operation` (
   `roleId` int(11) NOT NULL,
   `catId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 
 /*Data for the table `operation` */
+
+insert  into `operation`(`id`,`operations`,`roleId`,`catId`) values 
+(4,'[submit,delete,save]',8,2);
 
 /*Table structure for table `role` */
 
@@ -63,7 +68,7 @@ CREATE TABLE `role` (
 /*Data for the table `role` */
 
 insert  into `role`(`id`,`name`,`category_ids`) values 
-(8,'系统管理员','[1,2,3]');
+(8,'系统管理员','[1,2,3,4,5]');
 
 /*Table structure for table `user` */
 

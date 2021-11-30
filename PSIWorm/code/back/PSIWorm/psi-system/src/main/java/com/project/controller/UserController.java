@@ -7,7 +7,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import jdk.nashorn.internal.runtime.regexp.joni.ast.StringNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +21,12 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @PostMapping("/test")
+    public String testAddUsers(){
+        userService.testAddUsers();
+        return "testAddUsers OK!";
+    }
 
     @PostMapping("/login")
     @ApiOperation("用户登录")
@@ -58,8 +63,8 @@ public class UserController {
         return SysResult.success(userService.isAdmin(user));
     }
 
-    @GetMapping("/test/post")
-    public String testPost(){
-        return "测试成功";
-    }
+//    @GetMapping("/test/post")
+//    public String testPost(){
+//        return "测试成功";
+//    }
 }

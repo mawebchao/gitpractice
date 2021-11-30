@@ -9,16 +9,11 @@ import com.project.pojo.Role;
 import com.project.pojo.User;
 import com.project.service.CatgoryService;
 import com.project.utils.StringListUtils;
-import jdk.nashorn.internal.ir.ReturnNode;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 @Service
 @AllArgsConstructor

@@ -1,7 +1,6 @@
 package com.project.service;
 
 import com.project.pojo.Category;
-import org.springframework.cloud.util.random.CachedRandomPropertySource;
 
 import java.util.List;
 
