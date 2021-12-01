@@ -4,6 +4,11 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/hospital/pom.xml" />
+        <option value="$PROJECT_DIR$/hospital/hos-auth/pom.xml" />
+        <option value="$PROJECT_DIR$/hospital/hos-common/pom.xml" />
+        <option value="$PROJECT_DIR$/hospital/hos-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/hospital/hos-register/pom.xml" />
+        <option value="$PROJECT_DIR$/hospital/hos-system/pom.xml" />
       </list>
     </option>
   </component>

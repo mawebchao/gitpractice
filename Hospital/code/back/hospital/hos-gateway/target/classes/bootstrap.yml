@@ -1,0 +1,38 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: hos-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        server-addr: localhost:8848
+        file-extension: yml
+        name: hos-gateway
+#    sentinel:
+#      transport:
+#        dashboard: localhost:8180
+#        port: 8719 #客户端监控API的端口
+#      eager: true
+    gateway:
+      routes:
+        - id: systemrouter
+          uri: lb://hos-system
+          predicates:
+            - Path=/sys/**
+          filters:
+            - StripPrefix=1
+        - id: authrouter
+          uri: lb://hos-auth
+          predicates:
+            - Path=/myauth/**
+          filters:
+            - StripPrefix=1
+        - id: registerrouter
+          uri: lb://hos-register
+          predicates:
+            - Path=/rgt/**
+          filters:
+            - StripPrefix=1

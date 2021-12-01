@@ -3,6 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/back.iml" filepath="$PROJECT_DIR$/.idea/back.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hospital/hos-auth/hos-auth.iml" filepath="$PROJECT_DIR$/hospital/hos-auth/hos-auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hospital/hos-common/hos-common.iml" filepath="$PROJECT_DIR$/hospital/hos-common/hos-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hospital/hos-gateway/hos-gateway.iml" filepath="$PROJECT_DIR$/hospital/hos-gateway/hos-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hospital/hos-register/hos-register.iml" filepath="$PROJECT_DIR$/hospital/hos-register/hos-register.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hospital/hos-system/hos-system.iml" filepath="$PROJECT_DIR$/hospital/hos-system/hos-system.iml" />
       <module fileurl="file://$PROJECT_DIR$/hospital/hospital.iml" filepath="$PROJECT_DIR$/hospital/hospital.iml" />
     </modules>
   </component>

@@ -6,16 +6,27 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="hospital" />
+        <module name="hos-register" />
+        <module name="hos-auth" />
+        <module name="hos-common" />
+        <module name="hos-gateway" />
+        <module name="hos-system" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="hos-auth" target="8" />
+      <module name="hos-common" target="8" />
+      <module name="hos-gateway" target="8" />
+      <module name="hos-register" target="8" />
+      <module name="hos-system" target="8" />
       <module name="hospital" target="8" />
+      <module name="psi-auth" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="hospital" options="-parameters" />
+      <module name="hospital" options="" />
+      <module name="psi-auth" options="" />
     </option>
   </component>
 </project>

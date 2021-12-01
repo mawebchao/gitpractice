@@ -1,0 +1,9 @@
+server:
+  port: 3000
+spring:
+  application:
+    name: hos-register
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848

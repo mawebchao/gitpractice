@@ -4,63 +4,95 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <modules>
+        <module>hos-auth</module>
+        <module>hos-common</module>
+        <module>hos-gateway</module>
+        <module>hos-register</module>
+        <module>hos-system</module>
+    </modules>
     <groupId>com.project</groupId>
     <artifactId>hospital</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.2.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
+    <packaging>pom</packaging>
+    <dependencyManagement>
+        <dependencies>
+            <!--Spring boot 依赖(定义了微服务规范)-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.3.2.RELEASE</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            <!--Spring Cloud 依赖(定义了微服务规范)-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Hoxton.SR9</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            <!--Spring Cloud Alibaba依赖(基于spring微服务规范做了具体落地实现)-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2.2.6.RELEASE</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <!--lombok 依赖,子工程中假如需要lombok,不需要再引入-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope><!--provided 表示此依赖仅在编译阶段有效-->
+        </dependency>
+        <!--单元测试依赖,子工程中需要单元测试时,不需要再次引入此依赖了-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope><!--test表示只能在test目录下使用此依赖-->
+            <exclusions>
+                <exclusion><!--排除一些不需要的依赖-->
+                    <groupId>org.junit.jupiter</groupId>
+                    <artifactId>junit-jupiter-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
+        <!--swagger依赖-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-staticdocs</artifactId>
+            <version>2.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.8.3</version>
+        </dependency>
+    </dependencies>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.amqp</groupId>
-            <artifactId>spring-rabbit-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <!--定义maven编译版本，指定这个以后，当前工程以及子工程都会采用此编译版本-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version><!--这个版本与你maven版本有关-->
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>

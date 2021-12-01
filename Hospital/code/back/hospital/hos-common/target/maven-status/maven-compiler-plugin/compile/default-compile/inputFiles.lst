@@ -1,0 +1,17 @@
+D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\mapper\RoleMapper.java
+D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\vo\CategoryOperationVO.java
+D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\vo\SysResult.java
+D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\config\MyWebMvcConfigurer.java
+D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\pojo\User.java
+D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\utils\ServiceUtils.java
+D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\config\SwaggerConfig.java
+D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\pojo\Role.java
+D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\mapper\UserMapper.java
+D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\pojo\Category.java
+D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\aop\TestAop.java
+D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\mapper\CategoryMapper.java
+D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\vo\exception\HasNoAuthoritiesException.java
+D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\utils\BCryptPasswordEncoderUtils.java
+D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\advice\GlobalControllerAdvice.java
+D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\pojo\Operation.java
+D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\utils\StringListUtils.java

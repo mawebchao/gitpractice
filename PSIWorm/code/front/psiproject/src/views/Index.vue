@@ -6,7 +6,7 @@
       <el-header>
         <div>
           <img src="../assets/warehouse.png" width="50" height="50" />
-          <span>进销存后台管理系统</span>
+          <span>医院前台登记后台管理系统</span>
         </div>
         <!-- <el-button type="info">退出</el-button> -->
         <div @click="showSelectingDialogue=!showSelectingDialogue">
@@ -125,6 +125,14 @@ export default class extends Vue {
       console.log(res);
       this.menuList = res.data.data;
       console.log(this.menuList);
+    });
+  }
+  mounted() {
+    let data = new FormData();
+    data.append("queue_name", "hospital_nk");
+    data.append("msg", "fuck you bitch");
+    defaultAxios.post("/rgt/register",data).then(res => {
+      console.log(res);
     });
   }
   logout() {
