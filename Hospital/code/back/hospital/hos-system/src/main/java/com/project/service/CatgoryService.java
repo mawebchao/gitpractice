@@ -14,4 +14,6 @@ public interface CatgoryService {
     List<Category> getAllAppendByChildren(Integer userId);
 
     List<Category> getAllByRoleId(Integer roleId);
+
+    List<Category> getAllIgnoreUserId();
 }

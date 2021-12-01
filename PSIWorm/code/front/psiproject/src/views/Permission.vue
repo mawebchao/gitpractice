@@ -4,7 +4,7 @@
     <el-container class="home-container">
       <!-- 定义头标签 -->
       <el-header>
-        <div>
+        <div @click="$router.push('/')" style="cursor: pointer;">
           <img src="../assets/warehouse.png" width="50" height="50" />
           <span>进销存后台管理系统</span>
         </div>
@@ -89,16 +89,15 @@
     </el-container>
     <!-- 新建角色的对话框 -->
     <!-- :visible.sync="dialogFormVisible" -->
-    <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
-      <el-form :model="form" >
-        <el-form-item label="活动名称" :label-width="formLabelWidth">
+    <el-dialog title="添加角色" :visible.sync="dialogFormVisible">
+      <el-form :model="form">
+        <el-form-item label="角色名称" :label-width="formLabelWidth">
           <el-input v-model="form.name" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="活动区域" :label-width="formLabelWidth">
-          <el-select v-model="form.region" placeholder="请选择活动区域">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
-          </el-select>
+        <el-form-item label="应用权限" :label-width="formLabelWidth">
+          <el-checkbox-group v-model="form.type">
+            <el-checkbox v-for="cat in allCatList" :label="cat.id" :key="cat.id">{{cat.name}}</el-checkbox>
+          </el-checkbox-group>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -120,9 +119,13 @@ import RoleMan from "../components/RoleMan.vue";
   }
 })
 export default class extends Vue {
-  dialogFormVisible=true
-  form={}
-  formLabelWidth= '120px'
+  //页面初始化的时候从数据库获取，将来存进redis
+  allCatList=[];
+  dialogFormVisible = true;
+  form = {
+    type:[]
+  };
+  formLabelWidth = "120px";
   inputedSearchRoleName = "";
   rolelist = [];
   nowRoleList = [];
@@ -152,6 +155,10 @@ export default class extends Vue {
     defaultAxios.get("/sys/role/get/getAllInList/4").then(res => {
       this.rolelist = res.data.data;
       this.nowRoleList = this.rolelist;
+    });
+    //allCatList
+    defaultAxios.get("/sys/cat/get/all").then(res => {
+      this.allCatList = res.data.data;
     });
   }
   oauthCheck(authStr: string) {

@@ -1,0 +1,17 @@
+com\project\mapper\UserMapper.class
+com\project\config\SwaggerConfig.class
+com\project\pojo\Role.class
+com\project\pojo\Operation.class
+com\project\mapper\RoleMapper.class
+com\project\mapper\CategoryMapper.class
+com\project\aop\TestAop.class
+com\project\vo\exception\HasNoAuthoritiesException.class
+com\project\advice\GlobalControllerAdvice.class
+com\project\pojo\Category.class
+com\project\config\MyWebMvcConfigurer.class
+com\project\utils\BCryptPasswordEncoderUtils.class
+com\project\pojo\User.class
+com\project\utils\ServiceUtils.class
+com\project\vo\SysResult.class
+com\project\utils\StringListUtils.class
+com\project\vo\CategoryOperationVO.class

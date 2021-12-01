@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Data
@@ -15,7 +16,8 @@ import java.util.List;
 @NoArgsConstructor
 @TableName("category")
 @Accessors(chain = true)
-public class Category {
+public class Category implements Serializable {
+    private static final long serialVersionUID = 6179339236402089813L;
     @TableId("id")
     Integer id;
     String name;

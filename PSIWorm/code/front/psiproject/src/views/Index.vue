@@ -6,7 +6,7 @@
       <el-header>
         <div>
           <img src="../assets/warehouse.png" width="50" height="50" />
-          <span>医院前台登记后台管理系统</span>
+          <span>*****后台管理系统</span>
         </div>
         <!-- <el-button type="info">退出</el-button> -->
         <div @click="showSelectingDialogue=!showSelectingDialogue">

@@ -11,6 +11,7 @@ import com.project.service.CatgoryService;
 import com.project.utils.StringListUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -71,6 +72,12 @@ public class CatgoryServiceImpl implements CatgoryService {
             return null;
 
         }
+    }
+
+    @Override
+    @Cacheable(value = "allCats")
+    public List<Category> getAllIgnoreUserId() {
+        return categoryMapper.selectList(null);
     }
 
     private Category getById(Integer id, List<Category> categoryList) {

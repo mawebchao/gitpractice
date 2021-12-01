@@ -1,0 +1,16 @@
+com\project\controller\OperationController.class
+com\project\service\impl\OperationServiceImpl.class
+com\project\service\impl\CatgoryServiceImpl.class
+com\project\service\RoleService.class
+com\project\controller\RoleController.class
+com\project\service\UserService.class
+com\project\mapper\OperationMapper.class
+com\project\SystemApplication.class
+com\project\service\OperationService.class
+com\project\controller\CategoryController.class
+com\project\service\CatgoryService.class
+com\project\controller\UserController.class
+com\project\config\SpringConfiguration.class
+com\project\service\impl\UserServiceImpl.class
+com\project\service\impl\RoleServiceImpl.class
+com\project\controller\ResourceController.class

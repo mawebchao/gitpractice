@@ -1,0 +1,7 @@
+com\project\service\impl\UserDetailsServiceImpl.class
+com\project\config\SecurityConfig.class
+com\project\AuthApplication.class
+com\project\service\RemoteUserService.class
+com\project\config\Oauth2Config.class
+com\project\config\TokenConfig.class
+com\project\controller\TestController.class
