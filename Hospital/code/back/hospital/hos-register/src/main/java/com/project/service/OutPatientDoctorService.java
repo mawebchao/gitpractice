@@ -26,7 +26,8 @@ public class OutPatientDoctorService {
                 System.out.println("收到: "+msg);
                 QueueConnectionFactoryUtils.addOutPatientQueueAckInvoker(()->{
                     ch.basicAck(message.getEnvelope().getDeliveryTag(), false);
-                    QueueConnectionFactoryUtils.close(ch.getConnection());
+                    //关闭通道
+//                    QueueConnectionFactoryUtils.close(ch.getConnection());
                 });
             }
         };

@@ -1,6 +1,8 @@
+com\project\config\RedisCacheConfig.class
 com\project\mapper\UserMapper.class
 com\project\config\SwaggerConfig.class
 com\project\pojo\Role.class
+com\project\mapper\OperationMapper.class
 com\project\pojo\Operation.class
 com\project\mapper\RoleMapper.class
 com\project\mapper\CategoryMapper.class

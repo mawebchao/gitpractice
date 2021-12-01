@@ -77,6 +77,7 @@ public class CatgoryServiceImpl implements CatgoryService {
     @Override
     @Cacheable(value = "allCats")
     public List<Category> getAllIgnoreUserId() {
+        System.out.println("查询数据库------------");
         return categoryMapper.selectList(null);
     }
 

@@ -130,7 +130,7 @@ export default class extends Vue {
   mounted() {
     let data = new FormData();
     data.append("queue_name", "hospital_nk");
-    data.append("msg", "fuck you bitch");
+    data.append("msg", "李四");
     defaultAxios.post("/rgt/register",data).then(res => {
       console.log(res);
     });
