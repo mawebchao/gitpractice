@@ -26,6 +26,10 @@ public class UserController {
     public SysResult getUserByUsername(String username){
         return SysResult.success(userService.getUserByUsername(username));
     }
+    @GetMapping("/getUserByUserId")
+    public SysResult getUserByUserId(Integer userId){
+        return SysResult.success(userService.getUserByUserId(userId));
+    }
 
     @PostMapping("/test")
     public String testAddUsers(){

@@ -7,7 +7,14 @@ const routes = [
   {
     path: '/',
     name: 'Index',
-    component: ()=>import("../views/Index.vue")
+    component: ()=>import("../views/Index.vue"),
+    children:[
+      {
+        path: 'registers',
+        name: 'Registers',
+        component: ()=>import("../views/Registers.vue")
+      }
+    ]
   },
   {
     path: '/login',

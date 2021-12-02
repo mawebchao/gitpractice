@@ -26,4 +26,5 @@ public class Category implements Serializable {
     Integer parentId;
     @TableField(exist = false)
     List<Category> children;
+    String route;
 }

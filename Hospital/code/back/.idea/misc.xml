@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/hospital/hos-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/hospital/hos-register/pom.xml" />
         <option value="$PROJECT_DIR$/hospital/hos-system/pom.xml" />
+        <option value="$PROJECT_DIR$/db-init/pom.xml" />
       </list>
     </option>
   </component>

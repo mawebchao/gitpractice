@@ -71,4 +71,11 @@ public class UserServiceImpl implements UserService {
         userQueryWrapper.eq("username", username);
         return userMapper.selectOne(userQueryWrapper);
     }
+
+    @Override
+    public User getUserByUserId(Integer userId) {
+        QueryWrapper<User> userQueryWrapper=new QueryWrapper<>();
+        userQueryWrapper.eq("id", userId);
+        return userMapper.selectOne(userQueryWrapper);
+    }
 }

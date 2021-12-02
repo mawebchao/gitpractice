@@ -5,7 +5,12 @@
         <h1>please login</h1>
         <div class="inputWrapClass">
           <div class="form-control">
-            <input type="text" class="input" v-model="loginForm.username" required />
+            <input
+              type="text"
+              class="input"
+              v-model="loginForm.username"
+              required
+            />
             <!-- onchange="{this.onChange.bind(this,item.key)}" -->
 
             <label>
@@ -13,15 +18,25 @@
                 :style="[{ transitionDelay: 50 * index + 'ms' }]"
                 v-for="(chara, index) in 'username'.split('')"
                 :key="index"
-              >{{ chara }}</span>
+                >{{ chara }}</span
+              >
             </label>
           </div>
           <div class="form-control">
-            <input type="password" class="input" v-model="loginForm.password" required />
+            <input
+              type="password"
+              class="input"
+              v-model="loginForm.password"
+              required
+            />
             <!-- onchange="{this.onChange.bind(this,item.key)}" -->
 
             <label>
-              <span v-for="(chara, index) in 'password'.split('')" :key="index">{{ chara }}</span>
+              <span
+                v-for="(chara, index) in 'password'.split('')"
+                :key="index"
+                >{{ chara }}</span
+              >
             </label>
           </div>
         </div>
@@ -47,8 +62,8 @@ export default class extends Vue {
     return {
       loginForm: {
         username: "",
-        password: ""
-      }
+        password: "",
+      },
     };
   }
   // resetBtn() {
@@ -66,10 +81,10 @@ export default class extends Vue {
           password: this.$data.loginForm.password,
           client_id: "gateway-client",
           grant_type: "password",
-          client_secret: "123456"
-        }
+          client_secret: "123456",
+        },
       });
-      console.log("result", result);
+      // console.log("result", result);
       // if (result.access_token === null) return this.$message.error("用户登陆失败");
       this.$message.success("用户登录成功");
 
@@ -78,12 +93,27 @@ export default class extends Vue {
       window.sessionStorage.setItem("token", token);
       //获取登录用户的用户名（唯一）
       let username = (this as any).loginForm.username;
-      defaultAxios.get("/sys/user/getUserByUsername?username="+username).then(res => {
-        window.sessionStorage.setItem("userId", res.data.data.id);
-      });
-      //用户登录成功之后,跳转到home页面
+      let res = await defaultAxios.get(
+        "/sys/user/getUserByUsername?username=" + username
+      );
+      // console.log("当前登录的用户信息：",res)
+      window.sessionStorage.setItem("userId", res.data.data.id);
+      //判断当前用户的角色，如果是医生，则在broker中创建一个消费者通道
+      let roleIds: any[] = res.data.data.roleIds
+        .replace("[", "")
+        .replace("]", "")
+        .split(",");
+      if (roleIds.indexOf("10")!=-1) {
+        let data = new FormData();
+        data.append("queue_name", "hospital_nk");
+        data.append("name", username);
+        defaultAxios.post("/rgt/outPatient/addDoctor", data).then(res=>{
+          console.log(res)
+          this.$message("患者"+res.data.name+"来到诊室");
+        })
+      }
+
       this.$router.push("/");
-      
     } catch (error) {
       this.$message.error("用户名或密码错误");
       this.clearLoginFields();
@@ -92,7 +122,7 @@ export default class extends Vue {
   clearLoginFields() {
     (this as any).loginForm = {
       username: "",
-      password: ""
+      password: "",
     };
   }
 }
