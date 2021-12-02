@@ -17,33 +17,36 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import { defaultAxios } from "../axios/index";
 
-@Component
+@Component({
+  props: {
+    nowRoleId: Number
+  }
+})
 export default class extends Vue {
   appList = [];
-
   mounted() {
     this.$nextTick(function() {
       this.$on("childBatchSaveMethod", function() {
         // console.log("批量保存appList", this.appList);
-        let appListToSave:any=[]
+        let appListToSave: any = [];
         this.appList.forEach(element => {
-          let nowElement=element;
-          let nowOperationList=[]
+          let nowElement = element;
+          let nowOperationList = [];
           element.operationList.forEach(operation => {
-            if(operation!=""){
+            if (operation != "") {
               // operation=operation.
-              console.log(operation)
-              nowOperationList.push(operation)
+              console.log(operation);
+              nowOperationList.push(operation);
             }
           });
-          nowElement.operationList=nowOperationList
-          appListToSave.push(nowElement)
+          nowElement.operationList = nowOperationList;
+          appListToSave.push(nowElement);
         });
         console.log("this.appListToSave", appListToSave);
-        let roleId = 8;
+        let roleId = this.props.nowRoleId;
         defaultAxios
           .post(`/sys/operation/batchAdd?roleId=${roleId}`, appListToSave)
           .then(res => {
@@ -51,9 +54,17 @@ export default class extends Vue {
           });
       });
     });
-    defaultAxios.get("/sys/operation/8").then(res => {
+    defaultAxios.get(`/sys/operation/${this.$props.nowRoleId}`).then(res => {
       this.appList = res.data.data;
-      // console.log(this.appList);
+      // console.log(res);
+    });
+  }
+  @Watch("nowRoleId", { deep: true })
+  handleWatch() {
+    console.log("bgfdgdffvhbdfgcv");
+    defaultAxios.get(`/sys/operation/${this.$props.nowRoleId}`).then(res => {
+      this.appList = res.data.data;
+      // console.log(res);
     });
   }
 }

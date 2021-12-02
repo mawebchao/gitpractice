@@ -15,4 +15,6 @@ public interface UserService{
     void testAddUsers();
 
     void testAddUsers2();
+
+    User getUserByUsername(String username);
 }

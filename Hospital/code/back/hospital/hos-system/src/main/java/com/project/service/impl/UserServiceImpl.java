@@ -64,4 +64,11 @@ public class UserServiceImpl implements UserService {
     public void testAddUsers2() {
         System.out.println("testAddUsers2方法执行了");
     }
+
+    @Override
+    public User getUserByUsername(String username) {
+        QueryWrapper<User> userQueryWrapper=new QueryWrapper<>();
+        userQueryWrapper.eq("username", username);
+        return userMapper.selectOne(userQueryWrapper);
+    }
 }

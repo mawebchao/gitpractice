@@ -2,9 +2,6 @@ package com.project.controller;
 
 import com.project.service.OutPatientDoctorService;
 import com.project.service.RegisterSenderService;
-import com.rabbitmq.client.CancelCallback;
-import com.rabbitmq.client.DeliverCallback;
-import com.rabbitmq.client.Delivery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;

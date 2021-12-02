@@ -15,7 +15,7 @@
         <el-button class="savebuttonclass" type="primary" @click="batchSave">保存</el-button>
       </div>
 
-      <component :is="currentComponent" :ref="currentComponent"></component>
+      <component :is="currentComponent" :ref="currentComponent" :nowRoleId="nowRoleId"></component>
     </div>
   </div>
 </template>
@@ -28,6 +28,9 @@ import RolePermissionMan from "./RolePermissionMan.vue";
   components: {
     RoleMemberMan,
     RolePermissionMan
+  },
+  props:{
+    nowRoleId:Number
   }
 })
 export default class extends Vue {

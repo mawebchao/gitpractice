@@ -69,15 +69,21 @@ export default class extends Vue {
           client_secret: "123456"
         }
       });
-      console.log(result);
+      console.log("result", result);
       // if (result.access_token === null) return this.$message.error("用户登陆失败");
       this.$message.success("用户登录成功");
 
       //获取用户token信息
       let token = result.access_token;
       window.sessionStorage.setItem("token", token);
+      //获取登录用户的用户名（唯一）
+      let username = (this as any).loginForm.username;
+      defaultAxios.get("/sys/user/getUserByUsername?username="+username).then(res => {
+        window.sessionStorage.setItem("userId", res.data.data.id);
+      });
       //用户登录成功之后,跳转到home页面
       this.$router.push("/");
+      
     } catch (error) {
       this.$message.error("用户名或密码错误");
       this.clearLoginFields();

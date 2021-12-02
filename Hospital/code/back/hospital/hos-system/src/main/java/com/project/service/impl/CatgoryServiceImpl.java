@@ -12,6 +12,7 @@ import com.project.utils.StringListUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -95,15 +96,20 @@ public class CatgoryServiceImpl implements CatgoryService {
     @Override
     public List<Category> getAllAppendByChildren(Integer userId) {
         List<Category> categoryList = getAll(userId);
+        log.debug(String.valueOf(categoryList));
         List<Category> returnCategotyLsit = new ArrayList<>();
         //遍历一次就行，因为最多只有两层目录（遍历二级目录）
         categoryList.stream().filter(c -> c.getParentId() != -1).forEach(category -> {
             Integer pid = category.getParentId();
             log.debug(String.valueOf(pid));
             Category parent = getById(pid, categoryList);
-            List<Category> oldChildren = parent.getChildren() == null ? new ArrayList<>() : parent.getChildren();
-            oldChildren.add(category);
-            parent.setChildren(oldChildren);
+            if (parent == null) {
+                returnCategotyLsit.add(category);
+            } else {
+                List<Category> oldChildren = parent.getChildren() == null ? new ArrayList<>() : parent.getChildren();
+                oldChildren.add(category);
+                parent.setChildren(oldChildren);
+            }
         });
         //遍历一级目录
         categoryList.stream().filter(c -> c.getParentId() == -1).forEach(category -> {

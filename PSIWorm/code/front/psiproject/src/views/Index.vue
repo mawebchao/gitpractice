@@ -120,14 +120,12 @@ export default class extends Vue {
   ];
   isCollapse = false;
   isCollapseTransition = false;
-  created() {
-    defaultAxios.get("/sys/cat/get/all/4").then(res => {
-      console.log(res);
-      this.menuList = res.data.data;
-      console.log(this.menuList);
-    });
-  }
   mounted() {
+    let userId=window.sessionStorage.getItem("userId");
+    defaultAxios.get(`/sys/cat/get/all/${userId}`).then(res => {
+      console.log("/sys/cat/get/all/4",res);
+      this.menuList = res.data.data;
+    });
     let data = new FormData();
     data.append("queue_name", "hospital_nk");
     data.append("msg", "李四");

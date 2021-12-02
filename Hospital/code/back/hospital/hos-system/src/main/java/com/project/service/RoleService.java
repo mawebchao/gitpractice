@@ -11,4 +11,6 @@ public interface RoleService {
     Integer update(Role role);
 
     List<Role> getAllInList(Integer userId);
+
+    List<Role> getAllInList();
 }

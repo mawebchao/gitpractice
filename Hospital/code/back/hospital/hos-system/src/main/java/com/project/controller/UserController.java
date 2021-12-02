@@ -22,11 +22,17 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/getUserByUsername")
+    public SysResult getUserByUsername(String username){
+        return SysResult.success(userService.getUserByUsername(username));
+    }
+
     @PostMapping("/test")
     public String testAddUsers(){
         userService.testAddUsers();
         return "testAddUsers OK!";
     }
+
 
     @PostMapping("/login")
     @ApiOperation("用户登录")

@@ -27,4 +27,9 @@ public class RoleController {
         List<Role> roleList=roleService.getAllInList(userId);
         return SysResult.success(roleList==null?"无任何权限":roleList);
     }
+    @GetMapping("/get/getAllInList")
+    public SysResult getAllInList(){
+        List<Role> roleList=roleService.getAllInList();
+        return SysResult.success(roleList==null?"无任何权限":roleList);
+    }
 }

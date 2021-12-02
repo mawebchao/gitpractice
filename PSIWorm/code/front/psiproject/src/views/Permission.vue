@@ -51,7 +51,7 @@
               v-for="(role,index) in nowRoleList"
               :key="role.id"
               :class="indexInRoleList==index?'roleClassInHighlight':'roleClassNotInHighlight'"
-              @click="changeIndexInRoleList(index)"
+              @click="changeIndexInRoleList(index,role.id)"
             >
               <!-- @click="defaultActiveMenu(childrenMenu.path)" -->
               <template slot="title">
@@ -83,7 +83,7 @@
             </el-card>
           </transition>
           <!--主要内容组件-->
-          <RoleMan />
+          <RoleMan :nowRoleId="activeRoleId"/>
         </el-main>
       </el-container>
     </el-container>
@@ -119,6 +119,8 @@ import RoleMan from "../components/RoleMan.vue";
   }
 })
 export default class extends Vue {
+  //permission页面的当前激活roleid
+  activeRoleId=-1;
   //页面初始化的时候从数据库获取，将来存进redis
   allCatList=[];
   dialogFormVisible = true;
@@ -148,13 +150,16 @@ export default class extends Vue {
       (role: any) => role.name == this.inputedSearchRoleName
     );
   }
-  changeIndexInRoleList(newIndex: number) {
+  changeIndexInRoleList(newIndex: number,newActiveRoleId:number) {
     this.indexInRoleList = newIndex;
+    this.activeRoleId=newActiveRoleId;
+    console.log("this.activeRoleId",this.activeRoleId)
   }
   mounted() {
-    defaultAxios.get("/sys/role/get/getAllInList/4").then(res => {
+    defaultAxios.get("/sys/role/get/getAllInList").then(res => {
       this.rolelist = res.data.data;
       this.nowRoleList = this.rolelist;
+      // console.log("this.nowRoleList",this.nowRoleList)
     });
     //allCatList
     defaultAxios.get("/sys/cat/get/all").then(res => {

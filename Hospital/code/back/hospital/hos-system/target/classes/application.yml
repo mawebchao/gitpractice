@@ -4,7 +4,7 @@ mybatis-plus:
   type-aliases-package: com.project.pojo
 spring:
   redis:
-    host: 127.0.0.1  #假如有集群就不需要在这里再写host了
+    host: 192.168.64.181  #假如有集群就不需要在这里再写host了
     port: 6379
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
