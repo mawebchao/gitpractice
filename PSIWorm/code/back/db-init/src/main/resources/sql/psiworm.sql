@@ -25,18 +25,19 @@ CREATE TABLE `category` (
   `name` varchar(20) CHARACTER SET utf8mb3 NOT NULL,
   `level` tinyint(4) NOT NULL,
   `parent_id` int(11) NOT NULL DEFAULT -1,
+  `route` varchar(20) DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Data for the table `category` */
 
-insert  into `category`(`id`,`name`,`level`,`parent_id`) values 
-(1,'挂号管理',0,-1),
-(2,'挂号信息',1,1),
-(6,'叫号管理',0,-1),
-(7,'病人档案',0,0),
-(8,'叫号信息',1,6),
-(9,'权限管理',0,0);
+insert  into `category`(`id`,`name`,`level`,`parent_id`,`route`) values 
+(1,'挂号管理',0,-1,''),
+(2,'挂号信息',1,1,'/registers'),
+(6,'叫号管理',0,-1,''),
+(7,'病人档案',0,0,'/patient/list'),
+(8,'叫号信息',1,6,'/calls/outpatient'),
+(9,'权限管理',0,0,'/permission');
 
 /*Table structure for table `operation` */
 
@@ -83,13 +84,19 @@ CREATE TABLE `user` (
   `password` varchar(200) NOT NULL,
   `role_ids` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user` */
 
 insert  into `user`(`id`,`username`,`password`,`role_ids`) values 
 (2,'admin','$2a$10$R.ZXvgB3YY3qLRMooBXS0uI2tP2chvKHxwHgbrkt3fwbHvTwG5iDq',''),
-(4,'mawebchao','$2a$10$R.ZXvgB3YY3qLRMooBXS0uI2tP2chvKHxwHgbrkt3fwbHvTwG5iDq','[8]');
+(4,'mawebchao','$2a$10$R.ZXvgB3YY3qLRMooBXS0uI2tP2chvKHxwHgbrkt3fwbHvTwG5iDq','[8]'),
+(5,'zhs','$2a$10$R.ZXvgB3YY3qLRMooBXS0uI2tP2chvKHxwHgbrkt3fwbHvTwG5iDq','[9]'),
+(6,'lhs','$2a$10$R.ZXvgB3YY3qLRMooBXS0uI2tP2chvKHxwHgbrkt3fwbHvTwG5iDq','[9]'),
+(7,'mhs','$2a$10$R.ZXvgB3YY3qLRMooBXS0uI2tP2chvKHxwHgbrkt3fwbHvTwG5iDq','[9]'),
+(8,'zys','$2a$10$R.ZXvgB3YY3qLRMooBXS0uI2tP2chvKHxwHgbrkt3fwbHvTwG5iDq','[10]'),
+(9,'bys','$2a$10$R.ZXvgB3YY3qLRMooBXS0uI2tP2chvKHxwHgbrkt3fwbHvTwG5iDq','[10]'),
+(10,'jys','$2a$10$R.ZXvgB3YY3qLRMooBXS0uI2tP2chvKHxwHgbrkt3fwbHvTwG5iDq','[10]');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
