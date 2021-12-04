@@ -10,6 +10,7 @@ D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\pr
 D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\pojo\Role.java
 D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\mapper\UserMapper.java
 D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\pojo\Category.java
+D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\vo\OutPatientDoctorVO.java
 D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\aop\TestAop.java
 D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\mapper\CategoryMapper.java
 D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-common\src\main\java\com\project\vo\exception\HasNoAuthoritiesException.java

@@ -32,8 +32,7 @@ public class OutpatientController {
     }
 //    @PostMapping("/addIdleDoctor")
     @PostMapping("/doctor/nextPatient")
-    public String nextPatient(String queue_name,String name) throws IOException {
-        outPatientDoctorService.nextPatient(queue_name,name);
-        return "增加了一个"+queue_name+"科室的空闲的医生"+name;
+    public OutPatientDoctorVO nextPatient() throws IOException {
+        return outPatientDoctorService.nextPatient();
     }
 }

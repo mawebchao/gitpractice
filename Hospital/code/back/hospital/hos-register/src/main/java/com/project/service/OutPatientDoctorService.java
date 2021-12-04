@@ -47,7 +47,7 @@ public class OutPatientDoctorService {
     }
 
 
-    public void nextPatient(String queue_name, String name) throws IOException {
+    public OutPatientDoctorVO nextPatient() throws IOException {
         QueueConnectionFactoryUtils.getFirstOutPatientQueueAckInvoker().invoke();
     }
 

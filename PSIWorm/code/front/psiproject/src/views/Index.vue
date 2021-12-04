@@ -10,12 +10,7 @@
         </div>
         <!-- <el-button type="info">退出</el-button> -->
         <div @click="showSelectingDialogue = !showSelectingDialogue">
-          <img
-            src="../assets/headicon.jpg"
-            width="40"
-            height="40"
-            class="headiconclass"
-          />
+          <img src="../assets/headicon.jpg" width="40" height="40" class="headiconclass" />
           <div class="iconrightclass">
             <span>.</span>
             <span>.</span>
@@ -53,11 +48,7 @@
             router
           >
             <!-- 定义一级菜单 -->
-            <el-submenu
-              :index="menu.id + ''"
-              v-for="menu in menuList"
-              :key="menu.id"
-            >
+            <el-submenu :index="menu.id + ''" v-for="menu in menuList" :key="menu.id">
               <!-- 定义一级菜单模版 -->
               <template slot="title">
                 <!-- 定义左侧图标-->
@@ -82,16 +73,8 @@
         </el-aside>
         <div class="collapseButtonClass">
           <div class="collapseIconClass" style="cursor: pointer">
-            <i
-              class="el-icon-caret-right"
-              @click="isCollapse = !isCollapse"
-              v-show="isCollapse"
-            ></i>
-            <i
-              class="el-icon-caret-left"
-              @click="isCollapse = !isCollapse"
-              v-show="!isCollapse"
-            ></i>
+            <i class="el-icon-caret-right" @click="isCollapse = !isCollapse" v-show="isCollapse"></i>
+            <i class="el-icon-caret-left" @click="isCollapse = !isCollapse" v-show="!isCollapse"></i>
           </div>
         </div>
         <!-- 定义主页面结构-->
@@ -104,17 +87,13 @@
                   @mouseenter="mouseenter_f(0)"
                   @mouseleave="mouseleave_f"
                   :class="nowlistindex == 0 ? 'onclass' : ''"
-                >
-                  权限管理
-                </li>
+                >权限管理</li>
                 <li
                   @click="logout"
                   @mouseenter="mouseenter_f(1)"
                   @mouseleave="mouseleave_f"
                   :class="nowlistindex == 1 ? 'onclass' : ''"
-                >
-                  退出
-                </li>
+                >退出</li>
               </ul>
             </el-card>
           </transition>
@@ -144,7 +123,10 @@ export default class extends Vue {
   mounted() {
     //加载左侧导航栏的菜单信息
     let userId = window.sessionStorage.getItem("userId");
-    defaultAxios.get(`/sys/cat/get/all/${userId}`).then((res) => {
+    if (userId == null) {
+      this.$router.push("/login");
+    }
+    defaultAxios.get(`/sys/cat/get/all/${userId}`).then(res => {
       // console.log("/sys/cat/get/all/4",res);
       this.menuList = res.data.data;
     });
@@ -161,7 +143,7 @@ export default class extends Vue {
       .replace("[", "")
       .replace("]", "")
       .split(",");
-    let username=res.data.data.username
+    let username = res.data.data.username;
     if (roleIds.indexOf("10") != -1) {
       let data = new FormData();
       data.append("queue_name", "hospital_nk");
@@ -176,10 +158,10 @@ export default class extends Vue {
     defaultAxios
       .get("/myauth/oauth/check_token", {
         params: {
-          token: window.sessionStorage.getItem("token"),
-        },
+          token: window.sessionStorage.getItem("token")
+        }
       })
-      .then(function (response) {
+      .then(function(response) {
         console.log(response);
         if (response.data.authorities.indexOf(authStr) != -1)
           nowvue.$router.push("/permission");
@@ -187,7 +169,7 @@ export default class extends Vue {
           nowvue.$message.error("没有权限");
         }
       })
-      .catch(function (e) {
+      .catch(function(e) {
         //失败时执行catch代码块
         console.log("error", e);
         nowvue.$message.error("登录信息失效");
@@ -201,7 +183,7 @@ export default class extends Vue {
     this.nowlistindex = -1;
   }
   activeMenu(path) {
-    // console.log(path)
+    console.log(path)
     this.$router.push(path);
   }
 }

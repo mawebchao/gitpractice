@@ -4,6 +4,5 @@ com\project\service\OutPatientDoctorService$1.class
 com\project\service\OutPatientDoctorService.class
 com\project\controller\OutpatientController.class
 com\project\controller\RegisterController.class
-com\project\utils\OutPatientQueueAckInvoker.class
 com\project\utils\QueueConnectionFactoryUtils.class
 com\project\service\OutPatientDoctorService$2.class

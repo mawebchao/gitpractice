@@ -13,6 +13,11 @@ const routes = [
         path: 'registers',
         name: 'Registers',
         component: ()=>import("../views/Registers.vue")
+      },
+      {
+        path: '/calls/outpatient',
+        name: 'OutPatientCalls',
+        component: ()=>import("../views/OutPatientCalls.vue")
       }
     ]
   },
@@ -30,7 +35,8 @@ const routes = [
     path: '/permission',
     name: 'Permission',
     component: ()=>import("../views/Permission.vue")
-  }
+  },
+  
 ]
 
 const router = new VueRouter({
