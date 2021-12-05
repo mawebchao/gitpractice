@@ -1,9 +1,12 @@
 package com.project.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.project.mapper.DeptMapper;
 import com.project.mapper.UserMapper;
+import com.project.pojo.Dept;
 import com.project.pojo.User;
 import com.project.service.UserService;
+import com.project.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,8 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private DeptMapper deptMapper;
     @Autowired
     private  User user;
     @Override
@@ -66,16 +71,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByUsername(String username) {
+    public UserVO getUserByUsername(String username) {
         QueryWrapper<User> userQueryWrapper=new QueryWrapper<>();
         userQueryWrapper.eq("username", username);
-        return userMapper.selectOne(userQueryWrapper);
+        User user=userMapper.selectOne(userQueryWrapper);
+        QueryWrapper<Dept> deptQueryWrapper=new QueryWrapper<>();
+        deptQueryWrapper.eq("id", user.getDeptId());
+        String deptName=deptMapper.selectOne(deptQueryWrapper).getName();
+        return new UserVO(user.getId(),user.getUsername(),null,user.getRoleIds(),deptName);
     }
 
     @Override
-    public User getUserByUserId(Integer userId) {
+    public UserVO getUserByUserId(Integer userId) {
         QueryWrapper<User> userQueryWrapper=new QueryWrapper<>();
         userQueryWrapper.eq("id", userId);
-        return userMapper.selectOne(userQueryWrapper);
+
+        User user=userMapper.selectOne(userQueryWrapper);
+        QueryWrapper<Dept> deptQueryWrapper=new QueryWrapper<>();
+        deptQueryWrapper.eq("id", user.getDeptId());
+        String deptName=deptMapper.selectOne(deptQueryWrapper).getName();
+        return new UserVO(user.getId(),user.getUsername(),null,user.getRoleIds(),deptName);
     }
 }

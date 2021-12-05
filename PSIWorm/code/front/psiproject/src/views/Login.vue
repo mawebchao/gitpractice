@@ -5,7 +5,12 @@
         <h1>please login</h1>
         <div class="inputWrapClass">
           <div class="form-control">
-            <input type="text" class="input" v-model="loginForm.username" required />
+            <input
+              type="text"
+              class="input"
+              v-model="loginForm.username"
+              required
+            />
             <!-- onchange="{this.onChange.bind(this,item.key)}" -->
 
             <label>
@@ -13,15 +18,25 @@
                 :style="[{ transitionDelay: 50 * index + 'ms' }]"
                 v-for="(chara, index) in 'username'.split('')"
                 :key="index"
-              >{{ chara }}</span>
+                >{{ chara }}</span
+              >
             </label>
           </div>
           <div class="form-control">
-            <input type="password" class="input" v-model="loginForm.password" required />
+            <input
+              type="password"
+              class="input"
+              v-model="loginForm.password"
+              required
+            />
             <!-- onchange="{this.onChange.bind(this,item.key)}" -->
 
             <label>
-              <span v-for="(chara, index) in 'password'.split('')" :key="index">{{ chara }}</span>
+              <span
+                v-for="(chara, index) in 'password'.split('')"
+                :key="index"
+                >{{ chara }}</span
+              >
             </label>
           </div>
         </div>
@@ -47,8 +62,8 @@ export default class extends Vue {
     return {
       loginForm: {
         username: "",
-        password: ""
-      }
+        password: "",
+      },
     };
   }
   // resetBtn() {
@@ -66,8 +81,8 @@ export default class extends Vue {
           password: this.$data.loginForm.password,
           client_id: "gateway-client",
           grant_type: "password",
-          client_secret: "123456"
-        }
+          client_secret: "123456",
+        },
       });
       // console.log("result", result);
       // if (result.access_token === null) return this.$message.error("用户登陆失败");
@@ -89,9 +104,9 @@ export default class extends Vue {
         .replace("]", "")
         .split(",");
       window.sessionStorage.setItem("roleIds", JSON.stringify(roleIds));
-      window.sessionStorage.setItem("username",username);
-
-      
+      window.sessionStorage.setItem("username", username);
+      console.log("登录用户信息：",res)
+      window.sessionStorage.setItem("keshi", res.data.data.keshi);
 
       this.$router.push("/");
     } catch (error) {
@@ -102,7 +117,7 @@ export default class extends Vue {
   clearLoginFields() {
     (this as any).loginForm = {
       username: "",
-      password: ""
+      password: "",
     };
   }
 }

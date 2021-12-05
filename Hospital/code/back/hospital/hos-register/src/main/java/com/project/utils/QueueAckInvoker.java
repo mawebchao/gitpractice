@@ -3,6 +3,6 @@ package com.project.utils;
 import java.io.IOException;
 
 @FunctionalInterface
-public interface OutPatientQueueInvoker {
+public interface QueueAckInvoker {
     void invoke() throws IOException;
 }

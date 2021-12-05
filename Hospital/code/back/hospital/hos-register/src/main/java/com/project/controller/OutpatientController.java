@@ -1,13 +1,9 @@
 package com.project.controller;
 
 import com.project.service.OutPatientDoctorService;
-import com.project.service.RegisterSenderService;
 import com.project.vo.OutPatientDoctorVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -22,7 +18,8 @@ public class OutpatientController {
     //门诊医生上线
     @PostMapping("/addDoctor")
     public OutPatientDoctorVO addDoctor(String queue_name, String name) throws IOException, TimeoutException {
-        return outPatientDoctorService.registerDoctor(queue_name,name);
+        outPatientDoctorService.registerDoctor(queue_name,name);
+        return outPatientDoctorService.nextPatient(name);
     }
     //门诊医生下线
     @PostMapping("/logoutDoctor")
@@ -32,7 +29,12 @@ public class OutpatientController {
     }
 //    @PostMapping("/addIdleDoctor")
     @PostMapping("/doctor/nextPatient")
-    public OutPatientDoctorVO nextPatient() throws IOException {
-        return outPatientDoctorService.nextPatient();
+    public OutPatientDoctorVO nextPatient(String queue_name,String username) throws IOException {
+        outPatientDoctorService.ackNowPatient(queue_name);
+        return outPatientDoctorService.nextPatient(username);
+    }
+    @GetMapping("/recursive/nextPatient/{name}")
+    public OutPatientDoctorVO recursiveNextPatient(@PathVariable("name") String name){
+        return outPatientDoctorService.nextPatient(name);
     }
 }

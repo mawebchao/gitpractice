@@ -1,6 +1,7 @@
 package com.project.service;
 
 import com.project.pojo.User;
+import com.project.vo.UserVO;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface UserService{
 
     void testAddUsers2();
 
-    User getUserByUsername(String username);
+    UserVO getUserByUsername(String username);
 
-    User getUserByUserId(Integer userId);
+    UserVO getUserByUserId(Integer userId);
 }

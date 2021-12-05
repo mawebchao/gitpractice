@@ -23,4 +23,6 @@ public class User {
     String password;
     @TableField("role_ids")
     String roleIds;
+    @TableField("deptId")
+    Integer deptId;
 }

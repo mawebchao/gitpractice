@@ -13,7 +13,7 @@ import java.util.concurrent.TimeoutException;
 
 @Component
 public class OutPatientDoctorService {
-    public OutPatientDoctorVO registerDoctor(String queue_name, String name) throws IOException, TimeoutException {
+    public void registerDoctor(String queue_name, String name) throws IOException, TimeoutException {
         Channel ch = QueueConnectionFactoryUtils.getQueueChannel();
 
         ch.queueDeclare(queue_name, true, false, false, null);
@@ -25,11 +25,11 @@ public class OutPatientDoctorService {
             public void handle(String consumerTag, Delivery message) throws IOException {
                 String msg = new String(message.getBody(), "UTF-8");
                 System.out.println("收到: " + msg);
-                QueueConnectionFactoryUtils.addOutPatientQueueAckInvoker(() -> {
+                QueueConnectionFactoryUtils.addOutPatientQueueAckInvoker(queue_name,() -> {
                     ch.basicAck(message.getEnvelope().getDeliveryTag(), false);
-
                 });
-                outPatientDoctorVO.setName(msg);
+                //缓存当前用户信息，map形式
+                QueueConnectionFactoryUtils.updateNowPatientMap(name,new OutPatientDoctorVO().setName(new String(message.getBody(),"UTF-8")));
             }
         };
 
@@ -43,12 +43,11 @@ public class OutPatientDoctorService {
         ch.basicConsume(queue_name, false, callback, cancel);
         //缓存channel
         QueueConnectionFactoryUtils.addChannel(name, ch);
-        return outPatientDoctorVO;
     }
 
 
-    public OutPatientDoctorVO nextPatient() throws IOException {
-        QueueConnectionFactoryUtils.getFirstOutPatientQueueAckInvoker().invoke();
+    public void ackNowPatient(String queue_name) throws IOException {
+        QueueConnectionFactoryUtils.getFirstOutPatientQueueAckInvoker(queue_name).invoke();
     }
 
     public void logoutDoctor(String queue_name, String name) throws IOException {
@@ -56,5 +55,9 @@ public class OutPatientDoctorService {
         //关闭通道
         QueueConnectionFactoryUtils.close(channel.getConnection());
 
+    }
+
+    public OutPatientDoctorVO nextPatient(String name) {
+        return (OutPatientDoctorVO) QueueConnectionFactoryUtils.getNewPatient(name);
     }
 }

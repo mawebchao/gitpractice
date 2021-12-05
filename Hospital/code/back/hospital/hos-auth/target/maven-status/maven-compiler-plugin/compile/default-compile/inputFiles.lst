@@ -1,7 +1,7 @@
-D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-auth\src\main\java\com\project\controller\TestController.java
-D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-auth\src\main\java\com\project\service\RemoteUserService.java
-D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-auth\src\main\java\com\project\config\TokenConfig.java
-D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-auth\src\main\java\com\project\service\impl\UserDetailsServiceImpl.java
-D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-auth\src\main\java\com\project\config\SecurityConfig.java
-D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-auth\src\main\java\com\project\AuthApplication.java
-D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-auth\src\main\java\com\project\config\Oauth2Config.java
+I:\idea\Hospital\code\back\hospital\hos-auth\src\main\java\com\project\config\SecurityConfig.java
+I:\idea\Hospital\code\back\hospital\hos-auth\src\main\java\com\project\config\Oauth2Config.java
+I:\idea\Hospital\code\back\hospital\hos-auth\src\main\java\com\project\config\TokenConfig.java
+I:\idea\Hospital\code\back\hospital\hos-auth\src\main\java\com\project\service\impl\UserDetailsServiceImpl.java
+I:\idea\Hospital\code\back\hospital\hos-auth\src\main\java\com\project\service\RemoteUserService.java
+I:\idea\Hospital\code\back\hospital\hos-auth\src\main\java\com\project\controller\TestController.java
+I:\idea\Hospital\code\back\hospital\hos-auth\src\main\java\com\project\AuthApplication.java

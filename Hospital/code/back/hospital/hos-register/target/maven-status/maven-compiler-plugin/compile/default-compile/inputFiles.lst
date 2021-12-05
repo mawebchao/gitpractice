@@ -1,7 +1,7 @@
-D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-register\src\main\java\com\project\controller\OutpatientController.java
-D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-register\src\main\java\com\project\controller\RegisterController.java
-D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-register\src\main\java\com\project\service\OutPatientDoctorService.java
-D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-register\src\main\java\com\project\service\RegisterSenderService.java
-D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-register\src\main\java\com\project\utils\OutPatientQueueInvoker.java
-D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-register\src\main\java\com\project\HospitalApplication.java
-D:\machao\ws_PSIWorm\Hospital\code\back\hospital\hos-register\src\main\java\com\project\utils\QueueConnectionFactoryUtils.java
+I:\idea\Hospital\code\back\hospital\hos-register\src\main\java\com\project\controller\RegisterController.java
+I:\idea\Hospital\code\back\hospital\hos-register\src\main\java\com\project\controller\OutpatientController.java
+I:\idea\Hospital\code\back\hospital\hos-register\src\main\java\com\project\HospitalApplication.java
+I:\idea\Hospital\code\back\hospital\hos-register\src\main\java\com\project\service\OutPatientDoctorService.java
+I:\idea\Hospital\code\back\hospital\hos-register\src\main\java\com\project\utils\OutPatientQueueInvoker.java
+I:\idea\Hospital\code\back\hospital\hos-register\src\main\java\com\project\utils\QueueConnectionFactoryUtils.java
+I:\idea\Hospital\code\back\hospital\hos-register\src\main\java\com\project\service\RegisterSenderService.java
